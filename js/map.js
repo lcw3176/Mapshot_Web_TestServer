@@ -45,8 +45,8 @@ window.onload = function(){
 	var latlng = mouseEvent.latLng; 
     var latInput = document.getElementById("lat");
     var lngInput = document.getElementById("lng");
-    latInput.value = latlng.getLat();
-    lngInput.value = latlng.getLng();   
+    latInput.innerText = latlng.getLat();
+    lngInput.innerText = latlng.getLng();   
     // 마커를 클릭한 위치에 표시합니다 
     marker.setPosition(mouseEvent.latLng);
     marker.setMap(map); 
