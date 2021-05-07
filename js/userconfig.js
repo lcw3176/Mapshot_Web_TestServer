@@ -268,7 +268,12 @@ function startCapture() {
                         imageLoadCount++;
 
                         if(imageLoadCount == blockArea){
-                            addLayers(centerLat, centerLng, zoomLevel.get());
+                            if(layersController.get().length > 0){
+                                addLayers(centerLat, centerLng, zoomLevel.get());
+                            } else{
+                                mergeImageBlock();
+                            }
+                            
                         }
                     }
 
