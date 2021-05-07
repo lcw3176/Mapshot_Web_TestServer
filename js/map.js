@@ -103,8 +103,8 @@ function displayCenterInfo(){
 
 function getRectangleBounds(){
 
-    var centerLat = document.getElementById("lat").value;
-    var centerLng = document.getElementById("lng").value;
+    var centerLat = document.getElementById("lat").innerText;
+    var centerLng = document.getElementById("lng").innerText;
 
     fixValueController.initValues(centerLat);
     
