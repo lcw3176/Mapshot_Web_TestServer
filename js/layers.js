@@ -27,10 +27,10 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var order = 0;
     var imageLoadCount = 0;
     var layerCount = 0;
+    var isDone = false;
 
-    for(var z = layerCount; layerCount < layersController.get().length; layerCount += 4){
+    while(!isDone){
 
-    
         for (var i = 0; i < blockWidth; i++) {
 
             for (var j = 0; j < blockWidth; j++) {
@@ -99,6 +99,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
                         imageLoadCount++;
 
                         if(imageLoadCount == blockArea){
+                            isDone = true;
                             mergeImageBlock();
                         }
                     }
@@ -114,7 +115,11 @@ function addLayers(centerLat, centerLng, zoomLevel){
             blockLat -= moveYPostion;
 
         }
+
+        layerCount += 4;
     }
+        
+    
 
         function mergeImageBlock() {
             if(canvas.msToBlob){
