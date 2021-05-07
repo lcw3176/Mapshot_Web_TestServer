@@ -29,8 +29,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var layerCount = 0;
     var styleCount = 0;
 
-    while(layerCount < layersController.get().length){
-        
+
         for (var i = 0; i < blockWidth; i++) {
 
             for (var j = 0; j < blockWidth; j++) {
@@ -162,6 +161,6 @@ function addLayers(centerLat, centerLng, zoomLevel){
             }
         
         }
-    }   
+    
 
 }
