@@ -54,12 +54,18 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 vworldUrl +=  "LAYERS=";
 
                 for(var k = 0; k < 4; k++){
-                    if(layerCount >= layersController.get().length){
-                        break;
-                    }  
+                    (function (k) {
+                        
+                        if(layerCount >= layersController.get().length){
+                            break;
+                        }  
 
-                    vworldUrl += layersController.get()[layerCount++];
-                    vworldUrl += ",";
+                        vworldUrl += layersController.get()[layerCount];
+                        vworldUrl += ",";
+                        layerCount += 1;
+
+                    })(k);
+
                 }
 
                 vworldUrl.slice(0,-1)
@@ -67,16 +73,22 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 vworldUrl += "STYLES=";
 
                 for(var k = 0; k < 4; k++){
-                    if(styleCount >= layersController.get().length){
-                        break;
-                    }
 
-                    vworldUrl += layersController.get()[styleCount++];
-                    vworldUrl += ",";
+                    (function (k) {
+                        
+                        if(styleCount >= layersController.get().length){
+                            break;
+                        }
+    
+                        vworldUrl += layersController.get()[styleCount];
+                        vworldUrl += ",";
+                        styleCount += 1;
+
+                    })(k);
+
                 }
 
                 vworldUrl.slice(0,-1)
-                
                 var layersImage = new Image();
                 layersImage.crossOrigin = "*"
                 layersImage.src = vworldUrl;
