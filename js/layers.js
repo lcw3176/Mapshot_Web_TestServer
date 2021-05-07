@@ -63,11 +63,15 @@ function addLayers(centerLat, centerLng, zoomLevel){
                         vworldUrl += ",";
                         layerCount += 1;
 
+                        if(layerCount % 4 == 0 || layerCount >= layersController.get().length){
+                            vworldUrl.slice(0,-1)
+                        }
+
                     })(layerCount);
 
                 }
 
-                vworldUrl.slice(0,-1)
+                
                 vworldUrl +=  "&";
                 vworldUrl += "STYLES=";
 
@@ -81,6 +85,10 @@ function addLayers(centerLat, centerLng, zoomLevel){
                         vworldUrl += layersController.get()[styleCount];
                         vworldUrl += ",";
                         styleCount += 1;
+
+                        if(styleCount % 4 == 0 || styleCount >= layersController.get().length){
+                            vworldUrl.slice(0,-1)
+                        }
 
                     })(styleCount);
 
