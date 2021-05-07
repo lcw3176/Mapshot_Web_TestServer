@@ -1,6 +1,32 @@
 const zoomLevel = new ZoomController();
 const mapController = new MapTypeController();
 const fixValueController = new FixValueController();
+const layersController = new LayersController();
+
+function LayersController(){
+    var layersArr = [];
+
+    this.set = function (layers) {
+        if(!layersArr.includes(layersArr)){
+            layersArr.push(layers);
+        }
+
+        else {
+            for(let i = 0; i < layersArr.length; i++) {
+                if(layersArr[i] === layers)  {
+                    layersArr.splice(i, 1);
+                    break;
+                }
+              }
+        }
+        
+    };
+
+
+    this.get = function () {
+      return layersArr;
+    };
+}
 
 function FixValueController(){
 
