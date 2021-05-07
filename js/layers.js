@@ -34,7 +34,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
             var ymax = blockLat + Number(moveYPostion);
             var xmax = blockLng + Number(moveXPosition);
 
-            var vworldUrl = "http://api.vworld.kr/req/wms?" +
+            var vworldUrl = "https://api.vworld.kr/req/wms?" +
                             "SERVICE=WMS&" + 
                             "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
                             "domain=https://testservermapshot.netlify.app&" +
@@ -49,7 +49,6 @@ function addLayers(centerLat, centerLng, zoomLevel){
                             "STYLES=lt_c_upisuq161,lt_c_upisuq151,lt_c_upisuq153,lt_c_upisuq156";
 
             var layersImage = new Image();
-            layersImage.crossOrigin = "*";
             layersImage.src = vworldUrl;
             
 
