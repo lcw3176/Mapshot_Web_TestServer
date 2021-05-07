@@ -7,7 +7,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
 
     var blockWidth = (zoomLevel * 2) + 1;
-    var blockArea = blockWidth * blockWidth * (layersController.get().length % 4 + 1);
+    var blockArea = blockWidth * blockWidth * (parseInt(layersController.get().length / 4) + 1);
     var canvasBlockSize = 500;
 
     if(fixValueController.getViewString() == 'normal'){
