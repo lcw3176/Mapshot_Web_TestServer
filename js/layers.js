@@ -27,101 +27,105 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var order = 0;
     var imageLoadCount = 0;
     var layerCount = 0;
-    var isDone = false;
 
-    setTimeout(function(){
-        while(!isDone){
+    getLayers();
 
-            for (var i = 0; i < blockWidth; i++) {
-    
-                for (var j = 0; j < blockWidth; j++) {
-                    var ymin = blockLat - Number(moveYPostion / 2);
-                    var xmin = blockLng - Number(moveXPosition / 2);
-                    var ymax = blockLat + Number(moveYPostion / 2);
-                    var xmax = blockLng + Number(moveXPosition / 2);
-    
-                    var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
-                                    "https://api.vworld.kr/req/wms?" +
-                                    "SERVICE=WMS&" + 
-                                    "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
-                                    "domain=https://testservermapshot.netlify.app&" +
-                                    "request=GetMap&" +
-                                    "format=image/png&" +
-                                    "width=1000&" +
-                                    "height=1000&" +
-                                    "transparent=TRUE&" +
-                                    "BGCOLOR=0xFFFFFF&" +
-                                    "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
-                    
-                    vworldUrl +=  "LAYERS=";
-    
-    
-                    for(var k = layerCount; k < layerCount + 4; k++){
-    
-                        if(k >= layersController.get().length){
-                            break;
-                        }  
-                        
-                        vworldUrl += layersController.get()[k]; 
-                        vworldUrl += ",";                       
-                    }
-    
-                    vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
-                    vworldUrl +=  "&";
-                    vworldUrl += "STYLES=";
-                    
-                    for(var k = layerCount; k < layerCount + 4; k++){
-    
-                        if(k >= layersController.get().length){
-                            break;
-                        }
-    
-                        vworldUrl += layersController.get()[k];
-                        vworldUrl += ",";
-                    }
-    
-                    vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
-                    var layersImage = new Image();
-                    layersImage.crossOrigin = "*"
-                    layersImage.src = vworldUrl;
-    
-                    (function (order) {
-                        var _order = order;
-                        layersImage.onload = function () {
-                            var xPos = (_order % blockWidth) * canvasBlockSize;
-                            var yPos = parseInt(_order / blockWidth) * canvasBlockSize;  
+    function getLayers(){
+        for (var i = 0; i < blockWidth; i++) {
+
+            for (var j = 0; j < blockWidth; j++) {
+                var ymin = blockLat - Number(moveYPostion / 2);
+                var xmin = blockLng - Number(moveXPosition / 2);
+                var ymax = blockLat + Number(moveYPostion / 2);
+                var xmax = blockLng + Number(moveXPosition / 2);
+
+                var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
+                                "https://api.vworld.kr/req/wms?" +
+                                "SERVICE=WMS&" + 
+                                "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
+                                "domain=https://testservermapshot.netlify.app&" +
+                                "request=GetMap&" +
+                                "format=image/png&" +
+                                "width=1000&" +
+                                "height=1000&" +
+                                "transparent=TRUE&" +
+                                "BGCOLOR=0xFFFFFF&" +
+                                "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
                 
-                            ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                            
-                            progressValue += progressWidth;
-                            progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
-                            progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
-    
-                            imageLoadCount++;
-    
-                            if(imageLoadCount == blockArea){
-                                isDone = true;
-                                mergeImageBlock();
-                            }
-                        }
-    
-                    })(order);
-    
-                    order++;
-                    blockLng += Number(moveXPosition);
-                
+                vworldUrl +=  "LAYERS=";
+
+
+                for(var k = layerCount; k < layerCount + 4; k++){
+
+                    if(k >= layersController.get().length){
+                        break;
+                    }  
+                    
+                    vworldUrl += layersController.get()[k]; 
+                    vworldUrl += ",";                       
                 }
-    
-                blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
-                blockLat -= moveYPostion;
-    
+
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+                vworldUrl +=  "&";
+                vworldUrl += "STYLES=";
+                
+                for(var k = layerCount; k < layerCount + 4; k++){
+
+                    if(k >= layersController.get().length){
+                        break;
+                    }
+
+                    vworldUrl += layersController.get()[k];
+                    vworldUrl += ",";
+                }
+
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+                var layersImage = new Image();
+                layersImage.crossOrigin = "*"
+                layersImage.src = vworldUrl;
+
+                (function (order) {
+                    var _order = order;
+                    layersImage.onload = function () {
+                        var xPos = (_order % blockWidth) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockWidth) * canvasBlockSize;  
+            
+                        ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        
+                        progressValue += progressWidth;
+                        progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
+                        progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
+
+                        imageLoadCount++;
+
+                        if(imageLoadCount == blockArea){
+                            mergeImageBlock();
+                        }
+
+                        if(imageLoadCount == blockWidth * blockWidth && imageLoadCount < blockArea){
+                            layerCount += 4;
+                            getLayers();
+                        }
+                    }
+
+                })(order);
+
+                order++;
+                blockLng += Number(moveXPosition);
+            
             }
-    
-            layerCount += 4;
+
+            blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
+            blockLat -= moveYPostion;
+
         }
-    }, 0);
-   
+
+    }
         
+    
+        
+    
+
         function mergeImageBlock() {
             if(canvas.msToBlob){
                 canvas.toBlob(function(blob){
