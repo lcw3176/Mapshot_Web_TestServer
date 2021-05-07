@@ -1,3 +1,4 @@
+// https://testservermapshot.netlify.app/
 function addLayers(centerLat, centerLng, zoomLevel){
     
     var moveXPosition = fixValueController.getXPosition();
@@ -29,12 +30,13 @@ function addLayers(centerLat, centerLng, zoomLevel){
     for (var i = 0; i < blockWidth; i++) {
 
         for (var j = 0; j < blockWidth; j++) {
-            var ymin = blockLat - Number(moveYPostion);
-            var xmin = blockLng - Number(moveXPosition);
-            var ymax = blockLat + Number(moveYPostion);
-            var xmax = blockLng + Number(moveXPosition);
+            var ymin = blockLat - Number(moveYPostion / 2);
+            var xmin = blockLng - Number(moveXPosition / 2);
+            var ymax = blockLat + Number(moveYPostion / 2);
+            var xmax = blockLng + Number(moveXPosition / 2);
 
-            var vworldUrl = "https://api.vworld.kr/req/wms?" +
+            var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
+                            "https://api.vworld.kr/req/wms?" +
                             "SERVICE=WMS&" + 
                             "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
                             "domain=https://testservermapshot.netlify.app&" +
@@ -49,8 +51,8 @@ function addLayers(centerLat, centerLng, zoomLevel){
                             "STYLES=lt_c_upisuq161,lt_c_upisuq151,lt_c_upisuq153,lt_c_upisuq156";
 
             var layersImage = new Image();
+            layersImage.crossOrigin = "*"
             layersImage.src = vworldUrl;
-            
 
             (function (order) {
                 var _order = order;
@@ -76,7 +78,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
             order++;
             blockLng += Number(moveXPosition);
 
-
+        
         }
 
         blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
