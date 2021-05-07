@@ -7,7 +7,7 @@ function LayersController(){
     var layersArr = [];
 
     this.set = function (layers) {
-        if(!layersArr.includes(layersArr)){
+        if(!layersArr.includes(layers)){
             layersArr.push(layers);
         }
 
@@ -132,6 +132,10 @@ function ZoomController() {
     };
 }
 
+function setLayers(layers) {
+    layersController.set(layers);
+}
+
 
 
 function setZoomLevel(userZoomLevel, mode) {
@@ -183,6 +187,10 @@ function startCapture() {
             });
     
             traceRec.setMap(map);
+        }
+
+        if(document.getElementById("layerMode").checked){
+            console.log("레이어만 출력");
         }
 
         

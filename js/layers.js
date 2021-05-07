@@ -26,104 +26,126 @@ function addLayers(centerLat, centerLng, zoomLevel){
 
     var order = 0;
     var imageLoadCount = 0;
+    var layerCount = 0;
+    var styleCount = 0;
 
-    for (var i = 0; i < blockWidth; i++) {
+    while(layerCount < layersController.get().length){
+        
+        for (var i = 0; i < blockWidth; i++) {
 
-        for (var j = 0; j < blockWidth; j++) {
-            var ymin = blockLat - Number(moveYPostion / 2);
-            var xmin = blockLng - Number(moveXPosition / 2);
-            var ymax = blockLat + Number(moveYPostion / 2);
-            var xmax = blockLng + Number(moveXPosition / 2);
+            for (var j = 0; j < blockWidth; j++) {
+                var ymin = blockLat - Number(moveYPostion / 2);
+                var xmin = blockLng - Number(moveXPosition / 2);
+                var ymax = blockLat + Number(moveYPostion / 2);
+                var xmax = blockLng + Number(moveXPosition / 2);
 
-            var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
-                            "https://api.vworld.kr/req/wms?" +
-                            "SERVICE=WMS&" + 
-                            "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
-                            "domain=https://testservermapshot.netlify.app&" +
-                            "request=GetMap&" +
-                            "format=image/png&" +
-                            "width=1000&" +
-                            "height=1000&" +
-                            "transparent=TRUE&" +
-                            "BGCOLOR=0xFFFFFF&" +
-                            "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&" +
-                            "LAYERS=lt_c_upisuq161,lt_c_upisuq151,lt_c_upisuq153,lt_c_upisuq156&" +
-                            "STYLES=lt_c_upisuq161,lt_c_upisuq151,lt_c_upisuq153,lt_c_upisuq156";
+                var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
+                                "https://api.vworld.kr/req/wms?" +
+                                "SERVICE=WMS&" + 
+                                "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
+                                "domain=https://testservermapshot.netlify.app&" +
+                                "request=GetMap&" +
+                                "format=image/png&" +
+                                "width=1000&" +
+                                "height=1000&" +
+                                "transparent=TRUE&" +
+                                "BGCOLOR=0xFFFFFF&" +
+                                "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
+                vworldUrl +=  "LAYERS=";
 
-            var layersImage = new Image();
-            layersImage.crossOrigin = "*"
-            layersImage.src = vworldUrl;
+                for(var k = 0; k < 4; k++){
+                    if(layerCount >= layersController.get().length){
+                        break;
+                    }  
 
-            (function (order) {
-                var _order = order;
-                layersImage.onload = function () {
-                    var xPos = (_order % blockWidth) * canvasBlockSize;
-                    var yPos = parseInt(_order / blockWidth) * canvasBlockSize;  
-         
-                    ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                    
-                    progressValue += progressWidth;
-                    progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
-                    progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
-
-                    imageLoadCount++;
-
-                    if(imageLoadCount == blockArea){
-                        mergeImageBlock();
-                    }
+                    vworldUrl += layersController.get()[layerCount++];
                 }
 
-            })(order);
+                vworldUrl +=  "&";
+                vworldUrl += "STYLES=";
 
-            order++;
-            blockLng += Number(moveXPosition);
+                for(var k = 0; k < 4; k++){
+                    if(styleCount >= layersController.get().length){
+                        break;
+                    }
 
+                    vworldUrl += layersController.get()[styleCount++];
+                }
+
+                var layersImage = new Image();
+                layersImage.crossOrigin = "*"
+                layersImage.src = vworldUrl;
+
+                (function (order) {
+                    var _order = order;
+                    layersImage.onload = function () {
+                        var xPos = (_order % blockWidth) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockWidth) * canvasBlockSize;  
+            
+                        ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        
+                        progressValue += progressWidth;
+                        progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
+                        progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
+
+                        imageLoadCount++;
+
+                        if(imageLoadCount == blockArea){
+                            mergeImageBlock();
+                        }
+                    }
+
+                })(order);
+
+                order++;
+                blockLng += Number(moveXPosition);
+
+            
+            }
+
+            blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
+            blockLat -= moveYPostion;
+
+        }
+
+        function mergeImageBlock() {
+            if(canvas.msToBlob){
+                canvas.toBlob(function(blob){
+                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                    var status = document.getElementById("resultStatus");
+                    status.innerText = "완료되었습니다.";
+                
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.width = 0;
+                    canvas.height = 0;
+                
+                    progress.style.width = "100%";
+                    progress.innerText = "100%";
+
+                }, 'image/jpeg');
+
+            } else {
+                canvas.toBlob(function (blob) {
+
+                    url = URL.createObjectURL(blob);
+                    var status = document.getElementById("resultStatus");
+                    status.innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+                
+                    var tag = document.getElementById("resultTag");
+                    tag.href = url;
+                    tag.innerHTML = "mapshot_result.jpg";
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.width = 0;
+                    canvas.height = 0;
+                
+                    progress.style.width = "100%";
+                    progress.innerText = "100%";
+                
+                }, 'image/jpeg');
+            }
         
         }
-
-        blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
-        blockLat -= moveYPostion;
-
-    }
-
-    function mergeImageBlock() {
-        if(canvas.msToBlob){
-            canvas.toBlob(function(blob){
-                navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                var status = document.getElementById("resultStatus");
-                status.innerText = "완료되었습니다.";
-            
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                canvas.width = 0;
-                canvas.height = 0;
-            
-                progress.style.width = "100%";
-                progress.innerText = "100%";
-
-            }, 'image/jpeg');
-
-        } else {
-            canvas.toBlob(function (blob) {
-
-                url = URL.createObjectURL(blob);
-                var status = document.getElementById("resultStatus");
-                status.innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
-            
-                var tag = document.getElementById("resultTag");
-                tag.href = url;
-                tag.innerHTML = "mapshot_result.jpg";
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                canvas.width = 0;
-                canvas.height = 0;
-            
-                progress.style.width = "100%";
-                progress.innerText = "100%";
-            
-            }, 'image/jpeg');
-        }
-    
-
-    }
+    }   
 
 }
