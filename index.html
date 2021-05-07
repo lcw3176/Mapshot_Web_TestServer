@@ -8,7 +8,7 @@
 
     <body>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html" style="color: white;">Mapshot</a>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,10 +24,6 @@
         <div class="box">
           <div class="box-1">
             <ul class="list-group">
-              <li class="list-group-item list-group-item-primary">
-                위치 검색
-              </li>
-
               <li class="list-group-item">
                 <div class="map_wrap">
                   <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -167,7 +163,136 @@
                         </div>
                         
                         </div>
+
+                        
                       </div>
+
+                      <div class="accordion-body">
+                        <div class="form-check">
+                          <p><strong>용도지역지구</strong></p>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_ud801')">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              개발제한구역
+                            </label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq129')">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              개발진흥지구
+                            </label>
+                         </div>
+
+                         <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq121')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            경관지구
+                          </label>
+                         </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq112')">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              고도지구
+                            </label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_upisuq154')">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              관리지역
+                            </label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                           
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uma100')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            국립공원용도지구
+                          </label>
+                        </div>
+
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq141')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            국토계획구역
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq113')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            농림지역
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq162')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            도시자연공원구역
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq111')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            도시지역
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq125')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            방재지구
+                          </label>
+                        </div>
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq124')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            방화지구
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq126')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            보호지구
+                          </label>
+                        </div>
+
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uf602')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            임업 및 산촌 진흥권역
+                          </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq114')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            자연환경보전지역
+                          </label>
+                        </div>
+                        
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq128')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            취락지구
+                          </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="" onclick="setLayers('lt_c_uq130')">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            특정용도제한지구
+                          </label>
+                        </div>
+                        
+                        </div>
+
                     </div>
                   </div>
                 </div>
@@ -180,11 +305,11 @@
 
         <div class="box-2">
           <ul class="list-group">
-            <li class="list-group-item list-group-item-dark">1. 중심점 설정</li>
+            <li class="list-group-item list-group-item-dark fw-bold">1. 중심점 설정</li>
             <li class="list-group-item">위도: <span id="lat"></span></li>
             <li class="list-group-item">경도: <span id="lng"></span></li>
 
-            <li class="list-group-item list-group-item-dark">2. 배율 설정</li>
+            <li class="list-group-item list-group-item-dark fw-bold">2. 배율 설정</li>
             <li class="list-group-item">
               <input type="radio" name="jb-radio" onclick="setZoomLevel(0x5, 0x1);" > 반경 1km
             </li>
@@ -198,7 +323,7 @@
               <input type="radio" name="jb-radio" id="default_click_level" onclick="setZoomLevel(0xa, 0x3);" > 반경 10km
             </li>
 
-            <li class="list-group-item list-group-item-dark"> 3. 지도 종류 설정</li>
+            <li class="list-group-item list-group-item-dark fw-bold"> 3. 지도 종류 설정</li>
             <li class="list-group-item">
               <input type="radio" name="jbs-radio" onclick="setBaseMap(0x1);"> 일반 지도 
             </li>
@@ -209,7 +334,7 @@
               <input type="radio" name="jbs-radio" onclick="setBaseMap(0x3);"> 하이브리드
             </li>
             
-            <li class="list-group-item list-group-item-dark"> 4. 부가 설정</li>
+            <li class="list-group-item list-group-item-dark fw-bold"> 4. 부가 설정</li>
             <li class="list-group-item">
               <input class="form-check-input me-1" id="traceMode" type="checkbox" checked="true">
               흔적 남기기

@@ -7,7 +7,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
 
     var blockWidth = (zoomLevel * 2) + 1;
-    var blockArea = blockWidth * blockWidth;
+    var blockArea = blockWidth * blockWidth * (layersController.get().length % 4);
     var canvasBlockSize = 500;
 
     if(fixValueController.getViewString() == 'normal'){
@@ -22,14 +22,15 @@ function addLayers(centerLat, centerLng, zoomLevel){
     var progress = document.getElementById("progressBar");
     progress.style.width = progressValue + "%";
 
-    document.getElementById("resultStatus").innerText = "레이어를 덧입히는 중입니다.";
+    document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
 
     var order = 0;
     var imageLoadCount = 0;
     var layerCount = 0;
-    var styleCount = 0;
 
+    for(var z = layerCount; layerCount < layersController.get().length; layerCount += 4){
 
+    
         for (var i = 0; i < blockWidth; i++) {
 
             for (var j = 0; j < blockWidth; j++) {
@@ -54,7 +55,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 vworldUrl +=  "LAYERS=";
 
 
-                for(var k = 0; k < 4; k++){
+                for(var k = layerCount; k < layerCount + 4; k++){
 
                     if(k >= layersController.get().length){
                         break;
@@ -68,7 +69,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 vworldUrl +=  "&";
                 vworldUrl += "STYLES=";
                 
-                for(var k = 0; k < 4; k++){
+                for(var k = layerCount; k < layerCount + 4; k++){
 
                     if(k >= layersController.get().length){
                         break;
@@ -106,9 +107,6 @@ function addLayers(centerLat, centerLng, zoomLevel){
 
                 order++;
                 blockLng += Number(moveXPosition);
-                styleCount -= 4;
-                layerCount -= 4;
-
             
             }
 
@@ -116,6 +114,7 @@ function addLayers(centerLat, centerLng, zoomLevel){
             blockLat -= moveYPostion;
 
         }
+    }
 
         function mergeImageBlock() {
             if(canvas.msToBlob){

@@ -189,15 +189,18 @@ function startCapture() {
             traceRec.setMap(map);
         }
 
-        if(document.getElementById("layerMode").checked){
-            console.log("레이어만 출력");
-        }
-
         
         var centerLat = document.getElementById("lat").innerText;
         var centerLng = document.getElementById("lng").innerText;
 
         fixValueController.initValues(centerLat);
+
+        if(document.getElementById("layerMode").checked){
+            addLayers(centerLat, centerLng, zoomLevel.get());
+
+            return;
+        }
+
 
         var blockWidth = (zoomLevel.get() * 2) + 1;
         var blockArea = blockWidth * blockWidth;
