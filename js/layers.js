@@ -54,17 +54,17 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 vworldUrl +=  "LAYERS=";
 
                 for(var k = 0; k < 4; k++){
-                    (function (k) {
-                        
-                        if(layerCount >= layersController.get().length){
-                            break;
-                        }  
+                                            
+                    if(layerCount >= layersController.get().length){
+                        break;
+                    }  
 
+                    (function (layerCount) {
                         vworldUrl += layersController.get()[layerCount];
                         vworldUrl += ",";
                         layerCount += 1;
 
-                    })(k);
+                    })(layerCount);
 
                 }
 
@@ -74,17 +74,16 @@ function addLayers(centerLat, centerLng, zoomLevel){
 
                 for(var k = 0; k < 4; k++){
 
-                    (function (k) {
-                        
-                        if(styleCount >= layersController.get().length){
-                            break;
-                        }
-    
+                    if(styleCount >= layersController.get().length){
+                        break;
+                    }
+
+                    (function (styleCount) {
                         vworldUrl += layersController.get()[styleCount];
                         vworldUrl += ",";
                         styleCount += 1;
 
-                    })(k);
+                    })(styleCount);
 
                 }
 
