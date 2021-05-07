@@ -52,46 +52,33 @@ function addLayers(centerLat, centerLng, zoomLevel){
                                 "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
                 
                 vworldUrl +=  "LAYERS=";
-                vworldUrl += layersController.get()[layerCount];    
-                layerCount += 1;
 
-                for(var k = 0; k < 3; k++){
-                                            
-                    if(layerCount >= layersController.get().length){
+
+                for(var k = 0; k < 4; k++){
+
+                    if(k >= layersController.get().length){
                         break;
                     }  
-
-                    (function (layerCount) {
-                        vworldUrl += ",";
-                        vworldUrl += layersController.get()[layerCount];                        
-                        layerCount += 1;
-
-                    })(layerCount);
-
+                    
+                    vworldUrl += layersController.get()[k]; 
+                    vworldUrl += ",";                       
                 }
 
-                
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
                 vworldUrl +=  "&";
                 vworldUrl += "STYLES=";
-                vworldUrl += layersController.get()[styleCount];
-                styleCount += 1;
                 
-                for(var k = 0; k < 3; k++){
+                for(var k = 0; k < 4; k++){
 
-                    if(styleCount >= layersController.get().length){
+                    if(k >= layersController.get().length){
                         break;
                     }
 
-                    (function (styleCount) {
-                        vworldUrl += ",";
-                        vworldUrl += layersController.get()[styleCount];
-                        styleCount += 1;
-
-                    })(styleCount);
-
+                    vworldUrl += layersController.get()[k];
+                    vworldUrl += ",";
                 }
 
-                vworldUrl.slice(0,-1)
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
                 var layersImage = new Image();
                 layersImage.crossOrigin = "*"
                 layersImage.src = vworldUrl;
@@ -119,6 +106,8 @@ function addLayers(centerLat, centerLng, zoomLevel){
 
                 order++;
                 blockLng += Number(moveXPosition);
+                styleCount -= 4;
+                layerCount -= 4;
 
             
             }
