@@ -50,22 +50,21 @@ function addLayers(centerLat, centerLng, zoomLevel){
                                 "transparent=TRUE&" +
                                 "BGCOLOR=0xFFFFFF&" +
                                 "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
+                
                 vworldUrl +=  "LAYERS=";
+                vworldUrl += layersController.get()[layerCount];    
+                layerCount += 1;
 
-                for(var k = 0; k < 4; k++){
+                for(var k = 0; k < 3; k++){
                                             
                     if(layerCount >= layersController.get().length){
                         break;
                     }  
 
                     (function (layerCount) {
-                        vworldUrl += layersController.get()[layerCount];
                         vworldUrl += ",";
+                        vworldUrl += layersController.get()[layerCount];                        
                         layerCount += 1;
-
-                        if(layerCount % 4 == 0 || layerCount >= layersController.get().length){
-                            vworldUrl.slice(0,-1)
-                        }
 
                     })(layerCount);
 
@@ -74,21 +73,19 @@ function addLayers(centerLat, centerLng, zoomLevel){
                 
                 vworldUrl +=  "&";
                 vworldUrl += "STYLES=";
-
-                for(var k = 0; k < 4; k++){
+                vworldUrl += layersController.get()[styleCount];
+                styleCount += 1;
+                
+                for(var k = 0; k < 3; k++){
 
                     if(styleCount >= layersController.get().length){
                         break;
                     }
 
                     (function (styleCount) {
-                        vworldUrl += layersController.get()[styleCount];
                         vworldUrl += ",";
+                        vworldUrl += layersController.get()[styleCount];
                         styleCount += 1;
-
-                        if(styleCount % 4 == 0 || styleCount >= layersController.get().length){
-                            vworldUrl.slice(0,-1)
-                        }
 
                     })(styleCount);
 
