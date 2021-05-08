@@ -1,1 +1,185 @@
-var _0x1079=['11kzYmvc','normal','domain=https://testservermapshot.netlify.app&','image/jpeg','drawImage','createObjectURL','.jpg','550508Xfqcfe','progressBar','src','crossOrigin','https://api.vworld.kr/req/wms?','resultStatus','get','style','clearRect','innerHTML','1507aVpDLs','toBlob','138603deGksj','.png','https://mapshot-proxy-server.herokuapp.com/','완료되었습니다.\x20아래에\x20생성된\x20링크를\x20확인하세요','256901VLLXzK','7449rWWgSb','msToBlob','request=GetMap&','완료되었습니다.','1ytEJMt','width=1000&','BBOX=','getYPosition','image/png','width','href','164807VBSKXH','레이어\x20수집\x20중입니다.','height','1ADkbCm','getContext','msSaveBlob','getElementById','getXPosition','key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&','onload','429268ySvjuX','length','mapshot_result','toFixed','100%','innerText'];(function(_0x2d7ed5,_0x1ddd79){var _0xd3daa9=_0x1ba7;while(!![]){try{var _0x1f89e9=-parseInt(_0xd3daa9(0xdb))+parseInt(_0xd3daa9(0xe7))+parseInt(_0xd3daa9(0xb8))+-parseInt(_0xd3daa9(0xe5))*parseInt(_0xd3daa9(0xc7))+parseInt(_0xd3daa9(0xce))+-parseInt(_0xd3daa9(0xc4))*-parseInt(_0xd3daa9(0xbd))+parseInt(_0xd3daa9(0xb9))*-parseInt(_0xd3daa9(0xd4));if(_0x1f89e9===_0x1ddd79)break;else _0x2d7ed5['push'](_0x2d7ed5['shift']());}catch(_0x273d04){_0x2d7ed5['push'](_0x2d7ed5['shift']());}}}(_0x1079,0x56d29));function _0x1ba7(_0x1129de,_0xb6842e){_0x1129de=_0x1129de-0xb7;var _0x1079d3=_0x1079[_0x1129de];return _0x1079d3;}function addLayers(_0x1f47c4,_0x334a52,_0x5f129f,_0x145e2a){var _0x35d696=_0x1ba7,_0x434595=fixValueController[_0x35d696(0xcb)](),_0x344ea9=fixValueController[_0x35d696(0xc0)](),_0xd2381a=Number(_0x1f47c4)+Number(_0x344ea9)*Number(_0x5f129f),_0x2da19f=Number(_0x334a52)-Number(_0x434595)*Number(_0x5f129f),_0x4b5653=_0x5f129f*0x2+0x1,_0x4749ff=_0x4b5653*_0x4b5653*(parseInt(layersController[_0x35d696(0xe1)]()[_0x35d696(0xcf)]/0x4)+0x1),_0x3a768b=0x1f4;fixValueController['getViewString']()==_0x35d696(0xd5)&&(_0x3a768b*=0x2);var _0x5013f1=document[_0x35d696(0xca)]('canvas');_0x145e2a&&(_0x5013f1['width']=Number(_0x4b5653)*_0x3a768b,_0x5013f1[_0x35d696(0xc6)]=Number(_0x4b5653)*_0x3a768b);var _0x59a398=_0x5013f1[_0x35d696(0xc8)]('2d'),_0x15944d=0x64/_0x4749ff,_0x4be9bc=0x0,_0x443d79=document[_0x35d696(0xca)](_0x35d696(0xdc));_0x443d79[_0x35d696(0xe2)][_0x35d696(0xc2)]=_0x4be9bc+'%',document[_0x35d696(0xca)](_0x35d696(0xe0))[_0x35d696(0xd3)]=_0x35d696(0xc5);var _0x1bfd05=0x0,_0x5545ba=0x0,_0x39d5f3=0x0;_0x9d8b15();function _0x9d8b15(){var _0x250dd4=_0x35d696;for(var _0x1a227b=0x0;_0x1a227b<_0x4b5653;_0x1a227b++){for(var _0x588bfe=0x0;_0x588bfe<_0x4b5653;_0x588bfe++){var _0x26be08=_0xd2381a-Number(_0x344ea9/0x2),_0x255556=_0x2da19f-Number(_0x434595/0x2),_0x2d9a51=_0xd2381a+Number(_0x344ea9/0x2),_0x6c591d=_0x2da19f+Number(_0x434595/0x2),_0x55d894=_0x250dd4(0xe9)+_0x250dd4(0xdf)+'SERVICE=WMS&'+_0x250dd4(0xcc)+_0x250dd4(0xd6)+_0x250dd4(0xbb)+'format=image/png&'+_0x250dd4(0xbe)+'height=1000&'+'transparent=TRUE&'+'BGCOLOR=0xFFFFFF&'+_0x250dd4(0xbf)+_0x26be08+','+_0x255556+','+_0x2d9a51+','+_0x6c591d+'&';_0x55d894+='LAYERS=';for(var _0x566d0d=_0x39d5f3;_0x566d0d<_0x39d5f3+0x4;_0x566d0d++){if(_0x566d0d>=layersController['get']()[_0x250dd4(0xcf)])break;_0x55d894+=layersController[_0x250dd4(0xe1)]()[_0x566d0d],_0x55d894+=',';}_0x55d894=_0x55d894['substr'](0x0,_0x55d894[_0x250dd4(0xcf)]-0x1),_0x55d894+='&',_0x55d894+='STYLES=';for(var _0x566d0d=_0x39d5f3;_0x566d0d<_0x39d5f3+0x4;_0x566d0d++){if(_0x566d0d>=layersController[_0x250dd4(0xe1)]()[_0x250dd4(0xcf)])break;_0x55d894+=layersController['get']()[_0x566d0d],_0x55d894+=',';}_0x55d894=_0x55d894['substr'](0x0,_0x55d894[_0x250dd4(0xcf)]-0x1);var _0x49f4be=new Image();_0x49f4be[_0x250dd4(0xde)]='*',_0x49f4be[_0x250dd4(0xdd)]=_0x55d894,function(_0x32f695){var _0x460084=_0x250dd4,_0x42b042=_0x32f695;_0x49f4be[_0x460084(0xcd)]=function(){var _0x1385bc=_0x460084,_0xadefb9=_0x42b042%_0x4b5653*_0x3a768b,_0x3da074=parseInt(_0x42b042/_0x4b5653)*_0x3a768b;_0x59a398[_0x1385bc(0xd8)](this,0x0,0x0,this[_0x1385bc(0xc2)],this['height'],_0xadefb9,_0x3da074,_0x3a768b,_0x3a768b),_0x4be9bc+=_0x15944d,_0x443d79[_0x1385bc(0xe2)][_0x1385bc(0xc2)]=parseFloat(_0x4be9bc)[_0x1385bc(0xd1)](0x2)+'%',_0x443d79[_0x1385bc(0xd3)]=parseFloat(_0x4be9bc)[_0x1385bc(0xd1)](0x2)+'%',_0x5545ba++,_0x5545ba==_0x4749ff&&_0xaddb52(),_0x5545ba/(_0x4b5653*_0x4b5653)==_0x39d5f3/0x4+0x1&&_0x5545ba<_0x4749ff&&(_0x39d5f3+=0x4,_0x9d8b15());};}(_0x1bfd05),_0x1bfd05++,_0x2da19f+=Number(_0x434595);}_0x2da19f=Number(_0x334a52)-Number(_0x434595)*Number(_0x5f129f),_0xd2381a-=_0x344ea9;}}function _0xaddb52(){var _0xb4b8=_0x35d696,_0x433fb0,_0x46b9f9;_0x145e2a?(_0x433fb0=_0xb4b8(0xc1),_0x46b9f9=_0xb4b8(0xe8)):(_0x433fb0=_0xb4b8(0xd7),_0x46b9f9=_0xb4b8(0xda)),_0x5013f1[_0xb4b8(0xba)]?_0x5013f1['toBlob'](function(_0x4cd524){var _0x5ef22a=_0xb4b8;navigator[_0x5ef22a(0xc9)](_0x4cd524,_0x5ef22a(0xd0)+_0x46b9f9);var _0x126f89=document[_0x5ef22a(0xca)]('resultStatus');_0x126f89[_0x5ef22a(0xd3)]=_0x5ef22a(0xbc),_0x59a398['clearRect'](0x0,0x0,_0x5013f1['width'],_0x5013f1['height']),_0x5013f1[_0x5ef22a(0xc2)]=0x0,_0x5013f1[_0x5ef22a(0xc6)]=0x0,_0x443d79[_0x5ef22a(0xe2)][_0x5ef22a(0xc2)]='100%',_0x443d79[_0x5ef22a(0xd3)]=_0x5ef22a(0xd2);},_0x433fb0):_0x5013f1[_0xb4b8(0xe6)](function(_0xe30efa){var _0x4b4e0d=_0xb4b8;url=URL[_0x4b4e0d(0xd9)](_0xe30efa);var _0x428a9b=document[_0x4b4e0d(0xca)](_0x4b4e0d(0xe0));_0x428a9b[_0x4b4e0d(0xd3)]=_0x4b4e0d(0xb7);var _0x416b67=document[_0x4b4e0d(0xca)]('resultTag');_0x416b67[_0x4b4e0d(0xc3)]=url,_0x416b67['download']='mapshot_result'+_0x46b9f9,_0x416b67[_0x4b4e0d(0xe4)]=_0x4b4e0d(0xd0)+_0x46b9f9,_0x59a398[_0x4b4e0d(0xe3)](0x0,0x0,_0x5013f1['width'],_0x5013f1[_0x4b4e0d(0xc6)]),_0x5013f1['width']=0x0,_0x5013f1[_0x4b4e0d(0xc6)]=0x0,_0x443d79[_0x4b4e0d(0xe2)][_0x4b4e0d(0xc2)]='100%',_0x443d79[_0x4b4e0d(0xd3)]=_0x4b4e0d(0xd2);},_0x433fb0);}}
+function addLayers(centerLat, centerLng, zoomLevel, isLayerOnly){
+    
+    var moveXPosition = fixValueController.getXPosition();
+    var moveYPostion = fixValueController.getYPosition();
+    var blockLat = Number(centerLat) + (Number(moveYPostion) * Number(zoomLevel));
+    var blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
+
+    var blockWidth = (zoomLevel * 2) + 1;
+    var blockArea = blockWidth * blockWidth * (parseInt(layersController.get().length / 4) + 1);
+    var canvasBlockSize = 500;
+
+    if(fixValueController.getViewString() == 'normal'){
+        canvasBlockSize *= 2;
+    }
+
+    var canvas = document.getElementById("canvas");
+
+    if(isLayerOnly){
+        canvas.width = Number(blockWidth) * canvasBlockSize;
+        canvas.height = Number(blockWidth) * canvasBlockSize;
+    }
+
+
+    var ctx = canvas.getContext("2d");
+
+    var progressWidth = 100 / blockArea;
+    var progressValue = 0;
+    var progress = document.getElementById("progressBar");
+    progress.style.width = progressValue + "%";
+
+    document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
+
+    var order = 0;
+    var imageLoadCount = 0;
+    var layerCount = 0;
+
+    getLayers();
+
+    function getLayers(){
+        for (var i = 0; i < blockWidth; i++) {
+
+            for (var j = 0; j < blockWidth; j++) {
+                var ymin = blockLat - Number(moveYPostion / 2);
+                var xmin = blockLng - Number(moveXPosition / 2);
+                var ymax = blockLat + Number(moveYPostion / 2);
+                var xmax = blockLng + Number(moveXPosition / 2);
+
+                var vworldUrl = "https://mapshot-proxy-server.herokuapp.com/" + 
+                                "https://api.vworld.kr/req/wms?" +
+                                "SERVICE=WMS&" + 
+                                "key=BA51886D-3289-32E9-AC7C-1D7A36D3BB20&" +
+                                "domain=https://testservermapshot.netlify.app&" +
+                                "request=GetMap&" +
+                                "format=image/png&" +
+                                "width=1000&" +
+                                "height=1000&" +
+                                "transparent=TRUE&" +
+                                "BGCOLOR=0xFFFFFF&" +
+                                "BBOX=" + ymin + "," + xmin + "," + ymax + "," + xmax + "&";
+                
+                vworldUrl +=  "LAYERS=";
+
+
+                for(var k = layerCount; k < layerCount + 4; k++){
+
+                    if(k >= layersController.get().length){
+                        break;
+                    }  
+                    
+                    vworldUrl += layersController.get()[k]; 
+                    vworldUrl += ",";                       
+                }
+
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+                vworldUrl +=  "&";
+                vworldUrl += "STYLES=";
+                
+                for(var k = layerCount; k < layerCount + 4; k++){
+
+                    if(k >= layersController.get().length){
+                        break;
+                    }
+
+                    vworldUrl += layersController.get()[k];
+                    vworldUrl += ",";
+                }
+
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+                var layersImage = new Image();
+                layersImage.crossOrigin = "*"
+                layersImage.src = vworldUrl;
+
+                (function (order) {
+                    var _order = order;
+                    layersImage.onload = function () {
+                        var xPos = (_order % blockWidth) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockWidth) * canvasBlockSize;  
+            
+                        ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        
+                        progressValue += progressWidth;
+                        progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
+                        progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
+
+                        imageLoadCount++;
+
+                        if(imageLoadCount == blockArea){
+                            mergeImageBlock();
+                        }
+
+                        if(imageLoadCount / (blockWidth * blockWidth) == (layerCount / 4) + 1 && imageLoadCount < blockArea){
+                            layerCount += 4;
+                            getLayers();
+                        }
+                    }
+
+                })(order);
+
+                order++;
+                blockLng += Number(moveXPosition);
+            
+            }
+
+            blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
+            blockLat -= moveYPostion;
+
+        }
+
+    }
+        
+
+
+        function mergeImageBlock() {
+            var imageFormat;
+            var imageExtends;
+            if(isLayerOnly){
+                imageFormat = 'image/png';
+                imageExtends = ".png";
+            } else{
+                imageFormat = 'image/jpeg';
+                imageExtends = ".jpg";
+            }
+
+            if(canvas.msToBlob){
+                canvas.toBlob(function(blob){
+
+                    navigator.msSaveBlob(blob, "mapshot_result" + imageExtends);
+                    var status = document.getElementById("resultStatus");
+                    status.innerText = "완료되었습니다.";
+                
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.width = 0;
+                    canvas.height = 0;
+                
+                    progress.style.width = "100%";
+                    progress.innerText = "100%";
+
+                }, imageFormat);
+
+            } else {
+                canvas.toBlob(function (blob) {
+
+                    url = URL.createObjectURL(blob);
+                    var status = document.getElementById("resultStatus");
+                    status.innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+                
+                    var tag = document.getElementById("resultTag");
+                    tag.href = url;
+                    tag.download = "mapshot_result" + imageExtends;
+                    tag.innerHTML = "mapshot_result" + imageExtends;
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.width = 0;
+                    canvas.height = 0;
+                
+                    progress.style.width = "100%";
+                    progress.innerText = "100%";
+                
+                }, imageFormat);
+            }
+        
+        }
+    
+
+}
