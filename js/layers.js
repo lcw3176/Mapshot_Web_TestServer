@@ -74,7 +74,7 @@ function addLayers(centerLat, centerLng, zoomLevel, isLayerOnly){
                 vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
                 vworldUrl +=  "&";
                 vworldUrl += "STYLES=";
-                
+                res.header("Access-Control-Allow-Headers", "x-requested-with, x-requested-by");
                 for(var k = layerCount; k < layerCount + 4; k++){
 
                     if(k >= layersController.get().length){
@@ -108,10 +108,10 @@ function addLayers(centerLat, centerLng, zoomLevel, isLayerOnly){
                             mergeImageBlock();
                         }
 
-                        if(imageLoadCount / (blockWidth * blockWidth) == (layerCount / 4) + 1 && imageLoadCount < blockArea){
-                            layerCount += 4;
-                            getLayers();
-                        }
+                        // if(imageLoadCount / (blockWidth * blockWidth) == (layerCount / 4) + 1 && imageLoadCount < blockArea){
+                        //     layerCount += 4;
+                        //     getLayers();
+                        // }
                     }
 
                 })(order);
