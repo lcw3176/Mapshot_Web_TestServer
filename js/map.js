@@ -46,11 +46,11 @@ export class Map{
                     this.infoWindow.close();
                 }
             });
-        });
+        }.bind(this));
     
         kakao.maps.event.addListener(this.map, 'idle', function() {
             this.searchAddrFromCoords(this.map.getCenter(), this.displayCenterInfo);
-        });
+        }.bind(this));
     }
 
     searchAddrFromCoords(coords, callback) {
