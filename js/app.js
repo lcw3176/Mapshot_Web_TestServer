@@ -12,7 +12,7 @@ window.onload = function(){
     let mapBlockConfig = new MapBlockConfig();
 
     let map = new Map(coorFixConfig, mapBlockConfig);
-    let capture = new Capture();
+    let capture = new Capture(layersConfig);
 
     document.getElementById("searchPlaces").onsubmit = function(){
         map.searchPlaces();
@@ -54,7 +54,7 @@ window.onload = function(){
             }
 
             coorFixConfig.generateValue(map.getCenterLat());
-            
+
             capture.start(coorFixConfig,
                           mapBlockConfig.get(),
                           map.getCenterLat(),
@@ -62,7 +62,15 @@ window.onload = function(){
                           mapTypeConfig.getType());
         }
     }
+
+    let layersElements = document.getElementsByClassName("form-check-input layers");    
     
+    Array.from(layersElements).forEach(function(element, index){
+        element.onclick = function(){
+            layersConfig.setLayers(index);
+        }
+    });
+
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
     document.getElementById("default_click_format").click();

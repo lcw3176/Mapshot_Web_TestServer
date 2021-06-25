@@ -8,16 +8,55 @@ export class LayersConfig{
     }
 
     setLayers(layers){
-        if(!this.layersArr.includes(layers)){
-            this.layersArr.push(layers);
+        let temp;
+
+        switch(layers){
+            case 0:
+                temp = "lt_c_lhblpn";
+                break;
+            case 1:
+                temp = "lt_c_upisuq175";
+                break;
+            case 2:
+                temp = "lt_c_upisuq161";
+                break;
+            case 3:
+                temp = "lt_c_upisuq174";
+                break;
+            case 4:
+                temp = "lt_c_upisuq171";
+                break;
+            case 5:
+                temp = "lt_c_ud801"
+                break;
+            case 6:
+                temp = "lt_c_uq129";
+                break;
+            case 7:
+                temp = "lt_c_uq130";
+                break;
+            case 8:
+                temp = "lt_c_lhzone";
+                break;
+            case 9:
+                temp = "lp_pa_cbnd_bubun,lp_pa_cbnd_bonbun";
+                break;
+            default:
+                break;
+        }
+
+        if(!this.layersArr.includes(temp)){
+            this.layersArr.push(temp);
         } else {
             for(let i = 0; i < this.layersArr.length; i++){
-                if(this.layersArr[i] === layers){
+                if(this.layersArr[i] === temp){
                     this.layersArr.splice(i, 1);
                     break;
                 }
             }
         }
+
+        console.log(this.layersArr);
     }
 }
 

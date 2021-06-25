@@ -1,5 +1,5 @@
 export class Capture{
-    constructor(){
+    constructor(layersConfig){
         this.url = null;
         this.canvasBlockSize = 500;
         this.canvas = document.createElement("canvas");
@@ -8,6 +8,20 @@ export class Capture{
         this.progressWidth = 0;
         this.progressValue = 0;
         this.progressBar = document.getElementById("progressBar");
+
+        this.xValue;
+        this.yValue;
+        this.zoomLevel;
+        this.blockWidth;
+        this.blockArea;
+        this.blockSize;
+        this.Lat;
+        this.Lng;
+
+        this.layersConfig = layersConfig;
+        this.layerCount = 0;
+        this.centerLng;
+        this.halfBlockWidth;
 
         this.imageFormat;
     }
@@ -41,11 +55,11 @@ export class Capture{
         return true;
     }
 
-    drawBeforeCollect(blockWidth, blockSize){
-        this.canvas.width = Number(blockWidth) * blockSize;
-        this.canvas.height = Number(blockWidth) * blockSize;
+    drawBeforeCollect(){
+        this.canvas.width = Number(this.blockWidth) * this.blockSize;
+        this.canvas.height = Number(this.blockWidth) * this.blockSize;
 
-        this.progressWidth = 100 / (blockWidth * blockWidth);
+        this.progressWidth = 100 / (this.blockWidth * this.blockWidth);
         this.progressValue = 0;
         this.progressBar.style.width = this.progressValue + "%";
 
@@ -74,35 +88,43 @@ export class Capture{
         if (this.url != null) {
             URL.revokeObjectURL(this.url);
         }
+        
+        this.centerLng = centerLng;
+        this.halfBlockWidth = halfBlockWidth;
 
-        let xValue = coorFixConfig.getXValue();
-        let yValue = coorFixConfig.getYValue();
-        let zoomLevel = coorFixConfig.getZoomLevel();
+        this.xValue = coorFixConfig.getXValue();
+        this.yValue = coorFixConfig.getYValue();
+        this.zoomLevel = coorFixConfig.getZoomLevel();
 
-        let blockWidth = (halfBlockWidth * 2) + 1;
-        let blockArea = blockWidth * blockWidth;
-        let blockSize = this.canvasBlockSize;
+        this.blockWidth = (halfBlockWidth * 2) + 1;
+        this.blockArea = this.blockWidth * this.blockWidth;
+        this.blockSize = this.canvasBlockSize;
 
         if(coorFixConfig.getZoomQuality() === "normal"){
-            blockSize *= 2;
+            this.blockSize *= 2;
         }
         
-        let Lat = Number(centerLat) + (Number(yValue) * Number(halfBlockWidth));
-        let Lng = Number(centerLng) - (Number(xValue) * Number(halfBlockWidth));
+        this.Lat = Number(centerLat) + (Number(this.yValue) * Number(halfBlockWidth));
+        this.Lng = Number(centerLng) - (Number(this.xValue) * Number(halfBlockWidth));
 
         let order = 0;
         let imageLoadCount = 0;
 
-        this.drawBeforeCollect(blockWidth, blockSize);
+        this.drawBeforeCollect();
 
-        for (let i = 0; i < blockWidth; i++) {
+        if(document.getElementById("layerOnlyMode").checked){
+            this.addLayers();
+            return;
+        }
 
-            for (let j = 0; j < blockWidth; j++) {
+        for (let i = 0; i < this.blockWidth; i++) {
+
+            for (let j = 0; j < this.blockWidth; j++) {
 
                 let tempSrc = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster-cors?"
                     + "w=1000&h=1000"
-                    + "&center=" + Lng + "," + Lat
-                    + "&level=" + zoomLevel
+                    + "&center=" + this.Lng + "," + this.Lat
+                    + "&level=" + this.zoomLevel
                     + "&X-NCP-APIGW-API-KEY-ID=ny5d4sdo0e"
                     + "&maptype=" + mapType;
 
@@ -114,10 +136,10 @@ export class Capture{
                 (function (order) {
                     let _order = order;
                     tag.onload = function () {
-                        let xPos = (_order % blockWidth) * blockSize;
-                        let yPos = parseInt(_order / blockWidth) * blockSize;  
+                        let xPos = (_order % this.blockWidth) * this.blockSize;
+                        let yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
              
-                        this.ctx.drawImage(tag, 0, 0, tag.width, tag.height, xPos, yPos, blockSize, blockSize);
+                        this.ctx.drawImage(tag, 0, 0, tag.width, tag.height, xPos, yPos, this.blockSize, this.blockSize);
                         
                         this.progressValue += this.progressWidth;
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
@@ -125,14 +147,14 @@ export class Capture{
     
                         imageLoadCount++;
 
-                        if(imageLoadCount == blockArea){
-                            this.drawBeforeMerge();
-                            this.mergeImageBlock();
-                            // if(layersController.get().length > 0){
-                            //     addLayers(centerLat, centerLng, zoomLevel.get(), false);
-                            // } else{
-                            //     mergeImageBlock();
-                            // }
+                        if(imageLoadCount == this.blockArea){
+                            
+                            if(layersConfig.getLayers.length > 0){
+                                this.addLayers();
+                            } else {
+                                this.drawBeforeMerge();
+                                this.mergeImageBlock();
+                            }
                             
                         }
                     }.bind(this);
@@ -140,42 +162,122 @@ export class Capture{
                 }.bind(this))(order);
 
                 order++;
-                Lng += Number(xValue);
+                this.Lng += Number(this.xValue);
             }
 
-            Lng = Number(centerLng) - (Number(xValue) * Number(halfBlockWidth));
-            Lat -= yValue;
+            this.Lng = Number(centerLng) - (Number(this.xValue) * Number(halfBlockWidth));
+            this.Lat -= this.yValue;
 
         }
     }
+    
+    draweBeforeLayers(){
+        this.progressWidth = 100 / this.blockArea;
+        this.progressValue = 0;
+        this.progressBar.style.width = progressValue + "%";
+    
+        document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
+    }
 
-    mergeImageBlock(){
-        let isMs;
+    addLayers(){
+        this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
 
-        if(this.canvas.msToBlob){
-            isMs = true;
+        this.draweBeforeLayers();
+        this.getLayers();
+    }
 
-            this.canvas.toBlob(function(blob){
-                navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                document.getElementById("resultStatus").innerText = "완료되었습니다.";
-            }, this.imageFormat);
+    getLayers(){
+        let order = 0;
+        let imageLoadCount = 0;
+        this.layerCount = 0;
 
-        } else {
-            isMs = false;
+        for (let i = 0; i < blockWidth; i++) {
 
-            this.canvas.toBlob(function (blob) {
-                this.url = URL.createObjectURL(blob);
+            for (let j = 0; j < blockWidth; j++) {
+                let ymin = this.Lat - Number(this.yValue / 2);
+                let xmin = this.Lng - Number(this.xValue / 2);
+                let ymax = this.Lat + Number(this.yValue / 2);
+                let xmax = this.Lng + Number(this.xValue / 2);
 
-                let tag = document.getElementById("resultTag");
-                tag.href = this.url;
-                tag.download = "mapshot_result.jpg";
-                tag.innerHTML = "mapshot_result.jpg";
+                let vworldUrl = "https://119.192.62.139:3000/maps?coors=" + 
+                                ymin + "," + xmin + "," + ymax + "," + xmax + 
+                                "&layers=";
+                
+                for(let k = this.layerCount; k < this.layerCount + 4; k++){
 
-                document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+                    if(k >= this.layersConfig.getLayers().length){
+                        break;
+                    }  
+                    
+                    vworldUrl += this.layersConfig.getLayers()[k]; 
+                    vworldUrl += ",";                       
+                }
 
-            }.bind(this), this.imageFormat);
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+
+                let layersImage = new Image(); 
+                layersImage.crossOrigin = "*";
+                layersImage.src = vworldUrl;
+                
+                (function (order) {
+                    let _order = order;
+                    layersImage.onload = function () {
+                        let xPos = (_order % this.blockWidth) * this.blockSize;
+                        let yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+            
+                        this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                        
+                        this.progressValue += this.progressWidth;
+                        this.progress.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progress.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+
+                        imageLoadCount++;
+
+                        if(imageLoadCount == this.blockArea){
+                            this.mergeImageBlock();
+                        }
+
+                        if(imageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1 && imageLoadCount < this.blockArea){
+                            this.layerCount += 4;
+                            this.getLayers();
+                        }
+                    }.bind(this)
+
+                }.bind(this))(order);
+
+                order++;
+                this.Lng += Number(this.xValue);
+            
+            }
+
+            this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
+            this.Lat -= this.yValue;
+
         }
 
+    }
+
+    mergeImageBlock(){
+        let tempFormat;
+
+        if(document.getElementById("layerOnlyMode").checked){
+            tempFormat = this.imageFormat;
+            this.imageFormat = "image/png";
+        }
+
+        this.canvas.toBlob(function (blob) {
+            this.url = URL.createObjectURL(blob);
+
+            let tag = document.getElementById("resultTag");
+            tag.href = this.url;
+            tag.download = "mapshot_result.jpg";
+            tag.innerHTML = "mapshot_result.jpg";
+
+            document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+
+        }.bind(this), this.imageFormat);
+        
+        this.imageFormat = tempFormat;
         this.drawAfterMerge();
     }
 }

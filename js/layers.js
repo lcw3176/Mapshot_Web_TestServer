@@ -1,34 +1,53 @@
+export class Layers{
+    constructor(layersConfig){
+        this.canvasBlockSize = 500;
+        this.layersConfig = layersConfig;
+    }
+
+    addLayers(){
+        let xValue = coorFixConfig.getXValue();
+        let yValue = coorFixConfig.getYValue();
+        let zoomLevel = coorFixConfig.getZoomLevel();
+
+        let Lat = Number(centerLat) + (Number(yValue) * Number(halfBlockWidth));
+        let Lng = Number(centerLng) - (Number(xValue) * Number(halfBlockWidth));
+        let blockWidth = (halfBlockWidth * 2) + 1;
+        let blockArea = blockWidth * blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
+        let blockSize = this.canvasBlockSize;
+    }
+}
+
 function addLayers(centerLat, centerLng, zoomLevel, isLayerOnly){
     
-    var moveXPosition = fixValueController.getXPosition();
-    var moveYPostion = fixValueController.getYPosition();
-    var blockLat = Number(centerLat) + (Number(moveYPostion) * Number(zoomLevel));
-    var blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
+    // var moveXPosition = fixValueController.getXPosition();
+    // var moveYPostion = fixValueController.getYPosition();
+    // var blockLat = Number(centerLat) + (Number(moveYPostion) * Number(zoomLevel));
+    // var blockLng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel));
 
-    var blockWidth = (zoomLevel * 2) + 1;
-    var blockArea = blockWidth * blockWidth * (parseInt((layersController.get().length - 1) / 4) + 1); 
-    var canvasBlockSize = 500;
+    // var blockWidth = (zoomLevel * 2) + 1;
+    // var blockArea = blockWidth * blockWidth * (parseInt((layersController.get().length - 1) / 4) + 1); 
+    // var canvasBlockSize = 500;
 
-    if(fixValueController.getViewString() == 'normal'){
-        canvasBlockSize *= 2;
-    }
+    // if(fixValueController.getViewString() == 'normal'){
+    //     canvasBlockSize *= 2;
+    // }
 
-    var canvas = document.getElementById("canvas");
+    // var canvas = document.getElementById("canvas");
 
-    if(isLayerOnly){
-        canvas.width = Number(blockWidth) * canvasBlockSize;
-        canvas.height = Number(blockWidth) * canvasBlockSize;
-    }
+    // if(isLayerOnly){
+    //     canvas.width = Number(blockWidth) * canvasBlockSize;
+    //     canvas.height = Number(blockWidth) * canvasBlockSize;
+    // }
 
 
-    var ctx = canvas.getContext("2d");
+    // var ctx = canvas.getContext("2d");
 
-    var progressWidth = 100 / blockArea;
-    var progressValue = 0;
-    var progress = document.getElementById("progressBar");
-    progress.style.width = progressValue + "%";
+    // var progressWidth = 100 / blockArea;
+    // var progressValue = 0;
+    // var progress = document.getElementById("progressBar");
+    // progress.style.width = progressValue + "%";
 
-    document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
+    // document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
 
     var order = 0;
     var imageLoadCount = 0;
