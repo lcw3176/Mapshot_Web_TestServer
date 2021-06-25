@@ -8,6 +8,23 @@ export class Capture{
         this.progressWidth = 0;
         this.progressValue = 0;
         this.progressBar = document.getElementById("progressBar");
+
+        this.imageFormat;
+    }
+
+    setFormat(format){
+        switch(format){
+            case 0:
+                this.imageFormat = "image/jpeg";
+                break;
+
+            case 1:
+                this.imageFormat = "image/webp";
+                break;
+
+            default:
+                break;
+        }
     }
 
     checkValue(lat, lng, blockSize){
@@ -131,7 +148,7 @@ export class Capture{
             this.canvas.toBlob(function(blob){
                 navigator.msSaveBlob(blob, "mapshot_result.jpg");
                 document.getElementById("resultStatus").innerText = "완료되었습니다.";
-            }, 'image/jpeg');
+            }, this.imageFormat);
 
         } else {
             isMs = false;
@@ -146,7 +163,7 @@ export class Capture{
 
                 document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
 
-            }.bind(this), 'image/jpeg');
+            }.bind(this), this.imageFormat);
         }
 
         this.drawAfterCollect();

@@ -38,6 +38,14 @@ window.onload = function(){
         }
     });
 
+    let imageFormatElements = document.getElementsByClassName("setImageFormat");
+
+    Array.from(imageFormatElements).forEach(function(element, index){
+        element.onclick = function(){
+            capture.setFormat(index);
+        }
+    });
+
     document.getElementById("startCapture").onclick = function(){
         if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
             
@@ -54,9 +62,9 @@ window.onload = function(){
                           mapTypeConfig.getType());
         }
     }
-
-
     
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
+    document.getElementById("default_click_format").click();
+
 }
