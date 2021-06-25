@@ -96,8 +96,8 @@ export class Map{
         
         let moveXPosition = fixValueController.getXPosition();
         let moveYPostion = fixValueController.getYPosition();
-        let Lat = Number(centerLat) + (Number(moveYPostion) * Number(zoomLevel.get()));
-        let Lng = Number(centerLng) - (Number(moveXPosition) * Number(zoomLevel.get()));
+        let Lat = Number(this.centerLat) + (Number(moveYPostion) * Number(zoomLevel.get()));
+        let Lng = Number(this.centerLng) - (Number(moveXPosition) * Number(zoomLevel.get()));
 
         
         let blockWidth = zoomLevel.get() * 2;
