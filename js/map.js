@@ -1,4 +1,4 @@
-class Map{
+export class Map{
     constructor(){
         this.markers = [];
         this.mapContainer = document.getElementById('map');

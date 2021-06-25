@@ -1,5 +1,3 @@
-import{Map} from "./map.js"
-
 window.onload = function(){
     let map = new Map();
     
