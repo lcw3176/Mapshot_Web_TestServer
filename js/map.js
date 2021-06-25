@@ -121,10 +121,7 @@ export class Map{
         
         let moveXPosition = this.coorFixConfig.getXValue();
         let moveYPostion = this.coorFixConfig.getYValue();
-        console.log(this.centerLat);
-        console.log(moveYPostion);
-        console.log(this.mapBlockConfig.get());
-        
+
         let Lat = Number(this.centerLat) + (Number(moveYPostion) * Number(this.mapBlockConfig.get()));
         let Lng = Number(this.centerLng) - (Number(moveXPosition) * Number(this.mapBlockConfig.get()));
 

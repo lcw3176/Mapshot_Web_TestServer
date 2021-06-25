@@ -42,7 +42,7 @@ export class CoorFixConfig{
             this.yValue = 0.002125
         } 
 
-        if(this.zoomQuality === "norman" || this.zoomQuality === "low"){
+        if(this.zoomQuality === "normal" || this.zoomQuality === "low"){
             correctFix = 0.00011633;
 
             this.xValue = 0.01072 
