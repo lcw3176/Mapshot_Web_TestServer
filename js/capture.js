@@ -93,7 +93,7 @@ export class Capture{
                         let xPos = (_order % blockWidth) * blockSize;
                         let yPos = parseInt(_order / blockWidth) * blockSize;  
              
-                        ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, blockSize, blockSize);
+                        this.ctx.drawImage(tag, 0, 0, tag.width, tag.height, xPos, yPos, blockSize, blockSize);
                         
                         this.progressValue += this.progressWidth;
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
