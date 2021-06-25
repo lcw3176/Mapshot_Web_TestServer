@@ -20,7 +20,7 @@ export class Map{
     }
 
     init(){
-        this.map = new kakao.maps.Map(mapContainer, mapOption); 
+        this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
         this.ps = new kakao.maps.services.Places();  // 장소 검색 객체를 생성합니다
         this.infoWindow = new kakao.maps.InfoWindow({zIndex:1}); // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
         this.geocoder = new kakao.maps.services.Geocoder(); // 주소-좌표 변환 객체를 생성합니다
