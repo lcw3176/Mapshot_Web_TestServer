@@ -30,6 +30,7 @@ window.onload = function(){
     // 1, 1, 2, 3
     Array.from(zoomLevelElements).forEach(function(element, index) {
 
+        console.log(index);
         element.onclick = function(){
             mapBlockConfig.set(blockSize[index]);
             coorFixConfig.setMode(mode[index]);
