@@ -69,7 +69,7 @@ export class Capture{
         let order = 0;
         let imageLoadCount = 0;
 
-        this.drawBeforeCollect();
+        this.drawBeforeCollect(blockWidth, blockSize);
 
         for (let i = 0; i < blockWidth; i++) {
 
@@ -102,7 +102,7 @@ export class Capture{
                         imageLoadCount++;
 
                         if(imageLoadCount == blockArea){
-                            mergeImageBlock();
+                            this.mergeImageBlock();
                             // if(layersController.get().length > 0){
                             //     addLayers(centerLat, centerLng, zoomLevel.get(), false);
                             // } else{
