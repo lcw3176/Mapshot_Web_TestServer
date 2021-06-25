@@ -81,12 +81,10 @@ export class CoorFixConfig{
     }
 
     getXValue(){
-        console.log(this.xValue);
         return this.xValue;
     }
 
     getYValue(){
-        console.log(this.yValue);
         return this.yValue;
     }
 
