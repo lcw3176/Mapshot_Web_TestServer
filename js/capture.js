@@ -69,7 +69,7 @@ export class Capture{
         let order = 0;
         let imageLoadCount = 0;
 
-        drawBeforeCollect();
+        this.drawBeforeCollect();
 
         for (let i = 0; i < blockWidth; i++) {
 
@@ -127,20 +127,20 @@ export class Capture{
     mergeImageBlock(){
         let isMs;
 
-        if(canvas.msToBlob){
+        if(this.canvas.msToBlob){
             isMs = true;
 
-            canvas.toBlob(function(blob){
+            this.canvas.toBlob(function(blob){
                 navigator.msSaveBlob(blob, "mapshot_result.jpg");
             }, 'image/jpeg');
 
         } else {
             isMs = false;
 
-            canvas.toBlob(function (blob) {
-                url = URL.createObjectURL(blob);
+            this.canvas.toBlob(function (blob) {
+                this.url = URL.createObjectURL(blob);
 
-                var tag = document.getElementById("resultTag");
+                let tag = document.getElementById("resultTag");
                 tag.href = url;
                 tag.download = "mapshot_result.jpg";
                 tag.innerHTML = "mapshot_result.jpg";
@@ -148,6 +148,6 @@ export class Capture{
             }, 'image/jpeg');
         }
 
-        drawAfterCollect(isMs);
+        this.drawAfterCollect(isMs);
     }
 }
