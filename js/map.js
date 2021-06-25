@@ -1,4 +1,4 @@
-export class Map{
+class Map{
     constructor(){
         this.markers = [];
         this.mapContainer = document.getElementById('map');
@@ -29,12 +29,12 @@ export class Map{
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
             this.centerLat = latlng.getLat();
             this.centerLng = latlng.getLng(); 
-            setLatLngText();    
+            this.setLatLngText();    
             
             this.marker.setPosition(mouseEvent.latLng);
             this.marker.setMap(this.map); 
             
-            setRectangle();
+            this.setRectangle();
 
     
             this.searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
