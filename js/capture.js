@@ -50,16 +50,20 @@ export class Capture{
         this.progressBar.innerText = "100%";
     }
 
-    start(xValue, yValue, halfBlockWidth, zoomQuality, zoomLevel, centerLat, centerLng, mapType){
+    start(coorFixConfig, halfBlockWidth, centerLat, centerLng, mapType){
         if (this.url != null) {
             URL.revokeObjectURL(this.url);
         }
+
+        let xValue = coorFixConfig.getXValue();
+        let yValue = coorFixConfig.getYValue();
+        let zoomLevel = coorFixConfig.getZoomLevel();
 
         let blockWidth = (halfBlockWidth * 2) + 1;
         let blockArea = blockWidth * blockWidth;
         let blockSize = this.canvasBlockSize;
 
-        if(zoomQuality === "normal"){
+        if(coorFixConfig.getZoomQuality() === "normal"){
             blockSize *= 2;
         }
         
@@ -145,7 +149,7 @@ export class Capture{
                 tag.download = "mapshot_result.jpg";
                 tag.innerHTML = "mapshot_result.jpg";
             
-            }, 'image/jpeg');
+            }.bind(this), 'image/jpeg');
         }
 
         this.drawAfterCollect(isMs);

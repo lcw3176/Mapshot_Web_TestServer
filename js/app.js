@@ -23,8 +23,6 @@ window.onload = function(){
     let blockSize = [5, 8, 5, 10];
     let mode = [1, 1, 2, 3];
 
-    // 5, 8, 5, 10
-    // 1, 1, 2, 3
     Array.from(zoomLevelElements).forEach(function(element, index) {
         element.onclick = function(){
             mapBlockConfig.set(blockSize[index]);
@@ -42,12 +40,15 @@ window.onload = function(){
 
     document.getElementById("startCapture").onclick = function(){
         if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
+            
+            if(document.getElementById("traceMode").checked){
+                map.drawTrace();
+            }
+
             coorFixConfig.generateValue(map.getCenterLat());
-            capture.start(coorFixConfig.getXValue(), 
-                          coorFixConfig.getYValue(), 
-                          mapBlockConfig.get(), 
-                          coorFixConfig.getZoomQuality(), 
-                          coorFixConfig.getZoomLevel(),
+            
+            capture.start(coorFixConfig,
+                          mapBlockConfig.get(),
                           map.getCenterLat(),
                           map.getCenterLng(),
                           mapTypeConfig.getType());
