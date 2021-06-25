@@ -39,7 +39,13 @@ export class Capture{
         if(isMS){
             document.getElementById("resultStatus").innerText = "완료되었습니다.";
         } else{
+            let tag = document.getElementById("resultTag");
+            tag.href = this.url;
+            tag.download = "mapshot_result.jpg";
+            tag.innerHTML = "mapshot_result.jpg";
+
             document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+            
         }
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -143,12 +149,6 @@ export class Capture{
 
             this.canvas.toBlob(function (blob) {
                 this.url = URL.createObjectURL(blob);
-
-                let tag = document.getElementById("resultTag");
-                tag.href = url;
-                tag.download = "mapshot_result.jpg";
-                tag.innerHTML = "mapshot_result.jpg";
-            
             }.bind(this), 'image/jpeg');
         }
 
