@@ -121,16 +121,14 @@ export class Map{
         
         let moveXPosition = this.coorFixConfig.getXValue();
         let moveYPostion = this.coorFixConfig.getYValue();
+        console.log(this.centerLat);
+        console.log(moveYPostion);
+        console.log(this.mapBlockConfig.get());
+        
         let Lat = Number(this.centerLat) + (Number(moveYPostion) * Number(this.mapBlockConfig.get()));
         let Lng = Number(this.centerLng) - (Number(moveXPosition) * Number(this.mapBlockConfig.get()));
 
-        
-
         let blockWidth = this.mapBlockConfig.get() * 2;
-
-        console.log("랫:" + Lat);
-        console.log("랭:" + Lng);
-        console.log("블락위스:" + blockWidth);
 
         let sw = new kakao.maps.LatLng(Lat - (moveYPostion * blockWidth) - (moveYPostion / 2), Lng - (moveXPosition / 2)); 
         let ne = new kakao.maps.LatLng(Lat + (moveYPostion / 2), Lng + (moveXPosition * blockWidth) + (moveXPosition / 2));
