@@ -14,9 +14,6 @@ window.onload = function(){
     let map = new Map(coorFixConfig, mapBlockConfig);
     let capture = new Capture();
 
-    document.getElementById("default_click_level").click();
-    document.getElementById("default_click_map").click();
-
     document.getElementById("searchPlaces").onsubmit = function(){
         map.searchPlaces();
         return false;
@@ -56,4 +53,9 @@ window.onload = function(){
                           mapTypeConfig.getType());
         }
     }
+
+
+    
+    document.getElementById("default_click_level").click();
+    document.getElementById("default_click_map").click();
 }
