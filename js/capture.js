@@ -3,7 +3,7 @@ export class Capture{
         this.url = null;
         this.canvasBlockSize = 500;
         this.canvas = document.createElement("canvas");
-        this.ctx = canvas.getContext("2d");
+        this.ctx = this.canvas.getContext("2d");
 
         this.progressWidth = 0;
         this.progressValue = 0;
