@@ -174,7 +174,7 @@ export class Capture{
     draweBeforeLayers(){
         this.progressWidth = 100 / this.blockArea;
         this.progressValue = 0;
-        this.progressBar.style.width = progressValue + "%";
+        this.progressBar.style.width = this.progressValue + "%";
     
         document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
     }
