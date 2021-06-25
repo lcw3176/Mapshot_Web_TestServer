@@ -35,19 +35,7 @@ export class Capture{
         document.getElementById("resultStatus").innerText = "사진 수집중입니다. 완료 문구를 기다려 주세요.";
     }
 
-    drawAfterCollect(isMS){
-        if(isMS){
-            document.getElementById("resultStatus").innerText = "완료되었습니다.";
-        } else{
-            let tag = document.getElementById("resultTag");
-            tag.href = this.url;
-            tag.download = "mapshot_result.jpg";
-            tag.innerHTML = "mapshot_result.jpg";
-
-            document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
-            
-        }
-
+    drawAfterCollect(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.canvas.width = 0;
         this.canvas.height = 0;
@@ -142,6 +130,7 @@ export class Capture{
 
             this.canvas.toBlob(function(blob){
                 navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                document.getElementById("resultStatus").innerText = "완료되었습니다.";
             }, 'image/jpeg');
 
         } else {
@@ -149,9 +138,17 @@ export class Capture{
 
             this.canvas.toBlob(function (blob) {
                 this.url = URL.createObjectURL(blob);
+
+                let tag = document.getElementById("resultTag");
+                tag.href = this.url;
+                tag.download = "mapshot_result.jpg";
+                tag.innerHTML = "mapshot_result.jpg";
+
+                document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+
             }.bind(this), 'image/jpeg');
         }
 
-        this.drawAfterCollect(isMs);
+        this.drawAfterCollect();
     }
 }
