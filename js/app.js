@@ -28,10 +28,6 @@ window.onload = function(){
             mapBlockConfig.set(blockSize[index]);
             coorFixConfig.setMode(mode[index]);
         }
-
-        if(element.id === "default_click_level"){
-            element.click();
-        }
     });
 
     let baseMapElements = document.getElementsByClassName("setBaseMap");
@@ -40,10 +36,6 @@ window.onload = function(){
         element.onclick = function(){
             mapTypeConfig.setType(index);
         }
-
-        if(element.id === "default_click_map"){
-            element.click();
-        }
     });
 
     let imageFormatElements = document.getElementsByClassName("setImageFormat");
@@ -51,10 +43,6 @@ window.onload = function(){
     Array.from(imageFormatElements).forEach(function(element, index){
         element.onclick = function(){
             capture.setFormat(index);
-        }
-
-        if(element.id === "default_click_format"){
-            element.click();
         }
     });
 
@@ -74,5 +62,9 @@ window.onload = function(){
                           mapTypeConfig.getType());
         }
     }
+    
+    document.getElementById("default_click_level").click();
+    document.getElementById("default_click_map").click();
+    document.getElementById("default_click_format").click();
 
 }
