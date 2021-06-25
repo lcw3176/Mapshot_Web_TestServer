@@ -7,11 +7,11 @@ export class Map{
             level: 3 // 지도의 확대 레벨
         }
 
-        this.map;
-        this.ps;
-        this.infoWindow;
-        this.geoCoder;
-        this.marker;
+        this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
+        this.ps = new kakao.maps.services.Places();
+        this.infoWindow = new kakao.maps.InfoWindow({zIndex:1});
+        this.geoCoder = new kakao.maps.services.Geocoder(); 
+        this.marker = new kakao.maps.Marker(); 
         this.rectangle = null;
         this.centerLat;
         this.centerLng;
@@ -20,12 +20,6 @@ export class Map{
     }
 
     init(){
-        this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
-        this.ps = new kakao.maps.services.Places();  // 장소 검색 객체를 생성합니다
-        this.infoWindow = new kakao.maps.InfoWindow({zIndex:1}); // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-        this.geocoder = new kakao.maps.services.Geocoder(); // 주소-좌표 변환 객체를 생성합니다
-        this.marker = new kakao.maps.Marker(); // 클릭한 위치를 표시할 마커입니다
-
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
             this.centerLat = latlng.getLat();
             this.centerLng = latlng.getLng(); 
@@ -36,7 +30,6 @@ export class Map{
             
             this.setRectangle();
 
-    
             this.searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
                 if (status === kakao.maps.services.Status.OK) {
                     let detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
