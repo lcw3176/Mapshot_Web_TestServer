@@ -10,7 +10,7 @@ export class Map{
         this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
         this.ps = new kakao.maps.services.Places();
         this.infoWindow = new kakao.maps.InfoWindow({zIndex:1});
-        this.geoCoder = new kakao.maps.services.Geocoder(); 
+        this.geocoder = new kakao.maps.services.Geocoder(); 
         this.marker = new kakao.maps.Marker(); 
         this.rectangle = null;
         this.centerLat;
