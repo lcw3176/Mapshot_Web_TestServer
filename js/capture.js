@@ -110,7 +110,7 @@ export class Capture{
                             // }
                             
                         }
-                    }
+                    }.bind(this);
 
                 }.bind(this))(order);
 
