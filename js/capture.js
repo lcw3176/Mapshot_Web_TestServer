@@ -112,7 +112,7 @@ export class Capture{
                         }
                     }
 
-                })(order);
+                }.bind(this))(order);
 
                 order++;
                 Lng += Number(xValue);
