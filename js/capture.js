@@ -113,6 +113,11 @@ export class Capture{
         this.drawBeforeCollect();
 
         if(document.getElementById("layerOnlyMode").checked){
+            if(this.layersConfig.getLayers().length <= 0){
+                alert("레이어를 먼저 선택해주세요");
+                return;
+            }
+            
             this.addLayers();
             return;
         }
@@ -191,9 +196,9 @@ export class Capture{
         let imageLoadCount = 0;
         this.layerCount = 0;
 
-        for (let i = 0; i < blockWidth; i++) {
+        for (let i = 0; i < this.blockWidth; i++) {
 
-            for (let j = 0; j < blockWidth; j++) {
+            for (let j = 0; j < this.blockWidth; j++) {
                 let ymin = this.Lat - Number(this.yValue / 2);
                 let xmin = this.Lng - Number(this.xValue / 2);
                 let ymax = this.Lat + Number(this.yValue / 2);
