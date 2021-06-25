@@ -51,8 +51,8 @@ export class Capture{
     }
 
     start(xValue, yValue, halfBlockWidth, zoomQuality, zoomLevel, centerLat, centerLng, mapType){
-        if (this.url != null || this.url != "") {
-            URL.revokeObjectURL(url);
+        if (this.url != null) {
+            URL.revokeObjectURL(this.url);
         }
 
         let blockWidth = (halfBlockWidth * 2) + 1;
@@ -95,9 +95,9 @@ export class Capture{
              
                         ctx.drawImage(this, 0, 0, this.width, this.height, xPos, yPos, blockSize, blockSize);
                         
-                        progressValue += progressWidth;
-                        progress.style.width = parseFloat(progressValue).toFixed(2) + "%";
-                        progress.innerText = parseFloat(progressValue).toFixed(2) + "%";
+                        this.progressValue += this.progressWidth;
+                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
     
                         imageLoadCount++;
 
