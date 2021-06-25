@@ -52,7 +52,16 @@ export class Capture{
         document.getElementById("resultStatus").innerText = "사진 수집중입니다. 완료 문구를 기다려 주세요.";
     }
 
-    drawAfterCollect(){
+    drawBeforeMerge(){
+        if(this.imageFormat == "image/webp"){
+            document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. webp는 다소 시간이 걸립니다.";
+        } else {
+            document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. 곧 완료됩니다.";
+        }
+        
+    }
+
+    drawAfterMerge(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.canvas.width = 0;
         this.canvas.height = 0;
@@ -117,6 +126,7 @@ export class Capture{
                         imageLoadCount++;
 
                         if(imageLoadCount == blockArea){
+                            this.drawBeforeMerge();
                             this.mergeImageBlock();
                             // if(layersController.get().length > 0){
                             //     addLayers(centerLat, centerLng, zoomLevel.get(), false);
@@ -166,6 +176,6 @@ export class Capture{
             }.bind(this), this.imageFormat);
         }
 
-        this.drawAfterCollect();
+        this.drawAfterMerge();
     }
 }
