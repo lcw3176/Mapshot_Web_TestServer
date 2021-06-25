@@ -21,8 +21,8 @@ export class Map{
 
     init(){
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
-            this.centerLat = mouseEvent.latlng.getLat();
-            this.centerLng = mouseEvent.latlng.getLng(); 
+            this.centerLat = mouseEvent.latLng.getLat();
+            this.centerLng = mouseEvent.latLng.getLng(); 
             this.setLatLngText();    
             
             this.marker.setPosition(mouseEvent.latLng);
