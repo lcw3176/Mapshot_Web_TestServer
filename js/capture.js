@@ -117,7 +117,7 @@ export class Capture{
                 alert("레이어를 먼저 선택해주세요");
                 return;
             }
-            
+
             this.addLayers();
             return;
         }
@@ -204,7 +204,7 @@ export class Capture{
                 let ymax = this.Lat + Number(this.yValue / 2);
                 let xmax = this.Lng + Number(this.xValue / 2);
 
-                let vworldUrl = "https://119.192.62.139:3000/maps?coors=" + 
+                let vworldUrl = "http://119.192.62.139:3000/maps?coors=" + 
                                 ymin + "," + xmin + "," + ymax + "," + xmax + 
                                 "&layers=";
                 
