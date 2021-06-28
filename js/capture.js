@@ -233,8 +233,8 @@ export class Capture{
                         this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
                         
                         this.progressValue += this.progressWidth;
-                        this.progress.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                        this.progress.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
 
                         imageLoadCount++;
 
