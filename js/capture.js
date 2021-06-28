@@ -204,7 +204,7 @@ export class Capture{
                 let ymax = this.Lat + Number(this.yValue / 2);
                 let xmax = this.Lng + Number(this.xValue / 2);
 
-                let vworldUrl = "https://URL/maps?coors=" + 
+                let vworldUrl = "https://mapshotproxyserver.kro.kr//maps?coors=" + 
                                 ymin + "," + xmin + "," + ymax + "," + xmax + 
                                 "&layers=";
                 
