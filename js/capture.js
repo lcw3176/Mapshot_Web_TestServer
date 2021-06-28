@@ -154,7 +154,7 @@ export class Capture{
 
                         if(imageLoadCount == this.blockArea){
                             
-                            if(layersConfig.getLayers.length > 0){
+                            if(this.layersConfig.getLayers().length > 0){
                                 this.addLayers();
                             } else {
                                 this.drawBeforeMerge();
@@ -263,7 +263,7 @@ export class Capture{
     }
 
     mergeImageBlock(){
-        let tempFormat;
+        let tempFormat = null;
 
         if(document.getElementById("layerOnlyMode").checked){
             tempFormat = this.imageFormat;
@@ -282,7 +282,10 @@ export class Capture{
 
         }.bind(this), this.imageFormat);
         
-        this.imageFormat = tempFormat;
+        if(tempFormat != null){
+            this.imageFormat = tempFormat;
+        }
+        
         this.drawAfterMerge();
     }
 }
