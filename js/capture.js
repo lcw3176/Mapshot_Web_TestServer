@@ -17,6 +17,8 @@ export class Capture{
         this.blockSize;
         this.Lat;
         this.Lng;
+        this.centerLat;
+        this.centerLng;
 
         this.layersConfig = layersConfig;
         this.layerCount = 0;
@@ -104,7 +106,9 @@ export class Capture{
         if(coorFixConfig.getZoomQuality() === "normal"){
             this.blockSize *= 2;
         }
-        
+        this.centerLat = centerLat;
+        this.centerLng = centerLng;
+
         this.Lat = Number(centerLat) + (Number(this.yValue) * Number(halfBlockWidth));
         this.Lng = Number(centerLng) - (Number(this.xValue) * Number(halfBlockWidth));
 
@@ -196,6 +200,8 @@ export class Capture{
 
     getLayers(){
         let order = 0;
+        this.Lat = Number(this.centerLat) + (Number(this.yValue) * Number(this.halfBlockWidth));
+        this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
 
         for (let i = 0; i < this.blockWidth; i++) {
 
