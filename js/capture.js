@@ -22,6 +22,7 @@ export class Capture{
         this.layerCount = 0;
         this.centerLng;
         this.halfBlockWidth;
+        this.layerImageLoadCount = 0;
 
         this.imageFormat;
     }
@@ -188,14 +189,13 @@ export class Capture{
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
         
         this.layerCount = 0;
-
+        this.layerImageLoadCount = 0;
         this.draweBeforeLayers();
         this.getLayers();
     }
 
     getLayers(){
         let order = 0;
-        let imageLoadCount = 0;
 
         for (let i = 0; i < this.blockWidth; i++) {
 
@@ -237,16 +237,21 @@ export class Capture{
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
                         this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
 
-                        imageLoadCount++;
+                        this.layerImageLoadCount++;
 
-                        if(imageLoadCount == this.blockArea){
-                            this.mergeImageBlock();
+                        if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
+
+                            if(this.layerImageLoadCount < this.blockArea){
+                                this.layerCount += 4;
+                                this.getLayers();
+                            } else{
+                                this.mergeImageBlock();
+
+                            }
+
                         }
 
-                        if(imageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1 && imageLoadCount < this.blockArea){
-                            this.layerCount += 4;
-                            this.getLayers();
-                        }
+
                     }.bind(this)
 
                 }.bind(this))(order);
