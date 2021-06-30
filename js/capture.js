@@ -251,8 +251,8 @@ export class Capture{
                                 this.layerCount += 4;
                                 this.getLayers();
                             } else{
+                                this.drawBeforeMerge();
                                 this.mergeImageBlock();
-
                             }
 
                         }
