@@ -186,6 +186,8 @@ export class Capture{
 
     addLayers(){
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
+        
+        this.layerCount = 0;
 
         this.draweBeforeLayers();
         this.getLayers();
@@ -194,7 +196,6 @@ export class Capture{
     getLayers(){
         let order = 0;
         let imageLoadCount = 0;
-        this.layerCount = 0;
 
         for (let i = 0; i < this.blockWidth; i++) {
 
@@ -275,8 +276,8 @@ export class Capture{
 
             let tag = document.getElementById("resultTag");
             tag.href = this.url;
-            tag.download = "mapshot_result.jpg";
-            tag.innerHTML = "mapshot_result.jpg";
+            tag.download = "mapshot_result." + this.imageFormat.split("/")[1];
+            tag.innerHTML = "mapshot_result." + this.imageFormat.split("/")[1];
 
             document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
 
