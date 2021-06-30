@@ -265,10 +265,12 @@ export class Capture{
 
     mergeImageBlock(){
         let tempFormat = null;
+        let tempImageNameFormat = "jpg";
 
         if(document.getElementById("layerOnlyMode").checked){
             tempFormat = this.imageFormat;
             this.imageFormat = "image/png";
+            tempImageNameFormat = "png";
         }
 
         this.canvas.toBlob(function (blob) {
@@ -276,8 +278,8 @@ export class Capture{
 
             let tag = document.getElementById("resultTag");
             tag.href = this.url;
-            tag.download = "mapshot_result." + this.imageFormat.split("/")[1];
-            tag.innerHTML = "mapshot_result." + this.imageFormat.split("/")[1];
+            tag.download = "mapshot_result." + tempImageNameFormat;
+            tag.innerHTML = "mapshot_result." + tempImageNameFormat;
 
             document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
 
