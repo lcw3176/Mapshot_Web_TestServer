@@ -12,33 +12,36 @@ export class LayersConfig{
 
         switch(layers){
             case 0:
-                temp = "lt_c_lhblpn";
+                temp = "lt_c_upisuq151";
                 break;
             case 1:
-                temp = "lt_c_upisuq175";
+                temp = "lt_c_lhblpn";
                 break;
             case 2:
-                temp = "lt_c_upisuq161";
+                temp = "lt_c_upisuq175";
                 break;
             case 3:
-                temp = "lt_c_upisuq174";
+                temp = "lt_c_upisuq161";
                 break;
             case 4:
-                temp = "lt_c_upisuq171";
+                temp = "lt_c_upisuq174";
                 break;
             case 5:
-                temp = "lt_c_ud801"
+                temp = "lt_c_upisuq171";
                 break;
             case 6:
-                temp = "lt_c_uq129";
+                temp = "lt_c_ud801"
                 break;
             case 7:
-                temp = "lt_c_uq130";
+                temp = "lt_c_uq129";
                 break;
             case 8:
-                temp = "lt_c_lhzone";
+                temp = "lt_c_uq130";
                 break;
             case 9:
+                temp = "lt_c_lhzone";
+                break;
+            case 10:
                 temp = "lp_pa_cbnd_bubun,lp_pa_cbnd_bonbun";
                 break;
             default:
