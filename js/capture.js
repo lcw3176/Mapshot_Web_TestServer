@@ -1,1 +1,305 @@
-const _0x39e5=['drawBeforeMerge','normal','getYValue','Lat','image/webp','43607LGkAuc','사진을\x20합치는\x20중입니다.\x20곧\x20완료됩니다.','layerOnlyMode','getXValue','start','&X-NCP-APIGW-API-KEY-ID=ny5d4sdo0e','src','url','4gqzbmK','getContext','png','3715OJwviq','1IeuNvy','blockSize','Lng','https://naveropenapi.apigw.ntruss.com/map-static/v2/raster-cors?','getZoomQuality','&level=','addLayers','사진을\x20합치는\x20중입니다.\x20webp는\x20다소\x20시간이\x20걸립니다.','43mJIVqe','blockArea','revokeObjectURL','layerImageLoadCount','centerLat','halfBlockWidth','length','16367LwXUDX','canvas','&center=','71803eOXrie','getZoomLevel','layerCount','imageFormat','href','toFixed','2mETLUt','https://mapshotproxyserver.kro.kr/maps?coors=','mergeImageBlock','ctx','bind','drawAfterMerge','199088YdKFVt','centerLng','w=1000&h=1000','resultStatus','clearRect','image/jpeg','checked','progressValue','canvasBlockSize','152522GlRwUL','&layers=','zoomLevel','레이어\x20수집\x20중입니다.','draweBeforeLayers','getElementById','height','drawImage','xValue','checkValue','toBlob','progressWidth','createElement','layersConfig','blockWidth','jpg','onload','crossOrigin','레이어를\x20먼저\x20선택해주세요','yValue','100%','141350ORJPOk','style','innerText','progressBar','download','mapshot_result.','drawBeforeCollect','getLayers','width'];function _0x13fe(_0x30b514,_0x24efff){return _0x13fe=function(_0x39e582,_0x13fe5a){_0x39e582=_0x39e582-0x115;let _0xa8b877=_0x39e5[_0x39e582];return _0xa8b877;},_0x13fe(_0x30b514,_0x24efff);}const _0x373177=_0x13fe;(function(_0x2726ee,_0x4053ee){const _0x1b0780=_0x13fe;while(!![]){try{const _0x3b1bc0=-parseInt(_0x1b0780(0x131))+parseInt(_0x1b0780(0x15b))+-parseInt(_0x1b0780(0x12e))*-parseInt(_0x1b0780(0x11b))+-parseInt(_0x1b0780(0x11f))*parseInt(_0x1b0780(0x146))+-parseInt(_0x1b0780(0x127))*parseInt(_0x1b0780(0x11e))+parseInt(_0x1b0780(0x169))*parseInt(_0x1b0780(0x137))+parseInt(_0x1b0780(0x13d));if(_0x3b1bc0===_0x4053ee)break;else _0x2726ee['push'](_0x2726ee['shift']());}catch(_0x2cf908){_0x2726ee['push'](_0x2726ee['shift']());}}}(_0x39e5,0x1a9fa));export class Capture{constructor(_0x292281){const _0x5df63e=_0x13fe;this[_0x5df63e(0x11a)]=null,this[_0x5df63e(0x145)]=0x1f4,this[_0x5df63e(0x12f)]=document[_0x5df63e(0x152)]('canvas'),this[_0x5df63e(0x13a)]=this[_0x5df63e(0x12f)][_0x5df63e(0x11c)]('2d'),this[_0x5df63e(0x151)]=0x0,this[_0x5df63e(0x144)]=0x0,this[_0x5df63e(0x15e)]=document['getElementById']('progressBar'),this[_0x5df63e(0x14e)],this['yValue'],this[_0x5df63e(0x148)],this[_0x5df63e(0x154)],this[_0x5df63e(0x128)],this[_0x5df63e(0x120)],this[_0x5df63e(0x167)],this[_0x5df63e(0x121)],this[_0x5df63e(0x12b)],this['centerLng'],this['layersConfig']=_0x292281,this[_0x5df63e(0x133)]=0x0,this[_0x5df63e(0x13e)],this[_0x5df63e(0x12c)],this[_0x5df63e(0x12a)]=0x0,this[_0x5df63e(0x134)];}['setFormat'](_0xa1fde0){const _0x3a0f33=_0x13fe;switch(_0xa1fde0){case 0x0:this[_0x3a0f33(0x134)]=_0x3a0f33(0x142);break;case 0x1:this[_0x3a0f33(0x134)]='image/webp';break;default:break;}}[_0x373177(0x14f)](_0x27c90b,_0x10249d,_0x9b85a3){if(!(_0x9b85a3==0x5||_0x9b85a3==0x8||_0x9b85a3==0xa))return alert('잘못된\x20배율값입니다.\x20지속된다면\x20새로고침을\x20해주세요'),![];if(_0x27c90b==''||_0x10249d=='')return alert('좌표값을\x20설정해주세요'),![];return!![];}[_0x373177(0x161)](){const _0x197c1a=_0x373177;this[_0x197c1a(0x12f)]['width']=Number(this[_0x197c1a(0x154)])*this[_0x197c1a(0x120)],this['canvas'][_0x197c1a(0x14c)]=Number(this[_0x197c1a(0x154)])*this['blockSize'],this[_0x197c1a(0x151)]=0x64/(this[_0x197c1a(0x154)]*this[_0x197c1a(0x154)]),this[_0x197c1a(0x144)]=0x0,this[_0x197c1a(0x15e)][_0x197c1a(0x15c)]['width']=this[_0x197c1a(0x144)]+'%',document[_0x197c1a(0x14b)]('resultStatus')[_0x197c1a(0x15d)]='사진\x20수집중입니다.\x20완료\x20문구를\x20기다려\x20주세요.';}[_0x373177(0x164)](){const _0x2aab31=_0x373177;this[_0x2aab31(0x134)]==_0x2aab31(0x168)?document[_0x2aab31(0x14b)](_0x2aab31(0x140))[_0x2aab31(0x15d)]=_0x2aab31(0x126):document[_0x2aab31(0x14b)]('resultStatus')[_0x2aab31(0x15d)]=_0x2aab31(0x16a);}[_0x373177(0x13c)](){const _0x5e2a01=_0x373177;this[_0x5e2a01(0x13a)][_0x5e2a01(0x141)](0x0,0x0,this[_0x5e2a01(0x12f)][_0x5e2a01(0x163)],this['canvas'][_0x5e2a01(0x14c)]),this[_0x5e2a01(0x12f)][_0x5e2a01(0x163)]=0x0,this[_0x5e2a01(0x12f)][_0x5e2a01(0x14c)]=0x0,this['progressBar']['style'][_0x5e2a01(0x163)]=_0x5e2a01(0x15a),this[_0x5e2a01(0x15e)][_0x5e2a01(0x15d)]=_0x5e2a01(0x15a);}[_0x373177(0x117)](_0x36e583,_0x5f1a4c,_0x52c4e4,_0x4e0d3c,_0x3d65ef){const _0x40f920=_0x373177;this[_0x40f920(0x11a)]!=null&&URL[_0x40f920(0x129)](this['url']);this[_0x40f920(0x13e)]=_0x4e0d3c,this['halfBlockWidth']=_0x5f1a4c,this[_0x40f920(0x14e)]=_0x36e583[_0x40f920(0x116)](),this['yValue']=_0x36e583[_0x40f920(0x166)](),this['zoomLevel']=_0x36e583[_0x40f920(0x132)](),this[_0x40f920(0x154)]=_0x5f1a4c*0x2+0x1,this['blockArea']=this['blockWidth']*this[_0x40f920(0x154)],this[_0x40f920(0x120)]=this[_0x40f920(0x145)];_0x36e583[_0x40f920(0x123)]()===_0x40f920(0x165)&&(this[_0x40f920(0x120)]*=0x2);this[_0x40f920(0x12b)]=_0x52c4e4,this[_0x40f920(0x13e)]=_0x4e0d3c,this[_0x40f920(0x167)]=Number(_0x52c4e4)+Number(this[_0x40f920(0x159)])*Number(_0x5f1a4c),this['Lng']=Number(_0x4e0d3c)-Number(this[_0x40f920(0x14e)])*Number(_0x5f1a4c);let _0x336e79=0x0,_0x3de8ee=0x0;this[_0x40f920(0x161)]();if(document[_0x40f920(0x14b)](_0x40f920(0x115))[_0x40f920(0x143)]){if(this[_0x40f920(0x153)][_0x40f920(0x162)]()['length']<=0x0){alert(_0x40f920(0x158));return;}this[_0x40f920(0x125)]();return;}for(let _0x10dfb6=0x0;_0x10dfb6<this[_0x40f920(0x154)];_0x10dfb6++){for(let _0x2069f9=0x0;_0x2069f9<this[_0x40f920(0x154)];_0x2069f9++){let _0x44214f=_0x40f920(0x122)+_0x40f920(0x13f)+_0x40f920(0x130)+this[_0x40f920(0x121)]+','+this['Lat']+_0x40f920(0x124)+this['zoomLevel']+_0x40f920(0x118)+'&maptype='+_0x3d65ef,_0x24292c=new Image();_0x24292c[_0x40f920(0x157)]='*',_0x24292c[_0x40f920(0x119)]=_0x44214f,function(_0x33f4b1){const _0x3a1f87=_0x40f920;let _0x2986ed=_0x33f4b1;_0x24292c[_0x3a1f87(0x156)]=function(){const _0x174aa8=_0x3a1f87;let _0x4a852c=_0x2986ed%this[_0x174aa8(0x154)]*this[_0x174aa8(0x120)],_0x24df0c=parseInt(_0x2986ed/this[_0x174aa8(0x154)])*this[_0x174aa8(0x120)];this[_0x174aa8(0x13a)][_0x174aa8(0x14d)](_0x24292c,0x0,0x0,_0x24292c[_0x174aa8(0x163)],_0x24292c[_0x174aa8(0x14c)],_0x4a852c,_0x24df0c,this[_0x174aa8(0x120)],this['blockSize']),this[_0x174aa8(0x144)]+=this['progressWidth'],this['progressBar'][_0x174aa8(0x15c)]['width']=parseFloat(this[_0x174aa8(0x144)])[_0x174aa8(0x136)](0x2)+'%',this[_0x174aa8(0x15e)][_0x174aa8(0x15d)]=parseFloat(this[_0x174aa8(0x144)])[_0x174aa8(0x136)](0x2)+'%',_0x3de8ee++,_0x3de8ee==this[_0x174aa8(0x128)]&&(this[_0x174aa8(0x153)][_0x174aa8(0x162)]()[_0x174aa8(0x12d)]>0x0?this[_0x174aa8(0x125)]():(this[_0x174aa8(0x164)](),this[_0x174aa8(0x139)]()));}['bind'](this);}[_0x40f920(0x13b)](this)(_0x336e79),_0x336e79++,this[_0x40f920(0x121)]+=Number(this[_0x40f920(0x14e)]);}this[_0x40f920(0x121)]=Number(_0x4e0d3c)-Number(this[_0x40f920(0x14e)])*Number(_0x5f1a4c),this['Lat']-=this['yValue'];}}['draweBeforeLayers'](){const _0x4397d4=_0x373177;this[_0x4397d4(0x151)]=0x64/this[_0x4397d4(0x128)],this[_0x4397d4(0x144)]=0x0,this[_0x4397d4(0x15e)][_0x4397d4(0x15c)][_0x4397d4(0x163)]=this[_0x4397d4(0x144)]+'%',document[_0x4397d4(0x14b)]('resultStatus')[_0x4397d4(0x15d)]=_0x4397d4(0x149);}[_0x373177(0x125)](){const _0x199f3e=_0x373177;this['blockArea']=this[_0x199f3e(0x154)]*this['blockWidth']*(parseInt((this[_0x199f3e(0x153)]['getLayers']()[_0x199f3e(0x12d)]-0x1)/0x4)+0x1),this[_0x199f3e(0x133)]=0x0,this['layerImageLoadCount']=0x0,this[_0x199f3e(0x14a)](),this['getLayers']();}[_0x373177(0x162)](){const _0x35dc7c=_0x373177;let _0x51d449=0x0;this[_0x35dc7c(0x167)]=Number(this['centerLat'])+Number(this['yValue'])*Number(this['halfBlockWidth']),this[_0x35dc7c(0x121)]=Number(this['centerLng'])-Number(this[_0x35dc7c(0x14e)])*Number(this[_0x35dc7c(0x12c)]);for(let _0x1749d2=0x0;_0x1749d2<this['blockWidth'];_0x1749d2++){for(let _0x3f85e0=0x0;_0x3f85e0<this[_0x35dc7c(0x154)];_0x3f85e0++){let _0x30dd4b=this[_0x35dc7c(0x167)]-Number(this[_0x35dc7c(0x159)]/0x2),_0x50bb7e=this[_0x35dc7c(0x121)]-Number(this[_0x35dc7c(0x14e)]/0x2),_0x2cc18c=this[_0x35dc7c(0x167)]+Number(this[_0x35dc7c(0x159)]/0x2),_0x567b24=this[_0x35dc7c(0x121)]+Number(this['xValue']/0x2),_0x272849=_0x35dc7c(0x138)+_0x30dd4b+','+_0x50bb7e+','+_0x2cc18c+','+_0x567b24+_0x35dc7c(0x147);for(let _0x3a7ff6=this[_0x35dc7c(0x133)];_0x3a7ff6<this['layerCount']+0x4;_0x3a7ff6++){if(_0x3a7ff6>=this[_0x35dc7c(0x153)][_0x35dc7c(0x162)]()['length'])break;_0x272849+=this[_0x35dc7c(0x153)][_0x35dc7c(0x162)]()[_0x3a7ff6],_0x272849+=',';}_0x272849=_0x272849['substr'](0x0,_0x272849['length']-0x1);let _0x1ffb1b=new Image();_0x1ffb1b[_0x35dc7c(0x157)]='*',_0x1ffb1b[_0x35dc7c(0x119)]=_0x272849,function(_0xdd11ef){const _0x472ed3=_0x35dc7c;let _0x3c6e69=_0xdd11ef;_0x1ffb1b[_0x472ed3(0x156)]=function(){const _0x11f06c=_0x472ed3;let _0x20fcbc=_0x3c6e69%this[_0x11f06c(0x154)]*this[_0x11f06c(0x120)],_0xedf4=parseInt(_0x3c6e69/this['blockWidth'])*this[_0x11f06c(0x120)];this['ctx'][_0x11f06c(0x14d)](_0x1ffb1b,0x0,0x0,_0x1ffb1b[_0x11f06c(0x163)],_0x1ffb1b[_0x11f06c(0x14c)],_0x20fcbc,_0xedf4,this[_0x11f06c(0x120)],this['blockSize']),this[_0x11f06c(0x144)]+=this[_0x11f06c(0x151)],this[_0x11f06c(0x15e)]['style'][_0x11f06c(0x163)]=parseFloat(this[_0x11f06c(0x144)])['toFixed'](0x2)+'%',this['progressBar']['innerText']=parseFloat(this[_0x11f06c(0x144)])[_0x11f06c(0x136)](0x2)+'%',this[_0x11f06c(0x12a)]++,this[_0x11f06c(0x12a)]/(this[_0x11f06c(0x154)]*this[_0x11f06c(0x154)])==this[_0x11f06c(0x133)]/0x4+0x1&&(this[_0x11f06c(0x12a)]<this['blockArea']?(this[_0x11f06c(0x133)]+=0x4,this['getLayers']()):(this['drawBeforeMerge'](),this[_0x11f06c(0x139)]()));}[_0x472ed3(0x13b)](this);}['bind'](this)(_0x51d449),_0x51d449++,this[_0x35dc7c(0x121)]+=Number(this[_0x35dc7c(0x14e)]);}this[_0x35dc7c(0x121)]=Number(this['centerLng'])-Number(this[_0x35dc7c(0x14e)])*Number(this[_0x35dc7c(0x12c)]),this[_0x35dc7c(0x167)]-=this[_0x35dc7c(0x159)];}}['mergeImageBlock'](){const _0x74829a=_0x373177;let _0x5e01a3=null,_0x21659f=_0x74829a(0x155);document[_0x74829a(0x14b)]('layerOnlyMode')[_0x74829a(0x143)]&&(_0x5e01a3=this[_0x74829a(0x134)],this['imageFormat']='image/png',_0x21659f=_0x74829a(0x11d)),this[_0x74829a(0x12f)][_0x74829a(0x150)](function(_0xf1838e){const _0x151504=_0x74829a;this['url']=URL['createObjectURL'](_0xf1838e);let _0x33973f=document[_0x151504(0x14b)]('resultTag');_0x33973f[_0x151504(0x135)]=this[_0x151504(0x11a)],_0x33973f[_0x151504(0x15f)]=_0x151504(0x160)+_0x21659f,_0x33973f['innerHTML']='mapshot_result.'+_0x21659f,document[_0x151504(0x14b)]('resultStatus')['innerText']='완료되었습니다.\x20아래에\x20생성된\x20링크를\x20확인하세요';}[_0x74829a(0x13b)](this),this[_0x74829a(0x134)]),_0x5e01a3!=null&&(this[_0x74829a(0x134)]=_0x5e01a3),this['drawAfterMerge']();}}
+export class Capture{
+    constructor(layersConfig){
+        this.url = null;
+        this.canvasBlockSize = 500;
+        this.canvas = document.createElement("canvas");
+        this.ctx = this.canvas.getContext("2d");
+
+        this.progressWidth = 0;
+        this.progressValue = 0;
+        this.progressBar = document.getElementById("progressBar");
+
+        this.xValue;
+        this.yValue;
+        this.zoomLevel;
+        this.blockWidth;
+        this.blockArea;
+        this.blockSize;
+        this.Lat;
+        this.Lng;
+        this.centerLat;
+        this.centerLng;
+
+        this.layersConfig = layersConfig;
+        this.layerCount = 0;
+        this.centerLng;
+        this.halfBlockWidth;
+        this.layerImageLoadCount = 0;
+
+        this.imageFormat;
+    }
+
+    setFormat(format){
+        switch(format){
+            case 0:
+                this.imageFormat = "image/jpeg";
+                break;
+
+            case 1:
+                this.imageFormat = "image/webp";
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    checkValue(lat, lng, blockSize){
+        if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
+            alert("잘못된 배율값입니다. 지속된다면 새로고침을 해주세요");
+            return false;
+        }
+    
+        if (lat == "" || lng == "") {
+            alert("좌표값을 설정해주세요");
+            return false;
+        }
+    
+        return true;
+    }
+
+    drawBeforeCollect(){
+        this.canvas.width = Number(this.blockWidth) * this.blockSize;
+        this.canvas.height = Number(this.blockWidth) * this.blockSize;
+
+        this.progressWidth = 100 / (this.blockWidth * this.blockWidth);
+        this.progressValue = 0;
+        this.progressBar.style.width = this.progressValue + "%";
+
+        document.getElementById("resultStatus").innerText = "사진 수집중입니다. 완료 문구를 기다려 주세요.";
+    }
+
+    drawBeforeMerge(){
+        if(this.imageFormat == "image/webp"){
+            document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. webp는 다소 시간이 걸립니다.";
+        } else {
+            document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. 곧 완료됩니다.";
+        }
+        
+    }
+
+    drawAfterMerge(){
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.canvas.width = 0;
+        this.canvas.height = 0;
+    
+        this.progressBar.style.width = "100%";
+        this.progressBar.innerText = "100%";
+    }
+
+    start(coorFixConfig, halfBlockWidth, centerLat, centerLng, mapType){
+        if (this.url != null) {
+            URL.revokeObjectURL(this.url);
+        }
+        
+        this.centerLng = centerLng;
+        this.halfBlockWidth = halfBlockWidth;
+
+        this.xValue = coorFixConfig.getXValue();
+        this.yValue = coorFixConfig.getYValue();
+        this.zoomLevel = coorFixConfig.getZoomLevel();
+
+        this.blockWidth = (halfBlockWidth * 2) + 1;
+        this.blockArea = this.blockWidth * this.blockWidth;
+        this.blockSize = this.canvasBlockSize;
+
+        if(coorFixConfig.getZoomQuality() === "normal"){
+            this.blockSize *= 2;
+        }
+        this.centerLat = centerLat;
+        this.centerLng = centerLng;
+
+        this.Lat = Number(centerLat) + (Number(this.yValue) * Number(halfBlockWidth));
+        this.Lng = Number(centerLng) - (Number(this.xValue) * Number(halfBlockWidth));
+
+        let order = 0;
+        let imageLoadCount = 0;
+
+        this.drawBeforeCollect();
+
+        if(document.getElementById("layerOnlyMode").checked){
+            if(this.layersConfig.getLayers().length <= 0){
+                alert("레이어를 먼저 선택해주세요");
+                return;
+            }
+
+            this.addLayers();
+            return;
+        }
+
+        for (let i = 0; i < this.blockWidth; i++) {
+
+            for (let j = 0; j < this.blockWidth; j++) {
+
+                let tempSrc = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster-cors?"
+                    + "w=1000&h=1000"
+                    + "&center=" + this.Lng + "," + this.Lat
+                    + "&level=" + this.zoomLevel
+                    + "&X-NCP-APIGW-API-KEY-ID=ny5d4sdo0e"
+                    + "&maptype=" + mapType;
+
+                let tag = new Image();
+                tag.crossOrigin = "*";
+                tag.src = tempSrc;
+                
+
+                (function (order) {
+                    let _order = order;
+                    tag.onload = function () {
+                        let xPos = (_order % this.blockWidth) * this.blockSize;
+                        let yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+             
+                        this.ctx.drawImage(tag, 0, 0, tag.width, tag.height, xPos, yPos, this.blockSize, this.blockSize);
+                        
+                        this.progressValue += this.progressWidth;
+                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+    
+                        imageLoadCount++;
+
+                        if(imageLoadCount == this.blockArea){
+                            
+                            if(this.layersConfig.getLayers().length > 0){
+                                this.addLayers();
+                            } else {
+                                this.drawBeforeMerge();
+                                this.mergeImageBlock();
+                            }
+                            
+                        }
+                    }.bind(this);
+
+                }.bind(this))(order);
+
+                order++;
+                this.Lng += Number(this.xValue);
+            }
+
+            this.Lng = Number(centerLng) - (Number(this.xValue) * Number(halfBlockWidth));
+            this.Lat -= this.yValue;
+
+        }
+    }
+    
+    draweBeforeLayers(){
+        this.progressWidth = 100 / this.blockArea;
+        this.progressValue = 0;
+        this.progressBar.style.width = this.progressValue + "%";
+    
+        document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
+    }
+
+    addLayers(){
+        this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
+        
+        this.layerCount = 0;
+        this.layerImageLoadCount = 0;
+        this.draweBeforeLayers();
+        this.getLayers();
+    }
+
+    getLayers(){
+        let order = 0;
+        this.Lat = Number(this.centerLat) + (Number(this.yValue) * Number(this.halfBlockWidth));
+        this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
+
+        for (let i = 0; i < this.blockWidth; i++) {
+
+            for (let j = 0; j < this.blockWidth; j++) {
+                let ymin = this.Lat - Number(this.yValue / 2);
+                let xmin = this.Lng - Number(this.xValue / 2);
+                let ymax = this.Lat + Number(this.yValue / 2);
+                let xmax = this.Lng + Number(this.xValue / 2);
+
+                let vworldUrl = "https://mapshotproxyserver.kro.kr/maps?coors=" + 
+                                ymin + "," + xmin + "," + ymax + "," + xmax + 
+                                "&layers=";
+                
+                for(let k = this.layerCount; k < this.layerCount + 4; k++){
+
+                    if(k >= this.layersConfig.getLayers().length){
+                        break;
+                    }  
+                    
+                    vworldUrl += this.layersConfig.getLayers()[k]; 
+                    vworldUrl += ",";                       
+                }
+
+                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
+
+                let layersImage = new Image(); 
+                layersImage.crossOrigin = "*";
+                layersImage.src = vworldUrl;
+                
+                (function (order) {
+                    let _order = order;
+                    layersImage.onload = function () {
+                        let xPos = (_order % this.blockWidth) * this.blockSize;
+                        let yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+            
+                        this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                        
+                        this.progressValue += this.progressWidth;
+                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+
+                        this.layerImageLoadCount++;
+
+                        if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
+
+                            if(this.layerImageLoadCount < this.blockArea){
+                                this.layerCount += 4;
+                                this.getLayers();
+                            } else{
+                                this.drawBeforeMerge();
+                                this.mergeImageBlock();
+                            }
+
+                        }
+
+
+                    }.bind(this)
+
+                }.bind(this))(order);
+
+                order++;
+                this.Lng += Number(this.xValue);
+            
+            }
+
+            this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
+            this.Lat -= this.yValue;
+
+        }
+
+    }
+
+    mergeImageBlock(){
+        let tempFormat = null;
+        let tempImageNameFormat = "jpg";
+
+        if(document.getElementById("layerOnlyMode").checked){
+            tempFormat = this.imageFormat;
+            this.imageFormat = "image/png";
+            tempImageNameFormat = "png";
+        }
+
+        this.canvas.toBlob(function (blob) {
+            this.url = URL.createObjectURL(blob);
+
+            let tag = document.getElementById("resultTag");
+            tag.href = this.url;
+            tag.download = "mapshot_result." + tempImageNameFormat;
+            tag.innerHTML = "mapshot_result." + tempImageNameFormat;
+
+            document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+
+        }.bind(this), this.imageFormat);
+        
+        if(tempFormat != null){
+            this.imageFormat = tempFormat;
+        }
+        
+        this.drawAfterMerge();
+    }
+}

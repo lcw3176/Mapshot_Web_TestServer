@@ -1,1 +1,87 @@
-const _0x4df4=['getCenterLng','setImageFormat','click','1271569xdPGvY','default_click_format','1PwQnhC','startCapture','searchPlaces','11860DpJIJD','default_click_map','1189864THyYPh','176929bIvZpQ','form-check-input\x20layers','setMode','8279AXekbH','setBaseMap','traceMode','73RIkSMF','from','setType','7BGVnti','drawTrace','checkValue','generateValue','default_click_level','getType','checked','643qhdUTH','setZoomLevel','getElementById','onload','forEach','getCenterLat','1263121cARpZN','1074160tGwkIi','getElementsByClassName','setLayers','get','onclick'];const _0x335827=_0x3e68;(function(_0x23587b,_0x250b69){const _0x2044c4=_0x3e68;while(!![]){try{const _0x2cd395=-parseInt(_0x2044c4(0x17e))+-parseInt(_0x2044c4(0x194))*parseInt(_0x2044c4(0x18b))+-parseInt(_0x2044c4(0x186))+parseInt(_0x2044c4(0x17d))*parseInt(_0x2044c4(0x188))+-parseInt(_0x2044c4(0x18d))+-parseInt(_0x2044c4(0x197))*parseInt(_0x2044c4(0x18e))+-parseInt(_0x2044c4(0x191))*-parseInt(_0x2044c4(0x19e));if(_0x2cd395===_0x250b69)break;else _0x23587b['push'](_0x23587b['shift']());}catch(_0x59ce99){_0x23587b['push'](_0x23587b['shift']());}}}(_0x4df4,0xe71d2));function _0x3e68(_0x1484f3,_0x5edc06){return _0x3e68=function(_0x4df43b,_0x3e6863){_0x4df43b=_0x4df43b-0x17d;let _0x1d3354=_0x4df4[_0x4df43b];return _0x1d3354;},_0x3e68(_0x1484f3,_0x5edc06);}import{Map}from'./map.js';import{LayersConfig,CoorFixConfig,MapTypeConfig,MapBlockConfig}from'./config.js';import{Capture}from'./capture.js';window[_0x335827(0x1a1)]=function(){const _0x322dba=_0x335827;let _0x507a93=new LayersConfig(),_0x41192f=new CoorFixConfig(),_0x5e2c04=new MapTypeConfig(),_0x2b72cb=new MapBlockConfig(),_0x4ce9ed=new Map(_0x41192f,_0x2b72cb),_0xa7305c=new Capture(_0x507a93);document[_0x322dba(0x1a0)](_0x322dba(0x18a))['onsubmit']=function(){const _0x2e691f=_0x322dba;return _0x4ce9ed[_0x2e691f(0x18a)](),![];};let _0x352268=document[_0x322dba(0x17f)](_0x322dba(0x19f)),_0x221839=[0x5,0x8,0x5,0xa],_0x34cdbf=[0x1,0x1,0x2,0x3];Array[_0x322dba(0x195)](_0x352268)[_0x322dba(0x1a2)](function(_0xfe9d15,_0x272d58){const _0x2588a1=_0x322dba;_0xfe9d15[_0x2588a1(0x182)]=function(){const _0x533aa6=_0x2588a1;_0x2b72cb['set'](_0x221839[_0x272d58]),_0x41192f[_0x533aa6(0x190)](_0x34cdbf[_0x272d58]);};});let _0x53f295=document[_0x322dba(0x17f)](_0x322dba(0x192));Array[_0x322dba(0x195)](_0x53f295)[_0x322dba(0x1a2)](function(_0x17162b,_0x2dc78f){_0x17162b['onclick']=function(){const _0x5d7f99=_0x3e68;_0x5e2c04[_0x5d7f99(0x196)](_0x2dc78f);};});let _0x416055=document[_0x322dba(0x17f)](_0x322dba(0x184));Array['from'](_0x416055)[_0x322dba(0x1a2)](function(_0x45cc95,_0x52ecf6){_0x45cc95['onclick']=function(){_0xa7305c['setFormat'](_0x52ecf6);};}),document[_0x322dba(0x1a0)](_0x322dba(0x189))['onclick']=function(){const _0x3f6a20=_0x322dba;_0xa7305c[_0x3f6a20(0x199)](_0x4ce9ed['getCenterLat'](),_0x4ce9ed[_0x3f6a20(0x183)](),_0x2b72cb[_0x3f6a20(0x181)]())&&(document[_0x3f6a20(0x1a0)](_0x3f6a20(0x193))[_0x3f6a20(0x19d)]&&_0x4ce9ed[_0x3f6a20(0x198)](),_0x41192f[_0x3f6a20(0x19a)](_0x4ce9ed[_0x3f6a20(0x1a3)]()),_0xa7305c['start'](_0x41192f,_0x2b72cb[_0x3f6a20(0x181)](),_0x4ce9ed['getCenterLat'](),_0x4ce9ed[_0x3f6a20(0x183)](),_0x5e2c04[_0x3f6a20(0x19c)]()));};let _0x11b979=document[_0x322dba(0x17f)](_0x322dba(0x18f));Array['from'](_0x11b979)['forEach'](function(_0x6e5ac3,_0x24b3fd){const _0x50286d=_0x322dba;_0x6e5ac3[_0x50286d(0x182)]=function(){const _0x4feca1=_0x50286d;_0x507a93[_0x4feca1(0x180)](_0x24b3fd);};}),document[_0x322dba(0x1a0)](_0x322dba(0x19b))[_0x322dba(0x185)](),document['getElementById'](_0x322dba(0x18c))[_0x322dba(0x185)](),document[_0x322dba(0x1a0)](_0x322dba(0x187))[_0x322dba(0x185)]();};
+import{Map} from "./map.js"
+import{LayersConfig, CoorFixConfig, MapTypeConfig, MapBlockConfig} from "./config.js"
+import{Capture} from "./capture.js"
+
+
+window.onload = function(){
+    
+    let layersConfig = new LayersConfig();
+    let coorFixConfig = new CoorFixConfig();
+    let mapTypeConfig = new MapTypeConfig();
+    let mapBlockConfig = new MapBlockConfig();
+
+    let map = new Map(coorFixConfig, mapBlockConfig);
+    let capture = new Capture(layersConfig);
+
+    document.getElementById("searchPlaces").onsubmit = function(){
+        map.searchPlaces();
+        return false;
+    }
+
+    let zoomLevelElements = document.getElementsByClassName("setZoomLevel");
+    let blockSize = [5, 8, 5, 10];
+    let mode = [1, 1, 2, 3];
+
+    Array.from(zoomLevelElements).forEach(function(element, index) {
+        element.onclick = function(){
+            mapBlockConfig.set(blockSize[index]);
+            coorFixConfig.setMode(mode[index]);
+        }
+    });
+
+    let baseMapElements = document.getElementsByClassName("setBaseMap");
+
+    Array.from(baseMapElements).forEach(function(element, index){
+        element.onclick = function(){
+            mapTypeConfig.setType(index);
+        }
+    });
+
+    let imageFormatElements = document.getElementsByClassName("setImageFormat");
+
+    Array.from(imageFormatElements).forEach(function(element, index){
+        element.onclick = function(){
+            capture.setFormat(index);
+        }
+    });
+
+    document.getElementById("startCapture").onclick = function(){
+        if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
+            
+            if(document.getElementById("traceMode").checked){
+                map.drawTrace();
+            }
+
+            coorFixConfig.generateValue(map.getCenterLat());
+
+            capture.start(coorFixConfig,
+                          mapBlockConfig.get(),
+                          map.getCenterLat(),
+                          map.getCenterLng(),
+                          mapTypeConfig.getType());
+        }
+    }
+
+    // let layersElements = document.getElementsByClassName("form-check-input layers");    
+    
+
+    // Array.from(layersElements).forEach(function(element, index){
+    //     element.onclick = function(){
+    //         layersConfig.setLayers(index);
+    //     }
+    // });
+
+    setLayers = function(element){
+        layersConfig.setLayers(element);
+    }
+
+    document.getElementById("default_click_level").click();
+    document.getElementById("default_click_map").click();
+    document.getElementById("default_click_format").click();
+}
+
+function setLayers(element){
+    
+}
+
+
