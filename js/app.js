@@ -1,210 +1,132 @@
 "use strict";
 
-var _map = require("./map.js");
+window.onload = function () {
+  var layersConfig = new LayersConfig();
+  var coorFixConfig = new CoorFixConfig();
+  var mapTypeConfig = new MapTypeConfig();
+  var mapBlockConfig = new MapBlockConfig();
+  var map = new Map(coorFixConfig, mapBlockConfig);
+  var capture = new Capture(layersConfig);
 
-var _config = require("./config.js");
+  document.getElementById("searchPlaces").onsubmit = function () {
+    map.searchPlaces();
+    return false;
+  };
 
-var _capture = require("./capture.js");
+  var zoomLevelElements = document.getElementsByClassName("setZoomLevel");
+  var blockSize = [5, 8, 5, 10];
+  var mode = [1, 1, 2, 3];
+  Array.from(zoomLevelElements).forEach(function (element, index) {
+    element.onclick = function () {
+      mapBlockConfig.set(blockSize[index]);
+      coorFixConfig.setMode(mode[index]);
+    };
+  });
+  var baseMapElements = document.getElementsByClassName("setBaseMap");
+  Array.from(baseMapElements).forEach(function (element, index) {
+    element.onclick = function () {
+      mapTypeConfig.setType(index);
+    };
+  });
+  var imageFormatElements = document.getElementsByClassName("setImageFormat");
+  Array.from(imageFormatElements).forEach(function (element, index) {
+    element.onclick = function () {
+      capture.setFormat(index);
+    };
+  });
 
-var layersConfig = new _config.LayersConfig();
-var coorFixConfig = new _config.CoorFixConfig();
-var mapTypeConfig = new _config.MapTypeConfig();
-var mapBlockConfig = new _config.MapBlockConfig();
-var map = new _map.Map(coorFixConfig, mapBlockConfig);
-var capture = new _capture.Capture(layersConfig);
+  document.getElementById("startCapture").onclick = function () {
+    if (capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())) {
+      if (document.getElementById("traceMode").checked) {
+        map.drawTrace();
+      }
 
-document.getElementById("searchPlaces").onsubmit = function () {
-  map.searchPlaces();
-  return false;
+      coorFixConfig.generateValue(map.getCenterLat());
+      capture.start(coorFixConfig, mapBlockConfig.get(), map.getCenterLat(), map.getCenterLng(), mapTypeConfig.getType());
+    }
+  };
+
+  setLayers = function setLayers(element) {
+    layersConfig.setLayers(element);
+  };
+
+  document.getElementById("default_click_level").click();
+  document.getElementById("default_click_map").click();
+  document.getElementById("default_click_format").click();
 };
 
-var zoomLevelElements = document.getElementsByClassName("setZoomLevel");
-var blockSize = [5, 8, 5, 10];
-var mode = [1, 1, 2, 3];
-Array.from(zoomLevelElements).forEach(function (element, index) {
-  element.onclick = function () {
-    mapBlockConfig.set(blockSize[index]);
-    coorFixConfig.setMode(mode[index]);
-  };
-});
-var baseMapElements = document.getElementsByClassName("setBaseMap");
-Array.from(baseMapElements).forEach(function (element, index) {
-  element.onclick = function () {
-    mapTypeConfig.setType(index);
-  };
-});
-var imageFormatElements = document.getElementsByClassName("setImageFormat");
-Array.from(imageFormatElements).forEach(function (element, index) {
-  element.onclick = function () {
-    capture.setFormat(index);
-  };
-});
+function setLayers(element) {}
 
-document.getElementById("startCapture").onclick = function () {
-  if (capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())) {
-    if (document.getElementById("traceMode").checked) {
-      map.drawTrace();
-    }
+// window.onload = function(){
+    
+    
+//     let layersConfig = new LayersConfig();
+//     let coorFixConfig = new CoorFixConfig();
+//     let mapTypeConfig = new MapTypeConfig();
+//     let mapBlockConfig = new MapBlockConfig();
 
-    coorFixConfig.generateValue(map.getCenterLat());
-    capture.start(coorFixConfig, mapBlockConfig.get(), map.getCenterLat(), map.getCenterLng(), mapTypeConfig.getType());
-  }
-}; // let layersElements = document.getElementsByClassName("form-check-input layers");    
-// Array.from(layersElements).forEach(function(element, index){
-//     element.onclick = function(){
-//         layersConfig.setLayers(index);
+//     let map = new Map(coorFixConfig, mapBlockConfig);
+//     let capture = new Capture(layersConfig);
+
+//     document.getElementById("searchPlaces").onsubmit = function(){
+//         map.searchPlaces();
+//         return false;
 //     }
-// });
 
+//     let zoomLevelElements = document.getElementsByClassName("setZoomLevel");
+//     let blockSize = [5, 8, 5, 10];
+//     let mode = [1, 1, 2, 3];
 
-function setLayers(element) {
-  layersConfig.setLayers(element);
-}
-
-document.getElementById("default_click_level").click();
-document.getElementById("default_click_map").click();
-document.getElementById("default_click_format").click(); 
-
-
-// import { Map } from "./map.js"
-// import { LayersConfig, CoorFixConfig, MapTypeConfig, MapBlockConfig } from "./config.js"
-// import { Capture } from "./capture.js"
-// let layersConfig = new LayersConfig();
-// let coorFixConfig = new CoorFixConfig();
-// let mapTypeConfig = new MapTypeConfig();
-// let mapBlockConfig = new MapBlockConfig();
-// let map = new Map(coorFixConfig, mapBlockConfig);
-// let capture = new Capture(layersConfig);
-// document.getElementById("searchPlaces").onsubmit = function () {
-//     map.searchPlaces();
-//     return false;
-// }
-// let zoomLevelElements = document.getElementsByClassName("setZoomLevel");
-// let blockSize = [5, 8, 5, 10];
-// let mode = [1, 1, 2, 3];
-// Array.from(zoomLevelElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         mapBlockConfig.set(blockSize[index]);
-//         coorFixConfig.setMode(mode[index]);
-//     }
-// });
-// let baseMapElements = document.getElementsByClassName("setBaseMap");
-// Array.from(baseMapElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         mapTypeConfig.setType(index);
-//     }
-// });
-// let imageFormatElements = document.getElementsByClassName("setImageFormat");
-// Array.from(imageFormatElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         capture.setFormat(index);
-//     }
-// });
-// document.getElementById("startCapture").onclick = function () {
-//     if (capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())) {
-//         if (document.getElementById("traceMode").checked) {
-//             map.drawTrace();
+//     Array.from(zoomLevelElements).forEach(function(element, index) {
+//         element.onclick = function(){
+//             mapBlockConfig.set(blockSize[index]);
+//             coorFixConfig.setMode(mode[index]);
 //         }
-//         coorFixConfig.generateValue(map.getCenterLat());
-//         capture.start(coorFixConfig,
-//             mapBlockConfig.get(),
-//             map.getCenterLat(),
-//             map.getCenterLng(),
-//             mapTypeConfig.getType());
-//     }
-// }
-// // let layersElements = document.getElementsByClassName("form-check-input layers");    
-// // Array.from(layersElements).forEach(function(element, index){
-// //     element.onclick = function(){
-// //         layersConfig.setLayers(index);
-// //     }
-// // });
-// function setLayer(element) {
-//     layersConfig.setLayers(element);
-// }
-// document.getElementById("default_click_level").click();
-// document.getElementById("default_click_map").click();
-// document.getElementById("default_click_format").click();
+//     });
 
+//     let baseMapElements = document.getElementsByClassName("setBaseMap");
 
-// import { Map } from "./map.js"
-// import { LayersConfig, CoorFixConfig, MapTypeConfig, MapBlockConfig } from "./config.js"
-// import { Capture } from "./capture.js"
-
-
-// let layersConfig = new LayersConfig();
-// let coorFixConfig = new CoorFixConfig();
-// let mapTypeConfig = new MapTypeConfig();
-// let mapBlockConfig = new MapBlockConfig();
-
-// let map = new Map(coorFixConfig, mapBlockConfig);
-// let capture = new Capture(layersConfig);
-
-// document.getElementById("searchPlaces").onsubmit = function () {
-//     map.searchPlaces();
-//     return false;
-// }
-
-// let zoomLevelElements = document.getElementsByClassName("setZoomLevel");
-// let blockSize = [5, 8, 5, 10];
-// let mode = [1, 1, 2, 3];
-
-// Array.from(zoomLevelElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         mapBlockConfig.set(blockSize[index]);
-//         coorFixConfig.setMode(mode[index]);
-//     }
-// });
-
-// let baseMapElements = document.getElementsByClassName("setBaseMap");
-
-// Array.from(baseMapElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         mapTypeConfig.setType(index);
-//     }
-// });
-
-// let imageFormatElements = document.getElementsByClassName("setImageFormat");
-
-// Array.from(imageFormatElements).forEach(function (element, index) {
-//     element.onclick = function () {
-//         capture.setFormat(index);
-//     }
-// });
-
-// document.getElementById("startCapture").onclick = function () {
-//     if (capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())) {
-
-//         if (document.getElementById("traceMode").checked) {
-//             map.drawTrace();
+//     Array.from(baseMapElements).forEach(function(element, index){
+//         element.onclick = function(){
+//             mapTypeConfig.setType(index);
 //         }
+//     });
 
-//         coorFixConfig.generateValue(map.getCenterLat());
+//     let imageFormatElements = document.getElementsByClassName("setImageFormat");
 
-//         capture.start(coorFixConfig,
-//             mapBlockConfig.get(),
-//             map.getCenterLat(),
-//             map.getCenterLng(),
-//             mapTypeConfig.getType());
+//     Array.from(imageFormatElements).forEach(function(element, index){
+//         element.onclick = function(){
+//             capture.setFormat(index);
+//         }
+//     });
+
+//     document.getElementById("startCapture").onclick = function(){
+//         if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
+            
+//             if(document.getElementById("traceMode").checked){
+//                 map.drawTrace();
+//             }
+
+//             coorFixConfig.generateValue(map.getCenterLat());
+
+//             capture.start(coorFixConfig,
+//                           mapBlockConfig.get(),
+//                           map.getCenterLat(),
+//                           map.getCenterLng(),
+//                           mapTypeConfig.getType());
+//         }
 //     }
+
+//     setLayers = function(element){
+//         layersConfig.setLayers(element);
+//     }
+
+//     document.getElementById("default_click_level").click();
+//     document.getElementById("default_click_map").click();
+//     document.getElementById("default_click_format").click();
+
 // }
 
-// // let layersElements = document.getElementsByClassName("form-check-input layers");    
+// function setLayers(element){
 
-
-// // Array.from(layersElements).forEach(function(element, index){
-// //     element.onclick = function(){
-// //         layersConfig.setLayers(index);
-// //     }
-// // });
-
-// function setLayer(element) {
-//     layersConfig.setLayers(element);
 // }
-
-// document.getElementById("default_click_level").click();
-// document.getElementById("default_click_map").click();
-// document.getElementById("default_click_format").click();
-
-
-
