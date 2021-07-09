@@ -57,7 +57,7 @@ document.getElementById("startCapture").onclick = function () {
 // });
 
 
-function setLayer(element) {
+function setLayers(element) {
   layersConfig.setLayers(element);
 }
 
