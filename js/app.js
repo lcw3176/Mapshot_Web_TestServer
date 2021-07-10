@@ -46,7 +46,7 @@ window.onload = function(){
     }
 
     setImageFormat = function(element){
-
+        capture.setFormat(element);
     }
 
     document.getElementById("default_click_level").click();
