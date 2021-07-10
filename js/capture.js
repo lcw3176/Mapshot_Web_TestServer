@@ -168,7 +168,7 @@ function Capture(layersConfig){
                         }
                     }.bind(this);
 
-                }.bind(this))(order);
+                }.bind(this))(order, tag);
 
                 order++;
                 this.Lng += Number(this.xValue);
