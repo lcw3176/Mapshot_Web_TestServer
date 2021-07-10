@@ -160,7 +160,7 @@ function Capture(layersConfig){
                         if(imageLoadCount == this.blockArea){
                             
                             if(this.layersConfig.getLayers().length > 0){
-                                this.addLayers();
+                                this.addLayers(false);
                             } else {
                                 this.drawBeforeMerge();
                                 this.mergeImageBlock();
