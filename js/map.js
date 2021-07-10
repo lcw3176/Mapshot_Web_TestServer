@@ -18,7 +18,6 @@ function Map(coorFixConfig, mapBlockConfig){
     this.coorFixConfig = coorFixConfig;
     this.mapBlockConfig = mapBlockConfig;
 
-    init();
 
     this.getCenterLat = function(){
         return this.centerLat;

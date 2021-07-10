@@ -66,6 +66,7 @@ window.onload = function(){
     var mapBlockConfig = new MapBlockConfig();
 
     var map = new Map(coorFixConfig, mapBlockConfig);
+    map.init();
     var capture = new Capture(layersConfig);
 
     document.getElementById("searchPlaces").onsubmit = function(){
