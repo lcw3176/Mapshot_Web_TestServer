@@ -204,7 +204,7 @@ function Capture(layersConfig){
         this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
         
         var requestImageFormat = "image/jpeg";
-        var proxyUrl = "https://52zzkwotbp.apigw.ntruss.com/mapshot/release/DRpp7J4UzA/http";
+        const proxyUrl = "https://52zzkwotbp.apigw.ntruss.com/mapshot/release/DRpp7J4UzA/http";
 
         if(isLayerOnly){
             requestImageFormat = "image/png";
@@ -234,58 +234,59 @@ function Capture(layersConfig){
 
                 var xhr = new XMLHttpRequest();
   
-                var layersImage = new Image(); 
-                layersImage.crossOrigin = "*";
-
                 var data = {
                     format: requestImageFormat,
                     coor: ymin + "," + xmin + "," + ymax + "," + xmax,
                     layer: vworldLayer
                 };
         
-                xhr.onload = function() {
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        layersImage.src = xhr.responseText;
-                    } 
-                };
-        
                 xhr.open('POST', proxyUrl);
                 xhr.setRequestHeader('Content-Type', 'application/json'); 
                 xhr.send(JSON.stringify(data)); 
                 
-                (function (order, layersImage) {
+
+                (function (order, xhr) {
                     var _order = order;
-                    var _layersImage = layersImage;
+                    var _xhr = xhr;
 
-
-                    _layersImage.onload = function () {
-                        var xPos = (_order % this.blockWidth) * this.blockSize;
-                        var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
-            
-                        this.ctx.drawImage(_layersImage, 0, 0, _layersImage.width, _layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                    _xhr.onload = function() {
                         
-                        this.progressValue += this.progressWidth;
-                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                        if (_xhr.status === 200 || _xhr.status === 201) {
+                            var layersImage = new Image(); 
+                            layersImage.crossOrigin = "*";
+                            layersImage.src = _xhr.responseText;
 
-                        this.layerImageLoadCount++;
-
-                        if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
-
-                            if(this.layerImageLoadCount < this.blockArea){
-                                this.layerCount += 4;
-                                this.getLayers();
-                            } else{
-                                this.drawBeforeMerge();
-                                this.mergeImageBlock();
-                            }
-
-                        }
-
+                            layersImage.onload = function () {
+                                var xPos = (_order % this.blockWidth) * this.blockSize;
+                                var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+                    
+                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                                
+                                this.progressValue += this.progressWidth;
+                                this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                                this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+        
+                                this.layerImageLoadCount++;
+        
+                                if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
+        
+                                    if(this.layerImageLoadCount < this.blockArea){
+                                        this.layerCount += 4;
+                                        this.getLayers();
+                                    } else{
+                                        this.drawBeforeMerge();
+                                        this.mergeImageBlock();
+                                    }
+        
+                                }
+        
+        
+                            }.bind(this)
+                        } 
 
                     }.bind(this)
 
-                }.bind(this))(order, layersImage);
+                }.bind(this))(order, xhr);
 
                 order++;
                 this.Lng += Number(this.xValue);
