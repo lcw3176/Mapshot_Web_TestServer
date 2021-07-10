@@ -113,7 +113,6 @@ function Capture(layersConfig){
         var order = 0;
         var imageLoadCount = 0;
 
-        this.drawBeforeCollect();
 
         if(document.getElementById("layerOnlyMode").checked){
             if(this.layersConfig.getLayers().length <= 0){
@@ -124,6 +123,8 @@ function Capture(layersConfig){
             this.addLayers();
             return;
         }
+
+        this.drawBeforeCollect();
 
         for (var i = 0; i < this.blockWidth; i++) {
 
@@ -242,25 +243,26 @@ function Capture(layersConfig){
                     layer: vworldLayer
                 };
         
-                xhr.onload = function() {
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        layersImage.src = xhr.responseText;
-                    } else {
-                        console.error(xhr.responseText);
-                    }
-                };
-        
                 xhr.open('POST', proxyUrl);
                 xhr.setRequestHeader('Content-Type', 'application/json'); 
                 xhr.send(JSON.stringify(data)); 
                 
-                (function (order) {
+                (function (order, xhr, layersImage) {
                     var _order = order;
-                    layersImage.onload = function () {
+                    var _xhr = xhr;
+                    var _layersImage = layersImage;
+
+                    _xhr.onload = function() {
+                        if (_xhr.status === 200 || _xhr.status === 201) {
+                            _layersImage.src = _xhr.responseText;
+                        } 
+                    };
+            
+                    _layersImage.onload = function () {
                         var xPos = (_order % this.blockWidth) * this.blockSize;
                         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
             
-                        this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                        this.ctx.drawImage(_layersImage, 0, 0, _layersImage.width, _layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
                         
                         this.progressValue += this.progressWidth;
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
@@ -283,7 +285,7 @@ function Capture(layersConfig){
 
                     }.bind(this)
 
-                }.bind(this))(order);
+                }.bind(this))(order, xhr, layersImage);
 
                 order++;
                 this.Lng += Number(this.xValue);
