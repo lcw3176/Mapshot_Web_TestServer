@@ -147,27 +147,27 @@
 
             <li class="list-group-item list-group-item-dark fw-bold">2. 배율 설정</li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel"> 반경 1km
+              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(5, 1)"> 반경 1km
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel"> 반경 2km
+              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(8, 1)"> 반경 2km
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel"> 반경 5km
+              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(5, 2)"> 반경 5km
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel" id="default_click_level"> 반경 10km
+              <input type="radio" name="jb-radio" class="setZoomLevel" id="default_click_level" onclick="setZoomLevel(10, 3)"> 반경 10km
             </li>
 
             <li class="list-group-item list-group-item-dark fw-bold"> 3. 지도 종류 설정</li>
             <li class="list-group-item">
-              <input type="radio" name="jbs-radio" class="setBaseMap"> 일반 지도 
+              <input type="radio" name="jbs-radio" class="setBaseMap" onclick="setBaseMap(0)"> 일반 지도 
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jbs-radio" class="setBaseMap" id="default_click_map"> 위성 지도
+              <input type="radio" name="jbs-radio" class="setBaseMap" id="default_click_map" onclick="setBaseMap(1)"> 위성 지도
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jbs-radio" class="setBaseMap"> 하이브리드
+              <input type="radio" name="jbs-radio" class="setBaseMap" onclick="setBaseMap(2)"> 하이브리드
             </li>
             
             <li class="list-group-item list-group-item-dark fw-bold"> 4. 부가 설정</li>
@@ -178,9 +178,9 @@
               레이어만 출력하기
             </li>
             <li class="list-group-item">
-              <input name="jbf-radio" type="radio" class="setImageFormat" id="default_click_format">
+              <input name="jbf-radio" type="radio" class="setImageFormat" id="default_click_format" onclick="setImageFormat(0)">
               jpg로 변환
-              <input name="jbf-radio" type="radio" class="setImageFormat" style="margin-left: 10px;">
+              <input name="jbf-radio" type="radio" class="setImageFormat" style="margin-left: 10px;" onclick="setImageFormat(1)">
               webp로 변환
             </li>
 
