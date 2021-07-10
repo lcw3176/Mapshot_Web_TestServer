@@ -306,7 +306,7 @@ function Capture(layersConfig){
             tempImageNameFormat = "png";
         }
 
-        if(canvas.msToBlob){
+        if(this.canvas.msToBlob){
             this.canvas.toBlob(function(blob){
 
                 navigator.msSaveBlob(blob, "mapshot_result" + imageExtends);
