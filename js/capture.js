@@ -243,21 +243,21 @@ function Capture(layersConfig){
                     layer: vworldLayer
                 };
         
+                xhr.onload = function() {
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        layersImage.src = xhr.responseText;
+                    } 
+                };
+        
                 xhr.open('POST', proxyUrl);
                 xhr.setRequestHeader('Content-Type', 'application/json'); 
                 xhr.send(JSON.stringify(data)); 
                 
-                (function (order, xhr, layersImage) {
+                (function (order, layersImage) {
                     var _order = order;
-                    var _xhr = xhr;
                     var _layersImage = layersImage;
 
-                    _xhr.onload = function() {
-                        if (_xhr.status === 200 || _xhr.status === 201) {
-                            _layersImage.src = _xhr.responseText;
-                        } 
-                    };
-            
+
                     _layersImage.onload = function () {
                         var xPos = (_order % this.blockWidth) * this.blockSize;
                         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
@@ -285,7 +285,7 @@ function Capture(layersConfig){
 
                     }.bind(this)
 
-                }.bind(this))(order, xhr, layersImage);
+                }.bind(this))(order, layersImage);
 
                 order++;
                 this.Lng += Number(this.xValue);
