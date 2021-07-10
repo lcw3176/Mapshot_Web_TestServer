@@ -141,13 +141,14 @@ function Capture(layersConfig){
                 tag.src = tempSrc;
                 
 
-                (function (order) {
+                (function (order, tag) {
                     var _order = order;
-                    tag.onload = function () {
+                    var _tag = tag;
+                    _tag.onload = function () {
                         var xPos = (_order % this.blockWidth) * this.blockSize;
                         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
              
-                        this.ctx.drawImage(tag, 0, 0, tag.width, tag.height, xPos, yPos, this.blockSize, this.blockSize);
+                        this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos, yPos, this.blockSize, this.blockSize);
                         
                         this.progressValue += this.progressWidth;
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
