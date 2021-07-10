@@ -15,33 +15,6 @@ window.onload = function(){
         return false;
     }
 
-    // var zoomLevelElements = document.getElementsByClassName("setZoomLevel");
-    // var blockSize = [5, 8, 5, 10];
-    // var mode = [1, 1, 2, 3];
-
-    // Array.from(zoomLevelElements).forEach(function(element, index) {
-    //     element.onclick = function(){
-    //         mapBlockConfig.set(blockSize[index]);
-    //         coorFixConfig.setMode(mode[index]);
-    //     }
-    // });
-
-    // var baseMapElements = document.getElementsByClassName("setBaseMap");
-
-    // Array.from(baseMapElements).forEach(function(element, index){
-    //     element.onclick = function(){
-    //         mapTypeConfig.setType(index);
-    //     }
-    // });
-
-    // var imageFormatElements = document.getElementsByClassName("setImageFormat");
-
-    // Array.from(imageFormatElements).forEach(function(element, index){
-    //     element.onclick = function(){
-    //         capture.setFormat(index);
-    //     }
-    // });
-
     document.getElementById("startCapture").onclick = function(){
         if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
             

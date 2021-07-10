@@ -6,40 +6,13 @@ function LayersConfig(){
     }
 
     this.setLayers = function(layers){
-        if(!this.layersArr.includes(layers)){
-            this.layersArr.push(layers);
-        } else {
-            for(let i = 0; i < this.layersArr.length; i++){
-                if(this.layersArr[i] === layers){
-                    this.layersArr.splice(i, 1);
-                    break;
-                }
+        for(var i = 0; i < this.layersArr.length; i++){
+            if(this.layersArr[i] === layers){
+                this.layersArr.splice(i, 1);
+                return;
             }
         }
+
+        this.layersArr.push(layers)
     }
 }
-
-// class LayersConfig{
-//     constructor(){
-//         this.layersArr = [];
-//     }
-
-//     getLayers(){
-//         return this.layersArr;
-//     }
-
-//     setLayers(layers){
-//         if(!this.layersArr.includes(layers)){
-//             this.layersArr.push(layers);
-//         } else {
-//             for(let i = 0; i < this.layersArr.length; i++){
-//                 if(this.layersArr[i] === layers){
-//                     this.layersArr.splice(i, 1);
-//                     break;
-//                 }
-//             }
-//         }
-
-//         console.log(this.layersArr);
-//     }
-// }
