@@ -16,8 +16,6 @@ function LayersConfig(){
                 }
             }
         }
-
-        console.log(this.layersArr);
     }
 }
 
