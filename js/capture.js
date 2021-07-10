@@ -120,7 +120,7 @@ function Capture(layersConfig){
                 return;
             }
 
-            this.addLayers();
+            this.addLayers(document.getElementById("layerOnlyMode").checked);
             return;
         }
 
@@ -182,6 +182,7 @@ function Capture(layersConfig){
     }
     
     this.draweBeforeLayers = function(){
+        
         this.progressWidth = 100 / this.blockArea;
         this.progressValue = 0;
         this.progressBar.style.width = this.progressValue + "%";
@@ -189,7 +190,12 @@ function Capture(layersConfig){
         document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
     }
 
-    this.addLayers = function(){
+    this.addLayers = function(isLayerOnly){
+        if(isLayerOnly){
+            this.canvas.width = Number(this.blockWidth) * this.blockSize;
+            this.canvas.height = Number(this.blockWidth) * this.blockSize;
+        }
+
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
         
         this.layerCount = 0;
