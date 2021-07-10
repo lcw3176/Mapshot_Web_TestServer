@@ -193,13 +193,34 @@ function Capture(layersConfig){
         this.layerCount = 0;
         this.layerImageLoadCount = 0;
         this.draweBeforeLayers();
-        this.getLayers();
+        this.getLayers(document.getElementById("layerOnlyMode").checked);
     }
 
-    this.getLayers = function(){
+    this.getLayers = function(isLayerOnly){
         var order = 0;
         this.Lat = Number(this.centerLat) + (Number(this.yValue) * Number(this.halfBlockWidth));
         this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
+        
+        var requestImageFormat = "image/jpeg";
+        var proxyUrl = "https://52zzkwotbp.apigw.ntruss.com/mapshot/release/DRpp7J4UzA/http";
+
+        if(isLayerOnly){
+            requestImageFormat = "image/png";
+        }
+
+        var vworldLayer;
+
+        for(var k = this.layerCount; k < this.layerCount + 4; k++){
+
+            if(k >= this.layersConfig.getLayers().length){
+                break;
+            }  
+            
+            vworldLayer += this.layersConfig.getLayers()[k]; 
+            vworldLayer += ",";                       
+        }
+
+        vworldLayer = vworldLayer.substr(0, vworldLayer.length -1);
 
         for (var i = 0; i < this.blockWidth; i++) {
 
@@ -209,25 +230,28 @@ function Capture(layersConfig){
                 var ymax = this.Lat + Number(this.yValue / 2);
                 var xmax = this.Lng + Number(this.xValue / 2);
 
-                var vworldUrl = "https://mapshotproxyserver.kro.kr/maps?coors=" + 
-                                ymin + "," + xmin + "," + ymax + "," + xmax + 
-                                "&layers=";
-                
-                for(var k = this.layerCount; k < this.layerCount + 4; k++){
-
-                    if(k >= this.layersConfig.getLayers().length){
-                        break;
-                    }  
-                    
-                    vworldUrl += this.layersConfig.getLayers()[k]; 
-                    vworldUrl += ",";                       
-                }
-
-                vworldUrl = vworldUrl.substr(0, vworldUrl.length -1);
-
+                var xhr = new XMLHttpRequest();
+  
                 var layersImage = new Image(); 
                 layersImage.crossOrigin = "*";
-                layersImage.src = vworldUrl;
+
+                var data = {
+                    format: requestImageFormat,
+                    coor: ymin + "," + xmin + "," + ymax + "," + xmax,
+                    layer: vworldLayer
+                };
+        
+                xhr.onload = function() {
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        layersImage.src = xhr.responseText;
+                    } else {
+                        console.error(xhr.responseText);
+                    }
+                };
+        
+                xhr.open('POST', proxyUrl);
+                xhr.setRequestHeader('Content-Type', 'application/json'); 
+                xhr.send(JSON.stringify(data)); 
                 
                 (function (order) {
                     var _order = order;
@@ -282,18 +306,28 @@ function Capture(layersConfig){
             tempImageNameFormat = "png";
         }
 
-        this.canvas.toBlob(function (blob) {
-            this.url = URL.createObjectURL(blob);
+        if(canvas.msToBlob){
+            this.canvas.toBlob(function(blob){
 
-            var tag = document.getElementById("resultTag");
-            tag.href = this.url;
-            tag.download = "mapshot_result." + tempImageNameFormat;
-            tag.innerHTML = "mapshot_result." + tempImageNameFormat;
+                navigator.msSaveBlob(blob, "mapshot_result" + imageExtends);
+                var status = document.getElementById("resultStatus");
+                status.innerText = "완료되었습니다.";
+            
+            }.bind(this), this.imageFormat);
+        } else {
+            this.canvas.toBlob(function (blob) {
+                this.url = URL.createObjectURL(blob);
+    
+                var tag = document.getElementById("resultTag");
+                tag.href = this.url;
+                tag.download = "mapshot_result." + tempImageNameFormat;
+                tag.innerHTML = "mapshot_result." + tempImageNameFormat;
+    
+                document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+    
+            }.bind(this), this.imageFormat);    
+        }
 
-            document.getElementById("resultStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
-
-        }.bind(this), this.imageFormat);
-        
         if(tempFormat != null){
             this.imageFormat = tempFormat;
         }
