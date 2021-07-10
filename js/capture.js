@@ -181,7 +181,7 @@ function Capture(layersConfig){
         }
     }
     
-    this.draweBeforeLayers = function(){
+    this.drawBeforeLayers = function(){
         
         this.progressWidth = 100 / this.blockArea;
         this.progressValue = 0;
@@ -200,21 +200,16 @@ function Capture(layersConfig){
         
         this.layerCount = 0;
         this.layerImageLoadCount = 0;
-        this.draweBeforeLayers();
-        this.getLayers(document.getElementById("layerOnlyMode").checked);
+        this.drawBeforeLayers();
+        this.getLayers();
     }
 
-    this.getLayers = function(isLayerOnly){
+    this.getLayers = function(){
         var order = 0;
         this.Lat = Number(this.centerLat) + (Number(this.yValue) * Number(this.halfBlockWidth));
         this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
         
-        var requestImageFormat = "image/jpeg";
         const proxyUrl = "https://52zzkwotbp.apigw.ntruss.com/mapshot/release/DRpp7J4UzA/http";
-
-        if(isLayerOnly){
-            requestImageFormat = "image/png";
-        }
 
         var vworldLayer = "";
 
@@ -241,7 +236,6 @@ function Capture(layersConfig){
                 var xhr = new XMLHttpRequest();
   
                 var data = {
-                    format: requestImageFormat,
                     coor: ymin + "," + xmin + "," + ymax + "," + xmax,
                     layer: vworldLayer
                 };
