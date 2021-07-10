@@ -313,7 +313,7 @@ function Capture(layersConfig){
         if(this.canvas.msToBlob){
             this.canvas.toBlob(function(blob){
 
-                navigator.msSaveBlob(blob, "mapshot_result" + imageExtends);
+                navigator.msSaveBlob(blob, "mapshot_result." + tempImageNameFormat);
                 var status = document.getElementById("resultStatus");
                 status.innerText = "완료되었습니다.";
             
