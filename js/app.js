@@ -60,7 +60,7 @@
 window.onload = function(){
     
     
-    var layersConfig = new require("/");
+    var layersConfig = new LayersConfig();
     var coorFixConfig = new CoorFixConfig();
     var mapTypeConfig = new MapTypeConfig();
     var mapBlockConfig = new MapBlockConfig();
