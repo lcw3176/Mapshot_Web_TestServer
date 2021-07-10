@@ -210,7 +210,7 @@ function Capture(layersConfig){
             requestImageFormat = "image/png";
         }
 
-        var vworldLayer;
+        var vworldLayer = "";
 
         for(var k = this.layerCount; k < this.layerCount + 4; k++){
 
