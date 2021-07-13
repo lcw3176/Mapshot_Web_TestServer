@@ -45,13 +45,8 @@ window.onload = function(){
         mapTypeConfig.setType(element);
     }
 
-    // setImageFormat = function(element){
-    //     capture.setFormat(element);
-    // }
-
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
-    // document.getElementById("default_click_format").click();
 
 }
 
@@ -66,7 +61,3 @@ function setZoomLevel(element){
 function setBaseMap(element){
 
 }
-
-// function setImageFormat(element){
-
-// }

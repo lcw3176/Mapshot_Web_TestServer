@@ -27,20 +27,6 @@ function Capture(layersConfig){
 
     this.imageFormat = "image/jpeg";
 
-    // this.setFormat = function(format){
-    //     switch(format){
-    //         case 0:
-    //             this.imageFormat = "image/jpeg";
-    //             break;
-
-    //         case 1:
-    //             this.imageFormat = "image/webp";
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-    // }
 
     this.checkValue = function(lat, lng, blockSize){
         if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
@@ -68,11 +54,6 @@ function Capture(layersConfig){
     }
 
     this.drawBeforeMerge = function(){
-        // if(this.imageFormat == "image/webp"){
-        //     document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. webp는 다소 시간이 걸립니다.";
-        // } else {
-        //     document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. 곧 완료됩니다.";
-        // }
         document.getElementById("resultStatus").innerText = "사진을 합치는 중입니다. 곧 완료됩니다.";
     }
 
@@ -186,7 +167,8 @@ function Capture(layersConfig){
         this.progressWidth = 100 / this.blockArea;
         this.progressValue = 0;
         this.progressBar.style.width = this.progressValue + "%";
-    
+        this.progressBar.innerText =this.progressValue + "%";
+
         document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
     }
 
