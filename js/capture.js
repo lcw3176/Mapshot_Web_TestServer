@@ -247,7 +247,9 @@ function Capture(layersConfig){
                                 this.progressValue += this.progressWidth;
                                 this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
                                 this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
-        
+                                
+                                console.log(this.progressValue);
+                                
                                 this.layerImageLoadCount++;
         
                                 if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
