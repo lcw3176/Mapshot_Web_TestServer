@@ -121,52 +121,36 @@ function Capture(layersConfig){
                 var tag = new Image();
                 tag.crossOrigin = "*";
                 tag.src = tempSrc;
-                console.log("lat: " + this.Lat + " lng: " + this.Lng);
                 
-                // 임시 코드
-                imageLoadCount++;
 
-                if(imageLoadCount == this.blockArea){
-                    
-                    if(this.layersConfig.getLayers().length > 0){
-                        this.addLayers(false);
-                    } else {
-                        this.drawBeforeMerge();
-                        this.mergeImageBlock();
-                    }
-                    
-                }
-                //
-
-
-                // (function (order, tag) {
-                //     var _order = order;
-                //     var _tag = tag;
-                //     _tag.onload = function () {
-                //         var xPos = (_order % this.blockWidth) * this.blockSize;
-                //         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+                (function (order, tag) {
+                    var _order = order;
+                    var _tag = tag;
+                    _tag.onload = function () {
+                        var xPos = (_order % this.blockWidth) * this.blockSize;
+                        var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
              
-                //         this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos, yPos, this.blockSize, this.blockSize);
+                        this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos, yPos, this.blockSize, this.blockSize);
                         
-                //         this.progressValue += this.progressWidth;
-                //         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                //         this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressValue += this.progressWidth;
+                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
     
-                //         imageLoadCount++;
+                        imageLoadCount++;
 
-                //         if(imageLoadCount == this.blockArea){
+                        if(imageLoadCount == this.blockArea){
                             
-                //             if(this.layersConfig.getLayers().length > 0){
-                //                 this.addLayers(false);
-                //             } else {
-                //                 this.drawBeforeMerge();
-                //                 this.mergeImageBlock();
-                //             }
+                            if(this.layersConfig.getLayers().length > 0){
+                                this.addLayers(false);
+                            } else {
+                                this.drawBeforeMerge();
+                                this.mergeImageBlock();
+                            }
                             
-                //         }
-                //     }.bind(this);
+                        }
+                    }.bind(this);
 
-                // }.bind(this))(order, tag);
+                }.bind(this))(order, tag);
 
                 order++;
                 this.Lng += Number(this.xValue);
@@ -231,7 +215,6 @@ function Capture(layersConfig){
         }
 
         vworldLayer = vworldLayer.substr(0, vworldLayer.length -1);
-        console.log("레이어 시작");
 
         for (var i = 0; i < this.blockWidth; i++) {
 
@@ -248,55 +231,54 @@ function Capture(layersConfig){
                     layer: vworldLayer
                 };
                 
-                console.log("lat: " + this.Lat + " lng: " + this.Lng);
-                // xhr.open('POST', proxyUrl);
-                // xhr.setRequestHeader('Content-Type', 'application/json'); 
-                // xhr.send(JSON.stringify(data)); 
+                xhr.open('POST', proxyUrl);
+                xhr.setRequestHeader('Content-Type', 'application/json'); 
+                xhr.send(JSON.stringify(data)); 
                 
 
-                // (function (order, xhr) {
-                //     var _order = order;
-                //     var _xhr = xhr;
+                (function (order, xhr) {
+                    var _order = order;
+                    var _xhr = xhr;
 
-                //     _xhr.onload = function() {
+                    _xhr.onload = function() {
                         
-                //         if (_xhr.status === 200 || _xhr.status === 201) {
-                //             var layersImage = new Image(); 
-                //             layersImage.crossOrigin = "*";
-                //             layersImage.src = _xhr.responseText;
+                        if (_xhr.status === 200 || _xhr.status === 201) {
+                            var layersImage = new Image(); 
+                            layersImage.crossOrigin = "*";
+                            layersImage.src = _xhr.responseText;
 
-                //             layersImage.onload = function () {
-                //                 var xPos = (_order % this.blockWidth) * this.blockSize;
-                //                 var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+                            layersImage.onload = function () {
+                                var xPos = (_order % this.blockWidth) * this.blockSize;
+                                var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
                     
-                //                 this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
                                 
-                //                 this.progressValue += this.progressWidth;
-                //                 this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                //                 this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                                this.progressValue += this.progressWidth;
+                                this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                                this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
                                 
                                 
-                //                 this.layerImageLoadCount++;
+                                this.layerImageLoadCount++;
         
-                //                 if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
+                                if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
         
-                //                     if(this.layerImageLoadCount < this.blockArea){
-                //                         this.layerCount += 4;
-                //                         this.getLayers();
-                //                     } else{
-                //                         this.drawBeforeMerge();
-                //                         this.mergeImageBlock();
-                //                     }
+                                    if(this.layerImageLoadCount < this.blockArea){
+                                        this.layerCount += 4;
+                                        this.getLayers();
+                                    } else{
+                                        this.drawBeforeMerge();
+                                        this.mergeImageBlock();
+                                    }
         
-                //                 }
+                                }
         
         
-                //             }.bind(this)
-                //         } 
+                            }.bind(this)
+                        } 
 
-                //     }.bind(this)
+                    }.bind(this)
 
-                // }.bind(this))(order, xhr);
+                }.bind(this))(order, xhr);
 
                 order++;
                 this.Lng += Number(this.xValue);
