@@ -179,10 +179,11 @@ function Capture(layersConfig){
         }
 
          // 용량 줄이기 수정사항
-         this.yValue *= 2
-         this.xValue *= 2
-         this.halfBlockWidth /= 2
-         this.blockWidth = (this.halfBlockWidth * 2) + 1 
+         this.yValue *= 2;
+         this.xValue *= 2;
+         this.halfBlockWidth /= 2;
+         this.blockWidth = (this.halfBlockWidth * 2) + 1;
+         this.blockSize *= 2;
          // 끝
 
                 
