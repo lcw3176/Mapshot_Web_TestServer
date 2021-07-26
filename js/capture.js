@@ -131,6 +131,7 @@ function Capture(layersConfig){
                         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
              
                         this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos - this.blockSize / 4, yPos  - this.blockSize / 4, this.blockSize, this.blockSize);
+                         
                         
                         this.progressValue += this.progressWidth;
                         this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
