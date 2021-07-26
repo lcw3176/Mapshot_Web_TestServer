@@ -29,7 +29,7 @@ function Capture(layersConfig){
 
 
     this.checkValue = function(lat, lng, blockSize){
-        if (!(blockSize == 4 || blockSize == 8 || blockSize == 10)) {
+        if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
             alert("잘못된 배율값입니다. 지속된다면 새로고침을 해주세요");
             return false;
         }
