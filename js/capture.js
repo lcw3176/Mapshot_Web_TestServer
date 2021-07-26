@@ -137,7 +137,7 @@ function Capture(layersConfig){
                         this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
     
                         imageLoadCount++;
-
+                        console.log("xPos: " + xPos + " yPos: " + yPos) + " blockSize: " +this.blockSize);
                         if(imageLoadCount == this.blockArea){
                             
                             if(this.layersConfig.getLayers().length > 0){
@@ -215,7 +215,8 @@ function Capture(layersConfig){
         }
 
         vworldLayer = vworldLayer.substr(0, vworldLayer.length -1);
-
+        console.log("레이어 시작");
+        
         for (var i = 0; i < this.blockWidth; i++) {
 
             for (var j = 0; j < this.blockWidth; j++) {
@@ -257,7 +258,7 @@ function Capture(layersConfig){
                                 this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
                                 this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
                                 
-                                console.log(this.progressValue);
+                                console.log("xPos: " + xPos + " yPos: " + yPos) + " blockSize: " +this.blockSize);
                                 
                                 this.layerImageLoadCount++;
         
