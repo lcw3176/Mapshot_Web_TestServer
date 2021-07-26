@@ -137,7 +137,7 @@ function Capture(layersConfig){
                         this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
     
                         imageLoadCount++;
-                        console.log("xPos: " + xPos + " yPos: " + yPos) + " blockSize: " +this.blockSize);
+                        console.log("xPos: " + xPos + " yPos: " + yPos + " blockSize: " +this.blockSize);
                         if(imageLoadCount == this.blockArea){
                             
                             if(this.layersConfig.getLayers().length > 0){
