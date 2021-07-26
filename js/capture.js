@@ -281,12 +281,10 @@ function Capture(layersConfig){
 
                 order++;
                 this.Lng += Number(this.xValue);
-                break // 테스트
             }
 
             this.Lng = Number(this.centerLng) - (Number(this.xValue) * Number(this.halfBlockWidth));
             this.Lat -= this.yValue;
-            break // 테스트
 
         }
 
