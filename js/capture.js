@@ -178,15 +178,16 @@ function Capture(layersConfig){
             this.canvas.height = Number(this.blockWidth) * this.blockSize;
         }
 
+         // 용량 줄이기 수정사항
+         this.yValue *= 2
+         this.xValue *= 2
+         this.halfBlockWidth /= 2
+         this.blockWidth = (this.halfBlockWidth * 2) + 1 
+         // 끝
+
+                
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
         
-        // 용량 줄이기 수정사항
-        this.yValue *= 2
-        this.xValue *= 2
-        this.halfBlockWidth /= 2
-        this.blockWidth = (this.halfBlockWidth * 2) + 1 
-        // 끝
-
         this.layerCount = 0;
         this.layerImageLoadCount = 0;
         this.drawBeforeLayers();
