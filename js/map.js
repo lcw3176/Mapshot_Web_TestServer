@@ -251,11 +251,11 @@ function Map(coorFixConfig, mapBlockConfig){
                 image: markerImage 
             });
     
-        marker.setMap(map); // 지도 위에 마커를 표출합니다
+        marker.setMap(this.map); // 지도 위에 마커를 표출합니다
         this.markers.push(marker);  // 배열에 생성된 마커를 추가합니다
     
         return marker;
-    }
+    }.bind(this)
 
     this.displayPagination = function(pagination) {
         var paginationEl = document.getElementById('pagination'),
@@ -290,8 +290,8 @@ function Map(coorFixConfig, mapBlockConfig){
     this.displayInfowindow = function(marker, title) {
         var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
     
-        infowindow.setContent(content);
-        infowindow.open(map, marker);
+        this.infowindow.setContent(content);
+        this.infowindow.open(map, marker);
     }
     
     this.removeAllChildNods = function(el) {   
