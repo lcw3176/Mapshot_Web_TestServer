@@ -183,20 +183,21 @@ function Map(coorFixConfig, mapBlockConfig){
             (function(marker, title) {
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     this.displayInfowindow(marker, title);
-                });
+                }.bind(this));
     
                 kakao.maps.event.addListener(marker, 'mouseout', function() {
                     this.infoWindow.close();
-                });
+                }.bind(this));
     
                 itemEl.onmouseover =  function () {
                     this.displayInfowindow(marker, title);
-                };
+                }.bind(this);
     
                 itemEl.onmouseout =  function () {
                     this.infoWindow.close();
-                };
-            })(marker, places[i].place_name);
+                }.bind(this);
+
+            }.bind(this))(marker, places[i].place_name);
     
             fragment.appendChild(itemEl);
         }
@@ -205,7 +206,8 @@ function Map(coorFixConfig, mapBlockConfig){
         menuEl.scrollTop = 0;
     
         this.map.setBounds(bounds);
-    }
+        
+    }.bind(this)
 
     this.getListItem = function(index, places) {
 
@@ -292,7 +294,7 @@ function Map(coorFixConfig, mapBlockConfig){
     
         this.infowindow.setContent(content);
         this.infowindow.open(map, marker);
-    }.bind(this)
+    }
     
     this.removeAllChildNods = function(el) {   
         while (el.hasChildNodes()) {
