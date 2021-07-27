@@ -159,7 +159,7 @@ function Map(coorFixConfig, mapBlockConfig){
             return;
     
         }
-    }
+    }.bind(this)
 
     this.displayPlaces = function(places) {
 
@@ -205,7 +205,7 @@ function Map(coorFixConfig, mapBlockConfig){
         menuEl.scrollTop = 0;
     
         this.map.setBounds(bounds);
-    }
+    }.bind(this)
 
     this.getListItem = function(index, places) {
 
@@ -235,7 +235,7 @@ function Map(coorFixConfig, mapBlockConfig){
             this.markers[i].setMap(null);
         }   
         this.markers = [];
-    }
+    }.bind(this)
 
     this.addMarker = function(position, idx, title) {
         var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
