@@ -293,8 +293,8 @@ function Map(coorFixConfig, mapBlockConfig){
         var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
     
         this.infoWindow.setContent(content);
-        this.infoWindow.open(map, marker);
-        
+        this.infoWindow.open(this.map, marker);
+
     }.bind(this)
     
     this.removeAllChildNods = function(el) {   
