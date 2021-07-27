@@ -183,19 +183,19 @@ function Map(coorFixConfig, mapBlockConfig){
             (function(marker, title) {
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     this.displayInfowindow(marker, title);
-                });
+                }.bind(this));
     
                 kakao.maps.event.addListener(marker, 'mouseout', function() {
                     this.infoWindow.close();
-                });
+                }.bind(this));
     
                 itemEl.onmouseover =  function () {
                     this.displayInfowindow(marker, title);
-                };
+                }.bind(this);
     
                 itemEl.onmouseout =  function () {
                     this.infoWindow.close();
-                };
+                }.bind(this);
             }.bind(this))(marker, places[i].place_name);
     
             fragment.appendChild(itemEl);
