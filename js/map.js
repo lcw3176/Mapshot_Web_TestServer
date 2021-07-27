@@ -206,7 +206,7 @@ function Map(coorFixConfig, mapBlockConfig){
         menuEl.scrollTop = 0;
     
         this.map.setBounds(bounds);
-        
+
     }.bind(this)
 
     this.getListItem = function(index, places) {
@@ -294,7 +294,7 @@ function Map(coorFixConfig, mapBlockConfig){
     
         this.infowindow.setContent(content);
         this.infowindow.open(map, marker);
-    }
+    }.bind(this)
     
     this.removeAllChildNods = function(el) {   
         while (el.hasChildNodes()) {
