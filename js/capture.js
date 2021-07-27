@@ -179,7 +179,7 @@ function Capture(layersConfig){
             this.canvas.height = Number(this.blockWidth) * this.blockSize;
         }
 
-         // 용량 줄이기 수정사항
+         // 레이어 캡쳐 빈도수 줄이기용 코드
          this.yValue *= 2;
          this.xValue *= 2;
          this.halfBlockWidth /= 2;
