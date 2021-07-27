@@ -231,7 +231,7 @@ function Map(coorFixConfig, mapBlockConfig){
     }
 
     this.removeMarker = function() {
-        for ( var i = 0; i < markers.length; i++ ) {
+        for ( var i = 0; i < this.markers.length; i++ ) {
             this.markers[i].setMap(null);
         }   
         this.markers = [];
@@ -252,7 +252,7 @@ function Map(coorFixConfig, mapBlockConfig){
             });
     
         marker.setMap(map); // 지도 위에 마커를 표출합니다
-        markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+        this.markers.push(marker);  // 배열에 생성된 마커를 추가합니다
     
         return marker;
     }
