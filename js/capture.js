@@ -130,7 +130,7 @@ function Capture(layersConfig){
                         var xPos = (_order % this.blockWidth) * this.blockSize;
                         var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
              
-                        this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos - this.blockSize / 4, yPos  - this.blockSize / 4, this.blockSize, this.blockSize);
+                        this.ctx.drawImage(_tag, 0, 0, _tag.width, _tag.height, xPos, yPos, this.blockSize, this.blockSize);
                          
                         
                         this.progressValue += this.progressWidth;
@@ -252,7 +252,7 @@ function Capture(layersConfig){
                                 var xPos = (_order % this.blockWidth) * this.blockSize;
                                 var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
                     
-                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
+                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos - this.blockSize / 4, yPos - this.blockSize / 4, this.blockSize, this.blockSize);
                                 
                                 this.progressValue += this.progressWidth;
                                 this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
