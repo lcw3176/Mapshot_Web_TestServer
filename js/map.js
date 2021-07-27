@@ -292,7 +292,7 @@ function Map(coorFixConfig, mapBlockConfig){
     
         this.infowindow.setContent(content);
         this.infowindow.open(map, marker);
-    }
+    }.bind(this)
     
     this.removeAllChildNods = function(el) {   
         while (el.hasChildNodes()) {
