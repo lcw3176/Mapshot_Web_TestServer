@@ -196,7 +196,7 @@ function Map(coorFixConfig, mapBlockConfig){
                 itemEl.onmouseout =  function () {
                     this.infoWindow.close();
                 };
-            })(marker, places[i].place_name);
+            }.bind(this))(marker, places[i].place_name);
     
             fragment.appendChild(itemEl);
         }
