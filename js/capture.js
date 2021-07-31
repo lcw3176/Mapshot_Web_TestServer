@@ -29,10 +29,10 @@ function Capture(layersConfig){
 
 
     this.checkValue = function(lat, lng, blockSize){
-        if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
-            alert("잘못된 배율값입니다. 지속된다면 새로고침을 해주세요");
-            return false;
-        }
+        // if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
+        //     alert("잘못된 배율값입니다. 지속된다면 새로고침을 해주세요");
+        //     return false;
+        // }
     
         if (lat == "" || lng == "") {
             alert("좌표값을 설정해주세요");
