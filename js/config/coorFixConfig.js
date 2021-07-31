@@ -16,6 +16,13 @@ function CoorFixConfig(){
             this.yValue = 0.002125
         } 
 
+        if(this.zoomQuality == "special"){
+            correctFix = 0.00011633;
+
+            this.xValue = 0.01072 
+            this.yValue = 0.0085
+        }
+
         if(this.zoomQuality === "normal" || this.zoomQuality === "low"){
             correctFix = 0.00011633;
 
@@ -30,8 +37,10 @@ function CoorFixConfig(){
         
         switch(mode){
             case 1:
-                this.zoomLevel = 18;
-                this.zoomQuality = "high";
+                this.zoomLevel = 17;
+                this.zoomQuality = "special";
+                // this.zoomLevel = 18;
+                // this.zoomQuality = "high";
                 break;
 
             case 2:
