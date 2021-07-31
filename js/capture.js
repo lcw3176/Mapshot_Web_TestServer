@@ -1,6 +1,6 @@
 function Capture(layersConfig){
     this.url = null;
-    this.canvasBlockSize = 500;
+    this.canvasBlockSize = 1000;
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
@@ -82,9 +82,9 @@ function Capture(layersConfig){
         this.blockArea = this.blockWidth * this.blockWidth;
         this.blockSize = this.canvasBlockSize;
 
-        if(coorFixConfig.getZoomQuality() === "normal"){
-            this.blockSize *= 2;
-        }
+        // if(coorFixConfig.getZoomQuality() === "normal"){
+        //     this.blockSize *= 2;
+        // }
         this.centerLat = centerLat;
         this.centerLng = centerLng;
 

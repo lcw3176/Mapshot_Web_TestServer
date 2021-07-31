@@ -16,14 +16,6 @@ function CoorFixConfig(){
             this.yValue = 0.002125
         } 
 
-        // 테스트코드
-        if(this.zoomQuality == "special"){
-            correctFix = 0.00007233;
-
-            this.xValue = 0.00670 
-            this.yValue = 0.005312
-        }
-
         if(this.zoomQuality === "normal" || this.zoomQuality === "low"){
             correctFix = 0.00011633;
 
@@ -38,10 +30,8 @@ function CoorFixConfig(){
         
         switch(mode){
             case 1:
-                this.zoomLevel = 17;
-                this.zoomQuality = "special";
-                // this.zoomLevel = 18;
-                // this.zoomQuality = "high";
+                this.zoomLevel = 18;
+                this.zoomQuality = "high";
                 break;
 
             case 2:
