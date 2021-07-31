@@ -16,11 +16,12 @@ function CoorFixConfig(){
             this.yValue = 0.002125
         } 
 
+        // 테스트코드
         if(this.zoomQuality == "special"){
-            correctFix = 0.00011633;
+            correctFix = 0.00007233;
 
-            this.xValue = 0.01072 
-            this.yValue = 0.0085
+            this.xValue = 0.00670 
+            this.yValue = 0.005312
         }
 
         if(this.zoomQuality === "normal" || this.zoomQuality === "low"){
