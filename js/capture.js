@@ -82,9 +82,9 @@ function Capture(layersConfig){
         this.blockArea = this.blockWidth * this.blockWidth;
         this.blockSize = this.canvasBlockSize;
 
-        // if(coorFixConfig.getZoomQuality() === "normal"){
-        //     this.blockSize *= 2;
-        // }
+        if(coorFixConfig.getZoomQuality() === "low"){
+            this.blockSize /= 2;
+        }
         this.centerLat = centerLat;
         this.centerLng = centerLng;
 
