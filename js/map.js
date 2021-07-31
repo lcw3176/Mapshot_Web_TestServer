@@ -3,7 +3,7 @@ function Map(coorFixConfig, mapBlockConfig){
     this.mapContainer = document.getElementById('map');
     this.mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 6 // 지도의 확대 레벨
     }
 
     this.map = new kakao.maps.Map(this.mapContainer, this.mapOption); 
