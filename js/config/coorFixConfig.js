@@ -51,7 +51,12 @@ function CoorFixConfig(){
                 this.zoomLevel = 16;
                 this.zoomQuality = "low";
                 break;
-
+                
+            case 4:
+                this.zoomLevel = 18;
+                this.zoomQuality = "low";
+                break;
+            
             default:
                 break;
 
