@@ -275,7 +275,29 @@ function Capture(layersConfig){
         
         
                             }.bind(this)
-                        } 
+                        } else {
+                            this.ctx.fillStyle = "#000"
+                            this.ctx.fillRect(xPos - this.blockSize / 4, yPos - this.blockSize / 4, this.blockSize, this.blockSize);
+                           
+                            this.progressValue += this.progressWidth;
+                            this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
+                            this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                            
+                            
+                            this.layerImageLoadCount++;
+    
+                            if(this.layerImageLoadCount / (this.blockWidth * this.blockWidth) == (this.layerCount / 4) + 1){
+    
+                                if(this.layerImageLoadCount < this.blockArea){
+                                    this.layerCount += 4;
+                                    this.getLayers();
+                                } else{
+                                    this.drawBeforeMerge();
+                                    this.mergeImageBlock();
+                                }
+    
+                            }
+                        }
 
                     }.bind(this)
 
