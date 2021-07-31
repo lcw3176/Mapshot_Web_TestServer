@@ -251,7 +251,7 @@ function Capture(layersConfig){
                             layersImage.src = _xhr.responseText;
 
                             layersImage.onload = function () {
-                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos - this.blockSize / 4, yPos - this.blockSize / 4, this.blockSize, this.blockSize);
+                                this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
                                 
                                 this.progressValue += this.progressWidth;
                                 this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
@@ -276,7 +276,7 @@ function Capture(layersConfig){
                             }.bind(this)
                         } else {
                             this.ctx.fillStyle = "#000"
-                            this.ctx.fillRect(xPos - this.blockSize / 4, yPos - this.blockSize / 4, this.blockSize, this.blockSize);
+                            this.ctx.fillRect(xPos, yPos, this.blockSize, this.blockSize);
                            
                             this.progressValue += this.progressWidth;
                             this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
