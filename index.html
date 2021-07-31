@@ -182,8 +182,15 @@
             <li class="list-group-item">
               <input class="form-check-input me-1" id="traceMode" type="checkbox" checked="true">
               흔적 남기기
-              <input class="form-check-input me-1" id="layerOnlyMode" type="checkbox" style="margin-left: 10px;">
+              <input class="form-check-input me-1" id="layerOnlyMode" onclick="showLayerOption()" type="checkbox" style="margin-left: 10px;">
               레이어만 출력하기
+            </li>
+
+            <li id="showIfLayerOnly" style="display: none;" class="list-group-item">
+              <input type="radio" name="jbt-radio">
+              JPG로 변환
+              <input type="radio" name="jbt-radio" style="margin-left: 10px;" checked="true">
+              PNG로 변환
             </li>
 
             <li class="list-group-item">
@@ -220,5 +227,5 @@
     <script type="text/javascript" src="js/config/mapBlockConfig.js"></script>
     <script type="text/javascript" src="js/config/mapTypeConfig.js"></script>
     <script type="text/javascript" src="js/lib/canvas-toBlob.js"></script>
-
+    
 </html>

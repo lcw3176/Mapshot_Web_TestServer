@@ -61,3 +61,12 @@ function setZoomLevel(element){
 function setBaseMap(element){
 
 }
+
+function showLayerOption(){
+    var layerCheckElement = document.getElementById("layerOnlyMode");
+    if(layerCheckElement.checked){
+        document.getElementById("showIfLayerOnly").style.display = "inline";
+    } else{
+        document.getElementById("showIfLayerOnly").style.display = "none";
+    }
+}

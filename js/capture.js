@@ -179,13 +179,13 @@ function Capture(layersConfig){
             this.canvas.height = Number(this.blockWidth) * this.blockSize;
         }
 
-         // 레이어 캡쳐 빈도수 줄이기용 코드
-         this.yValue *= 2;
-         this.xValue *= 2;
-         this.halfBlockWidth /= 2;
-         this.blockWidth = (this.halfBlockWidth * 2) + 1;
-         this.blockSize *= 2;
-         // 끝
+        //  // 레이어 캡쳐 빈도수 줄이기용 코드
+        //  this.yValue *= 2;
+        //  this.xValue *= 2;
+        //  this.halfBlockWidth /= 2;
+        //  this.blockWidth = (this.halfBlockWidth * 2) + 1;
+        //  this.blockSize *= 2;
+        //  // 끝
 
                 
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
