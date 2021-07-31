@@ -242,16 +242,15 @@ function Capture(layersConfig){
                     var _xhr = xhr;
 
                     _xhr.onload = function() {
-                        
+                        var xPos = (_order % this.blockWidth) * this.blockSize;
+                        var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
+
                         if (_xhr.status === 200 || _xhr.status === 201) {
                             var layersImage = new Image(); 
                             layersImage.crossOrigin = "*";
                             layersImage.src = _xhr.responseText;
 
                             layersImage.onload = function () {
-                                var xPos = (_order % this.blockWidth) * this.blockSize;
-                                var yPos = parseInt(_order / this.blockWidth) * this.blockSize;  
-                    
                                 this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos - this.blockSize / 4, yPos - this.blockSize / 4, this.blockSize, this.blockSize);
                                 
                                 this.progressValue += this.progressWidth;
