@@ -155,10 +155,10 @@
 
             <li class="list-group-item list-group-item-dark fw-bold">2. 배율 설정</li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(5, 1)"> 반경 1km
+              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(5, 0)"> 반경 1km
             </li>
             <li class="list-group-item">
-              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(2, 2)"> 반경 2km
+              <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(8, 1)"> 반경 2km
             </li>
             <li class="list-group-item">
               <input type="radio" name="jb-radio" class="setZoomLevel" onclick="setZoomLevel(5, 2)"> 반경 5km
@@ -187,10 +187,10 @@
             </li>
 
             <li id="showIfLayerOnly" style="display: none;" class="list-group-item">
-              <input type="radio" name="jbt-radio">
-              JPG로 변환
-              <input type="radio" name="jbt-radio" style="margin-left: 10px;" checked="true">
+              <input type="radio" name="jbt-radio" onclick="setLayersFormat(0)">
               PNG로 변환
+              <input type="radio" name="jbt-radio" style="margin-left: 10px;" onclick="setLayersFormat(1)">
+              JPG로 변환              
             </li>
 
             <li class="list-group-item">

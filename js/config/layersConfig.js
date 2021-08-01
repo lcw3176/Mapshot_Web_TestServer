@@ -1,5 +1,6 @@
 function LayersConfig(){
     this.layersArr = [];
+    this.imageFormat = "image/png";
 
     this.getLayers = function(){
         return this.layersArr;
@@ -14,5 +15,22 @@ function LayersConfig(){
         }
 
         this.layersArr.push(layers)
+    }
+
+    this.setFormat = function(imageFormat){
+        switch(imageFormat){
+            case 0:
+                this.imageFormat = "image/png";
+                break;
+            case 1:
+                this.imageFormat = "image/jpeg";
+                break;
+            default:
+                break;
+        }
+    }
+
+    this.getFormat = function(){
+        return this.imageFormat;
     }
 }

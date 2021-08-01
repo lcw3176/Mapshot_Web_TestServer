@@ -16,7 +16,7 @@ window.onload = function(){
     }
 
     document.getElementById("startCapture").onclick = function(){
-        if(capture.checkValue(map.getCenterLat(), map.getCenterLng(), mapBlockConfig.get())){
+        if(capture.checkValue(map.getCenterLat(), map.getCenterLng())){
             
             if(document.getElementById("traceMode").checked){
                 map.drawTrace();
@@ -45,6 +45,22 @@ window.onload = function(){
         mapTypeConfig.setType(element);
     }
 
+    setLayersFormat = function(element){
+        layersConfig.setFormat(element);
+    }
+
+    showLayerOption = function(){
+        var layerCheckElement = document.getElementById("layerOnlyMode");
+
+        if(layerCheckElement.checked){
+            document.getElementById("showIfLayerOnly").style.display = "inline";
+        } else{
+            document.getElementById("showIfLayerOnly").style.display = "none";
+        }
+
+        setLayersFormat(0);
+    }
+
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
 
@@ -62,11 +78,11 @@ function setBaseMap(element){
 
 }
 
-function showLayerOption(){
-    var layerCheckElement = document.getElementById("layerOnlyMode");
-    if(layerCheckElement.checked){
-        document.getElementById("showIfLayerOnly").style.display = "inline";
-    } else{
-        document.getElementById("showIfLayerOnly").style.display = "none";
-    }
+function setLayersFormat(element){
+
 }
+
+function showLayerOption(){
+
+}
+

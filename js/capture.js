@@ -28,12 +28,7 @@ function Capture(layersConfig){
     this.imageFormat = "image/jpeg";
 
 
-    this.checkValue = function(lat, lng, blockSize){
-        // if (!(blockSize == 5 || blockSize == 8 || blockSize == 10)) {
-        //     alert("잘못된 배율값입니다. 지속된다면 새로고침을 해주세요");
-        //     return false;
-        // }
-    
+    this.checkValue = function(lat, lng){    
         if (lat == "" || lng == "") {
             alert("좌표값을 설정해주세요");
             return false;
@@ -82,9 +77,10 @@ function Capture(layersConfig){
         this.blockArea = this.blockWidth * this.blockWidth;
         this.blockSize = this.canvasBlockSize;
 
-        if(coorFixConfig.getZoomQuality() === "low"){
+        if(coorFixConfig.getZoomQuality() === "normal"){
             this.blockSize /= 2;
         }
+
         this.centerLat = centerLat;
         this.centerLng = centerLng;
 
@@ -178,15 +174,6 @@ function Capture(layersConfig){
             this.canvas.width = Number(this.blockWidth) * this.blockSize;
             this.canvas.height = Number(this.blockWidth) * this.blockSize;
         }
-
-        //  // 레이어 캡쳐 빈도수 줄이기용 코드
-        //  this.yValue *= 2;
-        //  this.xValue *= 2;
-        //  this.halfBlockWidth /= 2;
-        //  this.blockWidth = (this.halfBlockWidth * 2) + 1;
-        //  this.blockSize *= 2;
-        //  // 끝
-
                 
         this.blockArea = this.blockWidth * this.blockWidth * (parseInt((this.layersConfig.getLayers().length - 1) / 4) + 1); 
         
@@ -204,7 +191,8 @@ function Capture(layersConfig){
         const proxyUrl = "https://52zzkwotbp.apigw.ntruss.com/mapshot/release/DRpp7J4UzA/http";
 
         var vworldLayer = "";
-
+        var vworldFormat = this.layersConfig.getFormat();
+        
         for(var k = this.layerCount; k < this.layerCount + 4; k++){
 
             if(k >= this.layersConfig.getLayers().length){
@@ -229,7 +217,8 @@ function Capture(layersConfig){
   
                 var data = {
                     coor: ymin + "," + xmin + "," + ymax + "," + xmax,
-                    layer: vworldLayer
+                    layer: vworldLayer,
+                    format: vworldFormat
                 };
                 
                 xhr.open('POST', proxyUrl);
