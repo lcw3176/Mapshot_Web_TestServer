@@ -66,7 +66,7 @@ function CoorFixConfig(){
         return this.yValue;
     }
 
-    this.getZoomQuality() = function(){
+    this.getZoomQuality = function(){
         return this.zoomQuality;
     }
 }
