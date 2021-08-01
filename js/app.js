@@ -58,7 +58,7 @@ window.onload = function(){
             document.getElementById("showIfLayerOnly").style.display = "none";
         }
 
-        setLayersFormat(0);
+        document.getElementById("default_click_format").click();
     }
 
     document.getElementById("default_click_level").click();
