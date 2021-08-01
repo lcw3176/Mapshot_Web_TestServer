@@ -308,8 +308,8 @@ function Capture(layersConfig){
 
         if(document.getElementById("layerOnlyMode").checked){
             tempFormat = this.imageFormat;
-            this.imageFormat = "image/png";
-            tempImageNameFormat = "png";
+            this.imageFormat = this.layersConfig.getFormat();
+            tempImageNameFormat = this.imageFormat.split("/")[1];
         }
 
         if(this.canvas.msToBlob){
