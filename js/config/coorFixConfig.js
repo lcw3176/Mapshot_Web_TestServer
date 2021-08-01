@@ -29,13 +29,6 @@ function CoorFixConfig(){
 
             this.xValue = 0.01072 
             this.yValue = 0.0085
-
-            if(this.zoomLevel == 18){
-                correctFix = 0.00002833;
-
-                this.xValue = 0.00268;
-                this.yValue = 0.002125
-            }
         }
 
         this.yValue += (this.fixPoint - centerLat) * correctFix;
@@ -56,11 +49,6 @@ function CoorFixConfig(){
 
             case 3:
                 this.zoomLevel = 16;
-                this.zoomQuality = "low";
-                break;
-                
-            case 4:
-                this.zoomLevel = 18;
                 this.zoomQuality = "low";
                 break;
             
