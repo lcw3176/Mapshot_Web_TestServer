@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <script type="text/javascript"
+    <!-- <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/map.js"></script> -->
     <script type="text/javascript" src="js/capture.js"></script>
     <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
     <script type="text/javascript" src="js/config/layersConfig.js"></script>
@@ -26,7 +26,7 @@
 <body>
     <nav class="navbar is-light">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="preview.html">
                 <p class="title is-4 ">MAPSHOT</p>
             </a>
 
@@ -135,6 +135,17 @@
                         <li><a class="map" id="default_click_map" onclick="setBaseMap(1, this)">위성</a></li>
                         <li><a class="map" onclick="setBaseMap(2, this)">하이브리드</a></li>
                     </ul>
+
+                    <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
+                        레이어
+                    </p>
+
+                    <ul class="menu-list">
+                        <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
+                        <button class="button is-outlined" onclick="showModal()">추가하기</button>
+                    </ul>
+
+
                     <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                         수집
                     </p>
@@ -170,20 +181,84 @@
 
 
     <!-- 모달창 -->
-    <div class="modal">
+    <div class="modal" id="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button class="delete" aria-label="close"></button>
+                <p class="modal-card-title">레이어리스트</p>
+                <button class="delete" onclick="closeModal()"></button>
             </header>
             <section class="modal-card-body">
-                <!-- Content ... -->
+                <h6><strong>도시계획</strong></h6>
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    도로
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    토지이용계획도
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    토지거래계약에관한허가구역
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    지구단위계획
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    개발행위허가필지
+                </label>
+
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    개발행위허가제한지역
+                </label>
+
             </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-            </footer>
+
+            <section class="modal-card-body">
+                <h6><strong>용도지역지구</strong></h6>
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    관리지역
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    농림지역
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    도시지역
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    자연환경보전지역
+                </label>
+            </section>
+
+
+            <section class="modal-card-body">
+                <h6><strong>토지</strong></h6>
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    사업지구경계도
+                </label>
+
+                <label class="checkbox mr-3">
+                    <input type="checkbox">
+                    지적도
+                </label>
+            </section>
         </div>
     </div>
     <!-- 모달창 끝 -->

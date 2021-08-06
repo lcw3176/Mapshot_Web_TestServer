@@ -79,6 +79,14 @@ window.onload = function(){
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
 
+    showModal = function(){
+        document.getElementById("modal").setAttribute("class", "modal is-active");
+    }
+
+    closeModal = function(){
+        document.getElementById("modal").setAttribute("class", "modal");
+    }
+    
 }
 
 function setLayers(element){
@@ -101,3 +109,10 @@ function showLayerOption(){
 
 }
 
+function showModal(){
+
+}
+
+function closeModal(){
+
+}
