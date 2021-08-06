@@ -32,17 +32,32 @@ window.onload = function(){
         }
     }
     
-    setZoomLevel = function(block, mode){
+    setZoomLevel = function(block, mode, id){
+        var matches = document.getElementsByClassName("zoom");
+        
+        for (var i = 0; i < matches.length; i++) {
+            matches[i].setAttribute('class', 'zoom');
+        }
+
         mapBlockConfig.set(block);
         coorFixConfig.setMode(mode);
+        id.setAttribute('class','is-active');
     }
     
     setLayers = function(element){
         layersConfig.setLayers(element);
     }
 
-    setBaseMap = function(element){
+    setBaseMap = function(element, id){
+        var matches = document.getElementsByClassName("map");
+        
+        for (var i = 0; i < matches.length; i++) {
+            matches[i].setAttribute('class', 'map');
+        }
+
+
         mapTypeConfig.setType(element);
+        id.setAttribute('class','is-active');
     }
 
     setLayersFormat = function(element){

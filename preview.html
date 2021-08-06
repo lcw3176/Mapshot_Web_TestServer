@@ -121,19 +121,19 @@
                         <li style="border-top: 2px solid black; margin-bottom: 3%;">
                             <p></p>
                         </li>
-                        <li><a onclick="setZoomLevel(5, 0)">1km</a></li>
-                        <li><a onclick="setZoomLevel(8, 1)">2km</a></li>
-                        <li><a onclick="setZoomLevel(5, 2)">5km</a></li>
-                        <li><a id="default_click_level" onclick="setZoomLevel(10, 3)">10km</a></li>
+                        <li><a class="zoom" onclick="setZoomLevel(5, 0, this)">1km</a></li>
+                        <li><a class="zoom" onclick="setZoomLevel(8, 1, this)">2km</a></li>
+                        <li><a class="zoom" onclick="setZoomLevel(5, 2, this)">5km</a></li>
+                        <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(10, 3, this)">10km</a></li>
                     </ul>
                     <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                         종류
                     </p>
                     <ul class="menu-list">
                         <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                        <li><a class="is-active" onclick="setBaseMap(0)">일반</a></li>
-                        <li><a id="default_click_map" onclick="setBaseMap(1)">위성</a></li>
-                        <li><a onclick="setBaseMap(2)">하이브리드</a></li>
+                        <li><a class="map" onclick="setBaseMap(0, this)">일반</a></li>
+                        <li><a class="map" id="default_click_map" onclick="setBaseMap(1, this)">위성</a></li>
+                        <li><a class="map" onclick="setBaseMap(2, this)">하이브리드</a></li>
                     </ul>
                     <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                         수집
