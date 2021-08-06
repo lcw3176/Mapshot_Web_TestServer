@@ -10,6 +10,8 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
+    <script type="text/javascript" src="js/config/mapTypeConfig.js"></script>
+    <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
     <link rel="stylesheet" href="css/map.css">
     
 </head>
@@ -166,7 +168,10 @@
 
 <script>
     window.onload = function(){
-        var map = new Map();
+        var coorFixConfig = new CoorFixConfig();
+        var mapTypeConfig = new MapTypeConfig();
+
+        var map = new Map(coorFixConfig, mapTypeConfig);
         map.init();
     }
 </script>
