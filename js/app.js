@@ -41,7 +41,7 @@ window.onload = function(){
 
         mapBlockConfig.set(block);
         coorFixConfig.setMode(mode);
-        id.setAttribute('class','is-active');
+        id.setAttribute('class','zoom is-active');
     }
     
     setLayers = function(element){
@@ -57,7 +57,7 @@ window.onload = function(){
 
 
         mapTypeConfig.setType(element);
-        id.setAttribute('class','is-active');
+        id.setAttribute('class','map is-active');
     }
 
     setLayersFormat = function(element){
