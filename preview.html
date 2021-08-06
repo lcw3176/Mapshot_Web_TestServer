@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <script type="text/javascript"
+    <!-- <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/map.js"></script> -->
     <script type="text/javascript" src="js/capture.js"></script>
     <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
     <script type="text/javascript" src="js/config/layersConfig.js"></script>
@@ -137,12 +137,14 @@
                     </ul>
 
                     <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
-                        레이어
+                        옵션
                     </p>
 
                     <ul class="menu-list">
                         <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                        <button class="button is-outlined" onclick="showModal()">추가하기</button>
+                        <li><a onclick="showModal()">레이어 추가</a></li>
+                        <li><a id="traceMode" onclick="changeSate(this)">레이어만 출력하기</a></li>
+                        <li><a id="layerOnlyMode" onclick="changeSate(this)">흔적 남기기</a></li>
                     </ul>
 
 

@@ -86,6 +86,15 @@ window.onload = function(){
     closeModal = function(){
         document.getElementById("modal").setAttribute("class", "modal");
     }
+
+    changeSate = function(id){
+        if(id.getAttribute("class") != "is-active"){
+            id.setAttribute("class", "is-active")
+        } else{
+            id.setAttribute("class", "")
+        }
+        
+    }
     
 }
 
@@ -114,5 +123,9 @@ function showModal(){
 }
 
 function closeModal(){
+
+}
+
+function changeSate(){
 
 }
