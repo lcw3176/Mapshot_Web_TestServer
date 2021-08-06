@@ -11,9 +11,14 @@
 
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/config/mapBlockConfig.js"></script>
+    <script type="text/javascript" src="js/capture.js"></script>
     <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
+    <script type="text/javascript" src="js/config/layersConfig.js"></script>
+    <script type="text/javascript" src="js/config/mapBlockConfig.js"></script>
+    <script type="text/javascript" src="js/config/mapTypeConfig.js"></script>
+    <script type="text/javascript" src="js/lib/canvas-toBlob.js"></script>
     <link rel="stylesheet" href="css/map.css">
 
 </head>
@@ -82,10 +87,10 @@
                     <div class="column is-half">
                         <div class="level">
                             <div class="level-item has-text-centered">
-                              <div>
-                                <p class="heading">위도</p>
-                                <p class="title" id="lat"></p>
-                              </div>
+                                <div>
+                                    <p class="heading">위도</p>
+                                    <p class="title" id="lat"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -93,10 +98,10 @@
                     <div class="column">
                         <div class="level">
                             <div class="level-item has-text-centered">
-                              <div>
-                                <p class="heading">경도</p>
-                                <p class="title" id="lng"></p>
-                              </div>
+                                <div>
+                                    <p class="heading">경도</p>
+                                    <p class="title" id="lng"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,52 +112,54 @@
 
         <div class="column">
             <div class="box">
-                           <!-- 배율설정 -->
-            <div class="column menu">
-                <p class="title is-6" style="margin-bottom: 3%;">
-                   배율
-                </p>
-                <ul class="menu-list">
-                    <li style="border-top: 2px solid black; margin-bottom: 3%;"><p></p></li>
-                    <li><a class="is-active">1km</a></li>
-                    <li><a>2km</a></li>
-                    <li><a>5km</a></li>
-                    <li><a>10km</a></li>
-                </ul>
-                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
-                    종류
-                </p>
-                <ul class="menu-list">
-                    <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                    <li><a class="is-active">일반</a></li>
-                    <li><a>위성</a></li>
-                    <li><a>하이브리드</a></li>
-                </ul>
-                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
-                    수집
-                </p>
-
-                <ul class="menu-list">
-                    <li  style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                    <button class="button is-outlined">작업 시작</button>
-                </ul>
-
-                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
-                    진행 상황
-                </p>
-                <ul class="menu-list">
-                    <li  style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                    <ul>
-                        <li>
-                            <ul>
-                                <li>사진 수집중입니다.</li>
-                            </ul>
+                <!-- 배율설정 -->
+                <div class="column menu">
+                    <p class="title is-6" style="margin-bottom: 3%;">
+                        배율
+                    </p>
+                    <ul class="menu-list">
+                        <li style="border-top: 2px solid black; margin-bottom: 3%;">
+                            <p></p>
                         </li>
-                        <progress class="progress is-success" value="80" max="100"></progress>
+                        <li><a onclick="setZoomLevel(5, 0)">1km</a></li>
+                        <li><a onclick="setZoomLevel(8, 1)">2km</a></li>
+                        <li><a onclick="setZoomLevel(5, 2)">5km</a></li>
+                        <li><a id="default_click_level" onclick="setZoomLevel(10, 3)">10km</a></li>
                     </ul>
-                </ul>
-            </div>
-            <!-- 배율설정 끝 --> 
+                    <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
+                        종류
+                    </p>
+                    <ul class="menu-list">
+                        <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
+                        <li><a class="is-active" onclick="setBaseMap(0)">일반</a></li>
+                        <li><a id="default_click_map" onclick="setBaseMap(1)">위성</a></li>
+                        <li><a onclick="setBaseMap(2)">하이브리드</a></li>
+                    </ul>
+                    <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
+                        수집
+                    </p>
+
+                    <ul class="menu-list">
+                        <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
+                        <button class="button is-outlined" id="startCapture">작업 시작</button>
+                    </ul>
+
+                    <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
+                        진행 상황
+                    </p>
+                    <ul class="menu-list">
+                        <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
+                        <ul>
+                            <li>
+                                <ul>
+                                    <li>사진 수집중입니다.</li>
+                                </ul>
+                            </li>
+                            <progress class="progress is-success" value="80" max="100"></progress>
+                        </ul>
+                    </ul>
+                </div>
+                <!-- 배율설정 끝 -->
             </div>
 
         </div>
@@ -182,15 +189,5 @@
     <!-- 모달창 끝 -->
 
 </body>
-
-<script>
-    window.onload = function () {
-        var coorFixConfig = new CoorFixConfig();
-        var mapBlockConfig = new MapBlockConfig();
-
-        var map = new Map(coorFixConfig, mapBlockConfig);
-        map.init();
-    }
-</script>
 
 </html>
