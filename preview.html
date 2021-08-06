@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
+    <!-- <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/config/mapTypeConfig.js"></script>
-    <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
+    <script type="text/javascript" src="js/config/coorFixConfig.js"></script> -->
     <link rel="stylesheet" href="css/map.css">
-    
+
 </head>
 
 <body>
@@ -53,40 +54,45 @@
 
     <div class="columns">
         <div class="column is-three-quarters">
-            <!-- 지도 -->
+
             <div class="box">
-                <div class="map_wrap">
-                    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                <div class="field">
+                    <!-- 지도 -->
+                    <div class="map_wrap">
+                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-                    <div id="menu_wrap" class="bg_white">
-                        <div class="option">
-                            <div>
-                                <form id="searchPlaces">
-                                    키워드 : <input type="text" id="keyword" size="15">
-                                    <button type="submit">검색하기</button>
-                                </form>
+                        <div id="menu_wrap" class="bg_white">
+                            <div class="option">
+                                <div>
+                                    <form id="searchPlaces">
+                                        키워드 : <input type="text" id="keyword" size="15">
+                                        <button type="submit">검색하기</button>
+                                    </form>
+                                </div>
                             </div>
+                            <hr>
+                            <ul id="placesList"></ul>
+                            <div id="pagination"></div>
                         </div>
-                        <hr>
-                        <ul id="placesList"></ul>
-                        <div id="pagination"></div>
                     </div>
-                </div>
-            </div>
-            <!-- 지도 끝 -->
-
-            
-            <div class="columns">
-                <div class="column is-half">
-                    <span class="has-text-left">
-                        <span class="tag is-black">위도</span><span> </span>38.232314213532
-                    </span>
+                    <!-- 지도 끝 -->
                 </div>
 
-                <div class="column">
-                    <span class="has-text-right">
-                        <span class="tag is-black">경도</span><span> </span>128.322342343242352
-                    </span>
+
+                <div class="field">
+                    <div class="columns">
+                        <div class="column is-half">
+                            <span class="has-text-left">
+                                <span class="tag is-black">위도</span><span> </span>38.232314213532
+                            </span>
+                        </div>
+    
+                        <div class="column">
+                            <span class="has-text-right">
+                                <span class="tag is-black">경도</span><span> </span>128.322342343242352
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,9 +123,9 @@
                 </p>
 
                 <p class="menu-label">
-                    <ul class="menu-list">
-                        <button class="button is-outlined">작업 시작</button>
-                    </ul>
+                <ul class="menu-list">
+                    <button class="button is-outlined">작업 시작</button>
+                </ul>
                 </p>
 
                 <p class="menu-label">
@@ -127,7 +133,7 @@
                 </p>
                 <ul class="menu-list">
                     <ul>
-                        
+
                         <li>
                             <ul>
                                 <li>사진 수집중입니다.</li>
@@ -169,7 +175,7 @@
 </body>
 
 <script>
-    window.onload = function(){
+    window.onload = function () {
         var coorFixConfig = new CoorFixConfig();
         var mapTypeConfig = new MapTypeConfig();
 
