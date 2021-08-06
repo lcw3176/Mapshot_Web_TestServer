@@ -12,7 +12,7 @@
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
     <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/config/mapTypeConfig.js"></script>
+    <script type="text/javascript" src="js/config/mapBlockConfig.js"></script>
     <script type="text/javascript" src="js/config/coorFixConfig.js"></script>
     <link rel="stylesheet" href="css/map.css">
 
@@ -82,13 +82,13 @@
                     <div class="level-item has-text-centered">
                       <div>
                         <p class="heading">위도</p>
-                        <p class="title" id="lat">38.23231421353</p>
+                        <p class="title" id="lat"></p>
                       </div>
                     </div>
                     <div class="level-item has-text-centered">
                       <div>
                         <p class="heading">경도</p>
-                        <p class="title" id="lng">128.322342343242</p>
+                        <p class="title" id="lng"></p>
                       </div>
                     </div>
                 </div>
@@ -177,9 +177,9 @@
 <script>
     window.onload = function () {
         var coorFixConfig = new CoorFixConfig();
-        var mapTypeConfig = new MapTypeConfig();
+        var mapBlockConfig = new MapBlockConfig();
 
-        var map = new Map(coorFixConfig, mapTypeConfig);
+        var map = new Map(coorFixConfig, mapBlockConfig);
         map.init();
     }
 </script>
