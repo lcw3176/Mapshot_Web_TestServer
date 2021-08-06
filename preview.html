@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-light">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
                 <p class="title is-4 ">MAPSHOT</p>
@@ -54,7 +54,6 @@
 
     <div class="columns">
         <div class="column is-three-quarters">
-
             <div class="box">
                 <div class="field">
                     <!-- 지도 -->
@@ -79,19 +78,18 @@
                 </div>
 
 
-                <div class="field">
-                    <div class="columns">
-                        <div class="column is-half">
-                            <span class="has-text-left">
-                                <span class="tag is-black">위도</span><span> </span>38.232314213532
-                            </span>
-                        </div>
-    
-                        <div class="column">
-                            <span class="has-text-right">
-                                <span class="tag is-black">경도</span><span> </span>128.322342343242352
-                            </span>
-                        </div>
+                <div class="level">
+                    <div class="level-item has-text-centered">
+                      <div>
+                        <p class="heading">위도</p>
+                        <p class="title" id="lat">38.23231421353</p>
+                      </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                      <div>
+                        <p class="heading">경도</p>
+                        <p class="title" id="lng">128.322342343242</p>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -99,53 +97,55 @@
 
 
         <div class="column">
-            <!-- 배율설정 -->
+            <div class="box">
+                           <!-- 배율설정 -->
             <div class="column menu">
-                <p class="menu-label">
-                    배율
+                <p class="title is-6" style="margin-bottom: 3%;">
+                   배율
                 </p>
                 <ul class="menu-list">
+                    <li style="border-top: 2px solid black; margin-bottom: 3%;"><p></p></li>
                     <li><a class="is-active">1km</a></li>
                     <li><a>2km</a></li>
                     <li><a>5km</a></li>
                     <li><a>10km</a></li>
                 </ul>
-                <p class="menu-label">
+                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                     종류
                 </p>
                 <ul class="menu-list">
+                    <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                     <li><a class="is-active">일반</a></li>
                     <li><a>위성</a></li>
                     <li><a>하이브리드</a></li>
                 </ul>
-                <p class="menu-label">
+                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                     수집
                 </p>
 
-                <p class="menu-label">
                 <ul class="menu-list">
+                    <li  style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                     <button class="button is-outlined">작업 시작</button>
                 </ul>
-                </p>
 
-                <p class="menu-label">
+                <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                     진행 상황
                 </p>
                 <ul class="menu-list">
+                    <li  style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                     <ul>
-
                         <li>
                             <ul>
                                 <li>사진 수집중입니다.</li>
                             </ul>
                         </li>
-                        <progress class="progress is-normal" value="80" max="100"></progress>
+                        <progress class="progress is-success" value="80" max="100"></progress>
                     </ul>
-
-
                 </ul>
             </div>
-            <!-- 배율설정 끝 -->
+            <!-- 배율설정 끝 --> 
+            </div>
+
         </div>
 
 
