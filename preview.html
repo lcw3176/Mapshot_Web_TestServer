@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MapShot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
+    <link rel="stylesheet" href="css/map.css">
+    
+</head>
+
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <p class="title is-4 ">MAPSHOT</p>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    사용법
+                </a>
+
+                <a class="navbar-item">
+                    패치내역
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                <a class="navbar-item">
+                    오픈소스
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div class="column is-three-quarters">
+            <!-- 지도 -->
+            <div class="box">
+                <div class="map_wrap">
+                    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+                    <div id="menu_wrap" class="bg_white">
+                        <div class="option">
+                            <div>
+                                <form id="searchPlaces">
+                                    키워드 : <input type="text" id="keyword" size="15">
+                                    <button type="submit">검색하기</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul id="placesList"></ul>
+                        <div id="pagination"></div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-half">
+                        <span class="has-text-left">
+                            <span class="tag is-black">위도</span><span> </span>38.232314213532
+                        </span>
+                    </div>
+    
+                    <div class="column">
+                        <span class="has-text-right">
+                            <span class="tag is-black">경도</span><span> </span>128.322342343242352
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- 지도 끝 -->
+        </div>
+
+
+        <div class="column">
+            <!-- 배율설정 -->
+            <div class="column menu">
+                <p class="menu-label">
+                    배율
+                </p>
+                <ul class="menu-list">
+                    <li><a class="is-active">1km</a></li>
+                    <li><a>2km</a></li>
+                    <li><a>5km</a></li>
+                    <li><a>10km</a></li>
+                </ul>
+                <p class="menu-label">
+                    종류
+                </p>
+                <ul class="menu-list">
+                    <li><a class="is-active">일반</a></li>
+                    <li><a>위성</a></li>
+                    <li><a>하이브리드</a></li>
+                </ul>
+                <p class="menu-label">
+                    수집
+                </p>
+
+                <p class="menu-label">
+                    <ul class="menu-list">
+                        <button class="button is-outlined">작업 시작</button>
+                    </ul>
+                </p>
+
+                <p class="menu-label">
+                    진행 상황
+                </p>
+                <ul class="menu-list">
+                    <ul>
+                        
+                        <li>
+                            <ul>
+                                <li>사진 수집중입니다.</li>
+                            </ul>
+                        </li>
+                        <progress class="progress is-normal" value="80" max="100"></progress>
+                    </ul>
+
+
+                </ul>
+            </div>
+            <!-- 배율설정 끝 -->
+        </div>
+
+
+    </div>
+
+
+
+    <!-- 모달창 -->
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </footer>
+        </div>
+    </div>
+    <!-- 모달창 끝 -->
+
+</body>
+
+
+</html>
