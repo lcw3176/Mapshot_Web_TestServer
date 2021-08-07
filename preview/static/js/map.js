@@ -22,25 +22,13 @@ class Map{
     
     init = function(){
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
-            this.marker.setPosition(mouseEvent.latLng);
-            this.marker.setMap(this.map); 
-        
-
             this.searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
                 if (status === kakao.maps.services.Status.OK) {
-                    var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-                    detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-                    
-                    var content = '<div class="bAddr">' +
-                                    '<span class="subtitle is-5">법정동 주소정보</span>' + 
-                                    detailAddr + 
-                                '</div>';
-    
-                    this.infoWindow.setContent(content);
-                    this.infoWindow.open(this.map, this.marker);
-                } else {
-                    this.infoWindow.close();
-                }
+
+                    document.getElementById("load-address").innerText = result[0].road_address.address_name;
+                    document.getElementById("bunzi-address").innerText = result[0].address.address_name;
+
+                } 
             }.bind(this));
         }.bind(this));
     
