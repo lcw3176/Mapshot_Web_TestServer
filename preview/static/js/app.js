@@ -48,6 +48,12 @@ window.onload = function(){
         rectangle.setMap(map.getMap());
     });
 
+    kakao.maps.event.addListener(map.getMap(), 'dclick', function(mouseEvent) {
+        if(rectangle != null){
+            rectangle.setMap(null);
+        }
+    });
+
     // 지도 설정 끝
 
 
