@@ -32,7 +32,7 @@ class Map{
                     detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
                     
                     var content = '<div class="bAddr">' +
-                                    '<span class="title">법정동 주소정보</span>' + 
+                                    '<span class="subtitle is-5">법정동 주소정보</span>' + 
                                     detailAddr + 
                                 '</div>';
     
