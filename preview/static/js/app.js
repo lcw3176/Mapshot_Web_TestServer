@@ -130,6 +130,25 @@ window.onload = function(){
 
    
     startCapture = function(){
+        if(coor.getX() == undefined || coor.getY() == undefined){
+            alert("좌표 설정을 먼저 진행해 주세요.");
+            return;
+        }
+
+        if(traceMode){
+            var traceRec = new kakao.maps.Rectangle({
+                bounds: rectangle.getBounds(),
+                strokeWeight: 4, 
+                strokeColor: '#000000',
+                strokeOpacity: 1, 
+                strokeStyle: 'shortdot', 
+                fillColor: '#ecf4f3', 
+                fillOpacity: 0.8 
+            });
+    
+            traceRec.setMap(map.getMap());
+        }
+
         const canvasBlockSize = 1000;
 
         var temp = tile.getNW(blockCount, nFix, coor);
