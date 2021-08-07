@@ -1,6 +1,8 @@
 window.onload = function(){
     var naverProfile = new mapshot.profile.Naver();
     var vworldProfile = new mapshot.profile.Vworld();
+    var map = new Map();
+    
     var blockCount = 0;
     var traceMode = false;
 
