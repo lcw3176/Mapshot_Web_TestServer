@@ -24,7 +24,7 @@ class Map{
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
             this.searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
                 if (status === kakao.maps.services.Status.OK) {
-                    var loadAddress = result[0].road_address.address_name;
+                    var loadAddress = !!result[0].road_address ? result[0].road_address.address_name : '';
                     var bunziAddress = result[0].address.address_name;
 
                     document.getElementById("load-address").innerText = (loadAddress == null) ? "" : loadAddress;
