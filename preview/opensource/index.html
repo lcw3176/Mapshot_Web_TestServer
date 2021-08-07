@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MapShot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script> -->
+    <script type="text/javascript" src="static/js/1.0.0/mapshot.min.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    <script type="text/javascript" src="static/js/map.js"></script>
+    <script type="text/javascript" src="static/js/external/canvas-toBlob.js"></script>
+    <link rel="stylesheet" href="static/css/map.css">
+
+</head>
+
+<body>
+    <nav class="navbar is-light">
+        <div class="container is-fluid">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../index.html">
+                    <p class="title is-4">MAPSHOT</p>
+                </a>
+
+                <a role="button" class="navbar-burger" onclick="navbarBurgerClick(this)">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu" id="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="../manual/index.html">
+                        사용법
+                    </a>
+
+                    <a class="navbar-item" href="../log/index.html">
+                        패치내역
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <a class="navbar-item" href="../opensource/index.html">
+                        오픈소스
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container is-fluid">
+        <div class="menu">
+            <p class="menu-label">
+                General
+            </p>
+            <ul class="menu-list">
+                <li><a>Dashboard</a></li>
+                <li><a>Customers</a></li>
+            </ul>
+            <p class="menu-label">
+                Administration
+            </p>
+            <ul class="menu-list">
+                <li><a>Team Settings</a></li>
+                <li>
+                    <a class="is-active">Manage Your Team</a>
+                    <ul>
+                        <li><a>Members</a></li>
+                        <li><a>Plugins</a></li>
+                        <li><a>Add a member</a></li>
+                    </ul>
+                </li>
+                <li><a>Invitations</a></li>
+                <li><a>Cloud Storage Environment Settings</a></li>
+                <li><a>Authentication</a></li>
+            </ul>
+            <p class="menu-label">
+                Transactions
+            </p>
+            <ul class="menu-list">
+                <li><a>Payments</a></li>
+                <li><a>Transfers</a></li>
+                <li><a>Balance</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
