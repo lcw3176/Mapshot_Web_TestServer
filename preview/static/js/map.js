@@ -59,7 +59,7 @@ class Map{
         }.bind(this));
     
         kakao.maps.event.addListener(this.map, 'idle', function() {
-            this.searchAddrFromCoords(this.map.getCenter(), displayCenterInfo());
+            this.searchAddrFromCoords(this.map.getCenter(), this.displayCenterInfo());
         }.bind(this));
     }
 
