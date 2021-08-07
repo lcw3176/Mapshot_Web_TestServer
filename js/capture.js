@@ -57,8 +57,7 @@ function Capture(layersConfig){
         this.canvas.width = 0;
         this.canvas.height = 0;
     
-        this.progressBar.style.width = "100%";
-        this.progressBar.innerText = "100%";
+        this.progressBar.value = "100%";
     }
 
     this.start = function(coorFixConfig, halfBlockWidth, centerLat, centerLng, mapType){
@@ -130,8 +129,7 @@ function Capture(layersConfig){
                          
                         
                         this.progressValue += this.progressWidth;
-                        this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                        this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                        this.progressBar.value = parseFloat(this.progressValue).toFixed(2) + "%";
     
                         imageLoadCount++;
 
@@ -163,8 +161,7 @@ function Capture(layersConfig){
         
         this.progressWidth = 100 / this.blockArea;
         this.progressValue = 0;
-        this.progressBar.style.width = this.progressValue + "%";
-        this.progressBar.innerText =this.progressValue + "%";
+        this.progressBar.value = this.progressValue + "%";
 
         document.getElementById("resultStatus").innerText = "레이어 수집 중입니다.";
     }
@@ -243,8 +240,7 @@ function Capture(layersConfig){
                                 this.ctx.drawImage(layersImage, 0, 0, layersImage.width, layersImage.height, xPos, yPos, this.blockSize, this.blockSize);
                                 
                                 this.progressValue += this.progressWidth;
-                                this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                                this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                                this.progressBar.value = parseFloat(this.progressValue).toFixed(2) + "%";
                                 
                                 
                                 this.layerImageLoadCount++;
@@ -268,8 +264,7 @@ function Capture(layersConfig){
                             this.ctx.fillRect(xPos, yPos, this.blockSize, this.blockSize);
                            
                             this.progressValue += this.progressWidth;
-                            this.progressBar.style.width = parseFloat(this.progressValue).toFixed(2) + "%";
-                            this.progressBar.innerText = parseFloat(this.progressValue).toFixed(2) + "%";
+                            this.progressBar.value = parseFloat(this.progressValue).toFixed(2) + "%";
                             
                             
                             this.layerImageLoadCount++;

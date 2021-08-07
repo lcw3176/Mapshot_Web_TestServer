@@ -1,6 +1,6 @@
 window.onload = function(){
     
-    
+    var traceMode = false;
     var layersConfig = new LayersConfig();
     var coorFixConfig = new CoorFixConfig();
     var mapTypeConfig = new MapTypeConfig();
@@ -18,7 +18,7 @@ window.onload = function(){
     document.getElementById("startCapture").onclick = function(){
         if(capture.checkValue(map.getCenterLat(), map.getCenterLng())){
             
-            if(document.getElementById("traceMode").checked){
+            if(traceMode){
                 map.drawTrace();
             }
 
@@ -95,6 +95,16 @@ window.onload = function(){
         }
         
     }
+
+    setTrace = function(id){
+        if(id.getAttribute("class") != "is-active"){
+            id.setAttribute("class", "is-active")
+            traceMode = true;
+        } else{
+            id.setAttribute("class", "")
+            traceMode = false;
+        }
+    }
     
 }
 
@@ -127,5 +137,9 @@ function closeModal(){
 }
 
 function changeSate(){
+
+}
+
+function setTrace(){
 
 }
