@@ -84,7 +84,7 @@ class Map{
             return;
     
         }
-    }
+    }.bind(this)
 
     displayPlaces = function(places) {
 
@@ -116,11 +116,11 @@ class Map{
     
                 itemEl.onmouseover =  function () {
                     this.displayInfowindow(marker, title);
-                };
+                }.bind(this);
     
                 itemEl.onmouseout =  function () {
                     this.infoWindow.close();
-                };
+                }.bind(this);
 
             }.bind(this))(marker, places[i].place_name);
     
@@ -131,7 +131,7 @@ class Map{
         menuEl.scrollTop = 0;
     
         this.map.setBounds(bounds);
-    }
+    }.bind(this)
 
     getListItem = function(index, places) {
 
