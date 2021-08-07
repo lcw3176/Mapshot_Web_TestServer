@@ -48,7 +48,7 @@ window.onload = function(){
         rectangle.setMap(map.getMap());
     });
 
-    kakao.maps.event.addListener(map.getMap(), 'dclick', function(mouseEvent) {
+    kakao.maps.event.addListener(map.getMap(), 'dbclick', function(mouseEvent) {
         if(rectangle != null){
             rectangle.setMap(null);
         }
