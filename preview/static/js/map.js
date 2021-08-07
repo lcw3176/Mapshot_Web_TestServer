@@ -56,11 +56,11 @@ class Map{
                     this.infoWindow.close();
                 }
             });
-        });
+        }.bind(this));
     
         kakao.maps.event.addListener(this.map, 'idle', function() {
             this.searchAddrFromCoords(this.map.getCenter(), displayCenterInfo());
-        });
+        }.bind(this));
     }
 
     searchAddrFromCoords = function(coords, callback) {
@@ -132,11 +132,11 @@ class Map{
             (function(marker, title) {
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     this.displayInfowindow(marker, title);
-                });
+                }.bind(this));
     
                 kakao.maps.event.addListener(marker, 'mouseout', function() {
                     this.infoWindow.close();
-                });
+                }.bind(this));
     
                 itemEl.onmouseover =  function () {
                     this.displayInfowindow(marker, title);
@@ -146,7 +146,7 @@ class Map{
                     this.infoWindow.close();
                 };
 
-            })(marker, places[i].place_name);
+            }.bind(this))(marker, places[i].place_name);
     
             fragment.appendChild(itemEl);
         }
