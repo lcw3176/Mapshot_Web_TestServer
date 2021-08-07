@@ -6,7 +6,7 @@ function CoorFixConfig(){
     this.fixPoint = 37.5668;
 
     this.generateValue = function(centerLat){
-        let correctFix;
+        var correctFix;
 
         if(this.zoomLevel === 18){
             correctFix = 0.00002833;

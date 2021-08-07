@@ -1,17 +1,15 @@
 class NFixLat{
-    constructor(latlng, naverProfile){
+    constructor(){
         this.width;
         this.height;
-        this.latlng = latlng;
-        this.naverProfile = naverProfile;
     }
 
-    generate(){
-        let correctFix;
+    generate(latlng, naverProfile){
+        var correctFix;
 
         const controlPoint = 37.5668;
 
-        switch(this.naverProfile.getLevel()){
+        switch(naverProfile.getLevel()){
             case 16:
                 correctFix = 0.00011633;
                 this.width = 0.01072;
@@ -28,7 +26,7 @@ class NFixLat{
                 break;
         }
 
-        this.height += (controlPoint - this.latlng.getY()) * correctFix;
+        this.height += (controlPoint - latlng.getY()) * correctFix;
     }
 
     getWidthBetweenBlock(){

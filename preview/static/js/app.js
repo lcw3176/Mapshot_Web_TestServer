@@ -1,9 +1,12 @@
 window.onload = function(){
     var naverProfile = new mapshot.profile.Naver();
     var vworldProfile = new mapshot.profile.Vworld();
+    naverProfile.setKey("ny5d4sdo0e");
+    naverProfile.setWidth(1000);
+    naverProfile.setHeight(1000);
 
     var coor = new mapshot.coors.LatLng();
-    var nFix = new mapshot.coors.NFixLat(coor, naverProfile);
+    var nFix = new mapshot.coors.NFixLat();
     var tile = new mapshot.maps.Tile();
     
     var map = new Map();
@@ -24,7 +27,7 @@ window.onload = function(){
         document.getElementById("lat").innerText = coor.getY();
         document.getElementById("lng").innerText = coor.getX();    
 
-        nFix.generate()
+        nFix.generate(coor, naverProfile);
 
         if(rectangle != null){
             rectangle.setMap(null);
@@ -127,6 +130,31 @@ window.onload = function(){
 
    
     startCapture = function(){
+        const canvasBlockSize = 1000;
+
+        var temp = tile.getNW(sideBlockCount, nFix, coor);
+        var startCoor = new mapshot.coors.LatLng(
+            temp.getX() + nFix.getWidthBetweenBlock() / 2,
+            temp.getY() - nFix.getHeightBetweenBlock() / 2
+            );
+        
+        var canvas = document.createElement("canvas");
+        canvas.width = sideBlockCount * canvasBlockSize;
+        canvas.height = sideBlockCount * canvasBlockSize;
+        
+        var ctx = canvas.getContext("2d");
+
+        naverProfile.setCenter(startCoor);
+        tile.getImage(naverProfile, function(status, response){
+            if(status == 200 || status == 201){
+                
+            }
+        })
+
+        // for(var i = 0; i < blockCount; i++){
+        //     naverProfile.setCenter(tempCoor);
+        //     tile.getImage()
+        // }
         
     }
 
