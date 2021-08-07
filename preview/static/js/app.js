@@ -48,6 +48,12 @@ window.onload = function(){
         rectangle.setMap(map.getMap());
     });
 
+    document.getElementById("map").onmousedown = function(e){
+        if(e.button == 2 && rectangle != null){
+            rectangle.setMap(null);
+        }
+    }
+
     // 지도 설정 끝
 
 
