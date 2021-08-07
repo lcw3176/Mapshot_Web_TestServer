@@ -132,15 +132,15 @@ window.onload = function(){
     startCapture = function(){
         const canvasBlockSize = 1000;
 
-        var temp = tile.getNW(sideBlockCount, nFix, coor);
+        var temp = tile.getNW(blockCount, nFix, coor);
         var startCoor = new mapshot.coors.LatLng(
             temp.getX() + nFix.getWidthBetweenBlock() / 2,
             temp.getY() - nFix.getHeightBetweenBlock() / 2
             );
         
         var canvas = document.createElement("canvas");
-        canvas.width = sideBlockCount * canvasBlockSize;
-        canvas.height = sideBlockCount * canvasBlockSize;
+        canvas.width = blockCount * canvasBlockSize;
+        canvas.height = blockCount * canvasBlockSize;
         
         var ctx = canvas.getContext("2d");
 
