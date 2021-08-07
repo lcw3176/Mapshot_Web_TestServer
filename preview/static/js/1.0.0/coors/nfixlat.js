@@ -11,7 +11,7 @@ class NFixLat{
 
         const controlPoint = 37.5668;
 
-        switch(naverProfile.getLevel()){
+        switch(this.naverProfile.getLevel()){
             case 16:
                 correctFix = 0.00011633;
                 this.width = 0.01072;

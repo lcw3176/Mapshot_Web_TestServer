@@ -55,7 +55,7 @@ class Map{
                 } else {
                     this.infoWindow.close();
                 }
-            });
+            }.bind(this));
         }.bind(this));
     
         kakao.maps.event.addListener(this.map, 'idle', function() {
