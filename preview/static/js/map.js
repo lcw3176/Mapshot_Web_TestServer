@@ -20,20 +20,6 @@ class Map{
         return this.map;
     }
     
-    drawTrace = function(){
-        var traceRec = new kakao.maps.Rectangle({
-            bounds: this.rectangle.getBounds(), // 그려질 사각형의 영역정보입니다
-            strokeWeight: 4, // 선의 두께입니다
-            strokeColor: '#000000', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'shortdot', // 선의 스타일입니다
-            fillColor: '#ecf4f3', // 채우기 색깔입니다
-            fillOpacity: 0.8 // 채우기 불투명도 입니다
-        });
-
-        traceRec.setMap(this.map);
-    }
-
     init = function(){
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
             this.marker.setPosition(mouseEvent.latLng);

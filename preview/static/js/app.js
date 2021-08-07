@@ -29,9 +29,14 @@ window.onload = function(){
         if(rectangle != null){
             rectangle.setMap(null);
         }
+        var sw = tile.getSW(blockCount, nFix, coor);
+        var ne = tile.getNE(blockCount, nFix, coor);
 
         rectangle = new kakao.maps.Rectangle({
-            bounds: new kakao.maps.LatLngBounds(tile.getSW(blockCount, nFix, coor), tile.getNE(blockCount, nFix, coor)),
+            bounds: new kakao.maps.LatLngBounds(
+                new kakao.maps.LatLng(sw.getY(), sw.getX()), 
+                new kakao.maps.LatLng(ne.getY(), ne.getX())
+                ),
             strokeWeight: 4, 
             strokeColor: '#FF3DE5',
             strokeOpacity: 1,
