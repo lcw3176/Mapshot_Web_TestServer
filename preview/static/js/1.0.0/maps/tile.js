@@ -1,9 +1,9 @@
 class Tile{
-    constructor(profile){
-        this.profile = profile;
+    constructor(){
+
     }
 
-    getImage(callback){
+    getImage(profile, callback){
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
@@ -11,7 +11,22 @@ class Tile{
             }
         };
 
-        xhr.open('GET', this.profile.getUrl());
+        xhr.open('GET', profile.getUrl());
         xhr.send();
+    }
+
+
+    getSW(sideBlockCount, NFixLat, coor){
+        var Lat = coor.getY() - NFixLat.getWidthBetweenBlock() * pasreInt(sideBlockCount / 2) - NFixLat.getHeightBetweenBlock() / 2;
+        var Lng = coor.getX() - NFixLat.getHeightBetweenBlock() * pasreInt(sideBlockCount / 2) - NFixLat.getHeightBetweenBlock() / 2;
+
+        return new mapshot.coors.LatLng(Lat, Lng);
+    }
+
+    getNE(sideBlockCount, NFixLat, coor){
+        var Lat = coor.getY() + NFixLat.getWidthBetweenBlock() * pasreInt(sideBlockCount / 2) + NFixLat.getHeightBetweenBlock() / 2;
+        var Lng = coor.getX() + NFixLat.getHeightBetweenBlock() * pasreInt(sideBlockCount / 2) + NFixLat.getHeightBetweenBlock() / 2;
+
+        return new mapshot.coors.LatLng(Lat, Lng);
     }
 }

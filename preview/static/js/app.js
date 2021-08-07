@@ -1,8 +1,14 @@
 window.onload = function(){
     var naverProfile = new mapshot.profile.Naver();
     var vworldProfile = new mapshot.profile.Vworld();
-    var map = new Map();
+
+    var coor = new mapshot.coors.LatLng();
+    var nFix = new mapshot.coors.NFixLat(coor, naverProfile);
+    var tile = new mapshot.maps.Tile();
     
+    var map = new Map();
+    var rectangle = null;
+
     var blockCount = 0;
     var traceMode = false;
 
@@ -11,6 +17,34 @@ window.onload = function(){
         map.searchPlaces();
         return false;
     }
+
+    kakao.maps.event.addListener(map.getMap(), 'click', function(mouseEvent) {
+
+        coor.init(mouseEvent.latLng.getLat(), mouseEvent.latLng.getLng());
+        document.getElementById("lat").innerText = coor.getY();
+        document.getElementById("lng").innerText = coor.getX();    
+
+        nFix.generate()
+
+        if(rectangle != null){
+            rectangle.setMap(null);
+        }
+
+        rectangle = new kakao.maps.Rectangle({
+            bounds: new kakao.maps.LatLngBounds(tile.getSW(blockCount, nFix, coor), tile.getNE(blockCount, nFix, coor)),
+            strokeWeight: 4, 
+            strokeColor: '#FF3DE5',
+            strokeOpacity: 1,
+            strokeStyle: 'shortdashdot', 
+            fillColor: '#FF8AEF', 
+            fillOpacity: 0.8 
+        });
+
+        rectangle.setMap(map.getMap());
+    });
+
+    // 지도 설정 끝
+
 
     navbarBurgerClick = function(id){
         if(id.getAttribute("class") === "navbar-burger"){
@@ -80,6 +114,7 @@ window.onload = function(){
         document.getElementById("layer-extension-modal").setAttribute("class", "modal")
     }
 
+   
     startCapture = function(){
         
     }

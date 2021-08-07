@@ -12,14 +12,12 @@ class Map{
         this.infoWindow = new kakao.maps.InfoWindow({zIndex:1});
         this.geocoder = new kakao.maps.services.Geocoder(); 
         this.marker = new kakao.maps.Marker(); 
-        this.rectangle = null;
-        this.centerLat;
-        this.centerLng;
-    
-        this.coorFixConfig = coorFixConfig;
-        this.mapBlockConfig = mapBlockConfig;
+        this.init();
+    }
 
-        init();
+
+    getMap(){
+        return this.map;
     }
     
     drawTrace = function(){
@@ -38,16 +36,11 @@ class Map{
 
     init = function(){
         kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {
-            this.centerLat = mouseEvent.latLng.getLat();
-            this.centerLng = mouseEvent.latLng.getLng(); 
-            setLatLngText();    
-            
             this.marker.setPosition(mouseEvent.latLng);
             this.marker.setMap(this.map); 
-            
-            setRectangle();
+        
 
-            searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+            this.searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
                 if (status === kakao.maps.services.Status.OK) {
                     var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
                     detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
@@ -66,7 +59,7 @@ class Map{
         });
     
         kakao.maps.event.addListener(this.map, 'idle', function() {
-            searchAddrFromCoords(this.map.getCenter(), displayCenterInfo());
+            this.searchAddrFromCoords(this.map.getCenter(), displayCenterInfo());
         });
     }
 
@@ -85,45 +78,6 @@ class Map{
 
     }
 
-    setLatLngText = function(){
-        document.getElementById("lat").innerText = this.centerLat;
-        document.getElementById("lng").innerText = this.centerLng;   
-    }
-
-    setRectangle = function(){
-        if(this.rectangle != undefined || this.rectangle != null){
-            this.rectangle.setMap(null);
-        }
-
-        this.rectangle = new kakao.maps.Rectangle({
-            bounds: getRectangleBounds(), 
-            strokeWeight: 4, 
-            strokeColor: '#FF3DE5',
-            strokeOpacity: 1,
-            strokeStyle: 'shortdashdot', 
-            fillColor: '#FF8AEF', 
-            fillOpacity: 0.8 
-        });
-
-        this.rectangle.setMap(this.map);
-    }
-
-    getRectangleBounds = function(){
-        this.coorFixConfig.generateValue(this.centerLat);
-        
-        var moveXPosition = this.coorFixConfig.getXValue();
-        var moveYPostion = this.coorFixConfig.getYValue();
-
-        var Lat = Number(this.centerLat) + (Number(moveYPostion) * Number(this.mapBlockConfig.get()));
-        var Lng = Number(this.centerLng) - (Number(moveXPosition) * Number(this.mapBlockConfig.get()));
-
-        var blockWidth = this.mapBlockConfig.get() * 2;
-
-        var sw = new kakao.maps.LatLng(Lat - (moveYPostion * blockWidth) - (moveYPostion / 2), Lng - (moveXPosition / 2)); 
-        var ne = new kakao.maps.LatLng(Lat + (moveYPostion / 2), Lng + (moveXPosition * blockWidth) + (moveXPosition / 2));
-
-        return new kakao.maps.LatLngBounds(sw, ne);
-    }
 
     searchPlaces = function() {
 
@@ -140,8 +94,8 @@ class Map{
     placesSearchCB = function(data, status, pagination) {
         if (status === kakao.maps.services.Status.OK) {
     
-            displayPlaces(data);
-            displayPagination(pagination);
+            this.displayPlaces(data);
+            this.displayPagination(pagination);
     
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
     
@@ -163,33 +117,33 @@ class Map{
         var fragment = document.createDocumentFragment();
         var bounds = new kakao.maps.LatLngBounds();
         
-        removeAllChildNods(listEl);
-        removeMarker();
+        this.removeAllChildNods(listEl);
+        this.removeMarker();
         
         for ( var i=0; i<places.length; i++ ) {
     
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
-            var marker = addMarker(placePosition, i);
-            var itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+            var marker = this.addMarker(placePosition, i);
+            var itemEl = this.getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
     
             bounds.extend(placePosition);
     
             (function(marker, title) {
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
-                    displayInfowindow(marker, title);
+                    this.displayInfowindow(marker, title);
                 });
     
                 kakao.maps.event.addListener(marker, 'mouseout', function() {
-                    infoWindow.close();
+                    this.infoWindow.close();
                 });
     
                 itemEl.onmouseover =  function () {
-                    displayInfowindow(marker, title);
+                    this.displayInfowindow(marker, title);
                 };
     
                 itemEl.onmouseout =  function () {
-                    infoWindow.close();
+                    this.infoWindow.close();
                 };
 
             })(marker, places[i].place_name);
@@ -201,7 +155,6 @@ class Map{
         menuEl.scrollTop = 0;
     
         this.map.setBounds(bounds);
-
     }
 
     getListItem = function(index, places) {

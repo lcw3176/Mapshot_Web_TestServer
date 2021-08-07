@@ -3,6 +3,13 @@ class LatLng{
         this.x;
         this.y;
 
+        if(lat != undefined && lng != undefined){
+            this.init(lat, lng)
+        }
+    }
+
+    init(lat, lng){
+
         if(lat > lng){
             this.x = lat
             this.y = lng
