@@ -134,7 +134,7 @@ window.onload = function(){
         document.getElementById("layer-extension-modal").setAttribute("class", "modal")
     }
 
-    var canvas = document.createElement("canvas");
+    var canvas = document.getElementById("can");
     var ctx = canvas.getContext("2d");
 
     startCapture = function(){
@@ -176,10 +176,6 @@ window.onload = function(){
 
         canvas.width = blockCount * canvasBlockSize;
         canvas.height = blockCount * canvasBlockSize;
-        
-       
-
-        
 
         var order = 0;
 
