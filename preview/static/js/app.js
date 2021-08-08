@@ -187,8 +187,8 @@ window.onload = function(){
 
                 if(i + 1 === blockCount && j === 0){
                     naverProfile.setHeight(1000 - logoRemover);
-                    startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
-                    startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
+                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
+                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
                 } 
 
                 naverProfile.setCenter(startCoor);
@@ -220,8 +220,8 @@ window.onload = function(){
 
                 if(i + 1 === blockCount && j === 0){
                     naverProfile.setHeight(1000);
-                    startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
-                    startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
+                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
                 } 
             }
 
