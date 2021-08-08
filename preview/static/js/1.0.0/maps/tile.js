@@ -3,11 +3,11 @@ class Tile{
 
     }
 
-    getImage(profile, callback){
+    getImage(profile){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
-                callback(xhr.status, xhr.responseText);
+                return {status: xhr.status, response: xhr.responseText};
             }
         };
 
