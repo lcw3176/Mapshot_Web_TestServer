@@ -19,7 +19,8 @@ class NFixLat{
             case 18:
                 correctFix = 0.00002833;
                 this.width = 0.00268;
-                this.height = 0.002125
+                this.height = 0.002070; // 로고 없앨 때
+                // this.height = 0.002125; 로고 있을 때                
                 break;
 
             default:
