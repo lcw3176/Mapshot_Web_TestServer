@@ -196,7 +196,11 @@ window.onload = function(){
                         var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
             
                         if(status == 200 || status == 201){
-                            ctx.drawImage(response, 0, 0, response.width, response.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            var image = new Image();
+                            image.src = response;
+                            image.crossOrigin = "*";
+
+                            ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
                         } else{
                             ctx.fillRect(xPos, yPos, canvasBlockSize, canvasBlockSize);
                         }
