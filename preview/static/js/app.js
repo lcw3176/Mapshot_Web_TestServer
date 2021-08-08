@@ -134,7 +134,9 @@ window.onload = function(){
         document.getElementById("layer-extension-modal").setAttribute("class", "modal")
     }
 
-   
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+
     startCapture = function(){
         if(url != null){
             URL.revokeObjectURL(url);
@@ -172,11 +174,10 @@ window.onload = function(){
         
         var returnXValue = startCoor.getX();
 
-        var canvas = document.createElement("canvas");
         canvas.width = blockCount * canvasBlockSize;
         canvas.height = blockCount * canvasBlockSize;
         
-        var ctx = canvas.getContext("2d");
+       
 
         
 
@@ -194,23 +195,25 @@ window.onload = function(){
             
                         var xPos = (_order % blockCount) * canvasBlockSize;
                         var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-                        var image = new Image();
-                        image.crossOrigin = "*";
+            
+                        if(status === 200 || status === 201){
+                            var image = new Image();
+                            image.src = response;
+                            image.crossOrigin = "*";
 
-                        if(status == 200 || status == 201){
-                            image.src = response;  
+                            image.addEventListener('load', function() {
+                                ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            }, false);
+                            
                         } 
 
-                        image.onload = function(){
-                            ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                            document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
-                            progressBar.value += progressAddValue;
-                
-                            if(_order + 1 == blockCount * blockCount){
-                                mergeImageBlock();
-                            }
+                    
+                        document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
+                        progressBar.value += progressAddValue;
+            
+                        if(_order + 1 == blockCount * blockCount){
+                            mergeImageBlock();
                         }
-     
                     })
             
                 })(order, naverProfile)
@@ -221,35 +224,34 @@ window.onload = function(){
 
             startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
         }
+        
+    }
 
-        mergeImageBlock = function(){
-            if(canvas.msToBlob){
-                canvas.toBlob(function(blob){
+    mergeImageBlock = function(){
+        if(canvas.msToBlob){
+            canvas.toBlob(function(blob){
+
+                navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                var status = document.getElementById("captureStatus");
+                status.innerText = "완료되었습니다.";
+            
+            }, "image/jpeg");
+        } else {
+            canvas.toBlob(function (blob) {
+                var url = URL.createObjectURL(blob);
     
-                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                    var status = document.getElementById("captureStatus");
-                    status.innerText = "완료되었습니다.";
-                
-                }, "image/jpeg");
-            } else {
-                canvas.toBlob(function (blob) {
-                    var url = URL.createObjectURL(blob);
-        
-                    var tag = document.getElementById("resultHref");
-                    tag.href = url;
-                    tag.download = "mapshot_result.jpg";
+                var tag = document.getElementById("resultHref");
+                tag.href = url;
+                tag.download = "mapshot_result.jpg";
+
+                var span = document.getElementById("resultSpan");
+                span.innerHTML = "mapshot_result.jpg";
     
-                    var span = document.getElementById("resultSpan");
-                    span.innerHTML = "mapshot_result.jpg";
-        
-                    document.getElementById("captureStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
-        
-                }, "image/jpeg");    
-            }
+                document.getElementById("captureStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
     
+            }, "image/jpeg");    
         }
-    
-        
+
     }
 
     
