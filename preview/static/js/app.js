@@ -209,7 +209,7 @@ window.onload = function(){
                         progressBar.value += progressAddValue;
             
                         if(_order + 1 == blockCount * blockCount){
-                            mergeImageBlock(canvas);
+                            mergeImageBlock();
                         }
                     })
             
@@ -221,36 +221,38 @@ window.onload = function(){
 
             startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
         }
+
+        mergeImageBlock = function(){
+            if(canvas.msToBlob){
+                canvas.toBlob(function(blob){
+    
+                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                    var status = document.getElementById("captureStatus");
+                    status.innerText = "완료되었습니다.";
+                
+                }, "image/jpeg");
+            } else {
+                canvas.toBlob(function (blob) {
+                    var url = URL.createObjectURL(blob);
+        
+                    var tag = document.getElementById("resultHref");
+                    tag.href = url;
+                    tag.download = "mapshot_result.jpg";
+    
+                    var span = document.getElementById("resultSpan");
+                    span.innerHTML = "mapshot_result.jpg";
+        
+                    document.getElementById("captureStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+        
+                }, "image/jpeg");    
+            }
+    
+        }
+    
         
     }
 
-    mergeImageBlock = function(canvas){
-        if(canvas.msToBlob){
-            canvas.toBlob(function(blob){
-
-                navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                var status = document.getElementById("captureStatus");
-                status.innerText = "완료되었습니다.";
-            
-            }, "image/jpeg");
-        } else {
-            canvas.toBlob(function (blob) {
-                var url = URL.createObjectURL(blob);
     
-                var tag = document.getElementById("resultHref");
-                tag.href = url;
-                tag.download = "mapshot_result.jpg";
-
-                var span = document.getElementById("resultSpan");
-                span.innerHTML = "mapshot_result.jpg";
-    
-                document.getElementById("captureStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
-    
-            }, "image/jpeg");    
-        }
-
-    }
-
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
     document.getElementById("setTrace").click();
