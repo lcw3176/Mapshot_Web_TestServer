@@ -210,7 +210,7 @@ window.onload = function(){
                 startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
             }
 
-            startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
+            startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
         }
         
 
