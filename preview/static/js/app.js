@@ -205,11 +205,11 @@ window.onload = function(){
                             ctx.fillRect(xPos, yPos, canvasBlockSize, canvasBlockSize);
                         }
             
-                        document.getElementById("captureStatus").innerText = _order + 1 + "개 수집 완료";
+                        document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
                         progressBar.value += progressAddValue;
             
                         if(_order + 1 == blockCount * blockCount){
-                            mergeImageBlock();
+                            mergeImageBlock(canvas);
                         }
                     })
             
@@ -224,7 +224,7 @@ window.onload = function(){
         
     }
 
-    mergeImageBlock = function(){
+    mergeImageBlock = function(canvas){
         if(canvas.msToBlob){
             canvas.toBlob(function(blob){
 
