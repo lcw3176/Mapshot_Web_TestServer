@@ -160,7 +160,7 @@ window.onload = function(){
             traceRec.setMap(map.getMap());
         }
 
-        var canvasBlockSize = 1000;
+        var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
         var progressAddValue = 100 / (blockCount * blockCount);
         var progressBar = document.getElementById("progressBar");
         progressBar.value = 0;
