@@ -179,6 +179,7 @@ window.onload = function(){
         var ctx = canvas.getContext("2d");
        
         var order = 0;
+        var imageLoadCount = 0;
 
         for(var i = 0; i < blockCount; i++){
             for(var j = 0; j < blockCount; j++){
@@ -195,11 +196,12 @@ window.onload = function(){
 
                     _image.onload = function(){
                         ctx.drawImage(_image, 0, 0, _image.width, _image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-        
-                        document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
+                        imageLoadCount++;
+
+                        document.getElementById("captureStatus").innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
                         progressBar.value += progressAddValue;
             
-                        if(_order + 1 == blockCount * blockCount){
+                        if(imageLoadCount == blockCount * blockCount){
                             mergeImageBlock();
                         }
                     }
