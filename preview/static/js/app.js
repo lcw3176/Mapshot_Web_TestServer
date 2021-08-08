@@ -194,25 +194,15 @@ window.onload = function(){
             
                         var xPos = (_order % blockCount) * canvasBlockSize;
                         var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-            
+                        var image = new Image();
+                        image.crossOrigin = "*";
+
                         if(status == 200 || status == 201){
-                            var image = new Image();
-                            image.src = response;
-                            image.crossOrigin = "*";
+                            image.src = response;  
+                        } 
 
-                            image.onload = function(){
-                                ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-
-                                document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
-                                progressBar.value += progressAddValue;
-                    
-                                if(_order + 1 == blockCount * blockCount){
-                                    mergeImageBlock();
-                                }
-                            }
-                            
-                        } else{
-                            ctx.fillRect(xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        image.onload = function(){
+                            ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
                             document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
                             progressBar.value += progressAddValue;
                 
@@ -220,8 +210,7 @@ window.onload = function(){
                                 mergeImageBlock();
                             }
                         }
-            
-                       
+     
                     })
             
                 })(order, naverProfile)
