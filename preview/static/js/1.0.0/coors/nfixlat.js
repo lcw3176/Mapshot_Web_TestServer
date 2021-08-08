@@ -29,6 +29,7 @@ class NFixLat{
         }
 
         this.height += (controlPoint - latlng.getY()) * correctFix;
+        this.logoHeight += (controlPoint - latlng.getY()) * correctFix;
     }
 
     getWidthBetweenBlock(){
