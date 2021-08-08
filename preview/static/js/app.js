@@ -197,12 +197,12 @@ window.onload = function(){
                 image.src = naverProfile.getUrl();
                 image.crossOrigin = "*";
 
-                (function(_order, _image, _i, _j){
+                (function(_order, _image){
                     var xPos = (_order % blockCount) * canvasBlockSize;
                     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
 
                     _image.onload = function(){
-                        ctx.drawImage(_image, 0, 0, _image.width, _image.height - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
                         imageLoadCount++;
 
                         document.getElementById("captureStatus").innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
@@ -213,7 +213,7 @@ window.onload = function(){
                         }
                     }
 
-                })(order, image, i, j)
+                })(order, image)
 
                 order++;
                 startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
