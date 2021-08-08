@@ -227,7 +227,7 @@ window.onload = function(){
                 }, "image/jpeg");
             } else {
                 canvas.toBlob(function (blob) {
-                    var url = URL.createObjectURL(blob);
+                    url = URL.createObjectURL(blob);
         
                     var tag = document.getElementById("resultHref");
                     tag.href = url;
