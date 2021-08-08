@@ -185,10 +185,12 @@ window.onload = function(){
         // })
 
         for(var i = 0; i < blockCount; i++){
+            for(var j = 0; j < blockCount; j++){
+                progressBar.value += progressAddValue;
+                // naverProfile.setCenter(tempCoor);
+                // tile.getImage()
+            }
 
-            progressBar.value += progressAddValue;
-            // naverProfile.setCenter(tempCoor);
-            // tile.getImage()
         }
         
     }
