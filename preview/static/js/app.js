@@ -200,7 +200,10 @@ window.onload = function(){
                             image.src = response;
                             image.crossOrigin = "*";
 
-                            ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            image.onload = function(){
+                                ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            }
+                            
                         } else{
                             ctx.fillRect(xPos, yPos, canvasBlockSize, canvasBlockSize);
                         }
