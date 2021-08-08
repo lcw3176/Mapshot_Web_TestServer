@@ -249,7 +249,7 @@ window.onload = function(){
                     var span = document.getElementById("resultSpan");
                     span.innerHTML = "mapshot_result.jpg";
         
-                    document.getElementById("captureStatus").innerText = "완료되었습니다. 아래에 생성된 링크를 확인하세요";
+                    document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
         
                 }, "image/jpeg");    
             }
