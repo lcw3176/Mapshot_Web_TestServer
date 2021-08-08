@@ -20,7 +20,15 @@ class Vworld{
     }
 
     setLayers(param){
-        this.layers.push(param);
+        for(var i = 0; i < this.layers.length; i++){
+            if(this.layers[i] === param){
+                this.layers.splice(i, 1);
+                return;
+            }
+        }
+
+        this.layers.push(param)
+           
     }
 
     getLayers(){

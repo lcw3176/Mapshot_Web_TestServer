@@ -103,6 +103,10 @@ window.onload = function(){
         }
     }
 
+    setLayers = function(option){
+        vworldProfile.setLayers(option);
+    }
+
     showLayerListModal = function(){
         document.getElementById("layer-list-modal").setAttribute("class", "modal is-active");
     }
@@ -149,7 +153,9 @@ window.onload = function(){
             traceRec.setMap(map.getMap());
         }
 
-        const canvasBlockSize = 1000;
+        var canvasBlockSize = 1000;
+        var progressAddValue = 100 / (blockCount * blockCount);
+        var progressBar = document.getElementById("progressBar");
 
         var temp = tile.getNW(blockCount, nFix, coor);
         var startCoor = new mapshot.coors.LatLng(
@@ -163,17 +169,27 @@ window.onload = function(){
         
         var ctx = canvas.getContext("2d");
 
-        naverProfile.setCenter(startCoor);
-        tile.getImage(naverProfile, function(status, response){
-            if(status == 200 || status == 201){
-                
-            }
-        })
+        // naverProfile.setCenter(startCoor);
+        // tile.getImage(naverProfile, function(status, response){
+            
+        //     var xPos = (_order % blockCount) * canvasBlockSize;
+        //     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
 
-        // for(var i = 0; i < blockCount; i++){
-        //     naverProfile.setCenter(tempCoor);
-        //     tile.getImage()
-        // }
+        //     if(status == 200 || status == 201){
+        //         ctx.drawImage(response, 0, 0, response.width, response.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+        //     } else{
+        //         ctx.fillRect(xPos, yPos, canvasBlockSize, canvasBlockSize);
+        //     }
+
+        //      progressBar.value += progressAddValue;
+        // })
+
+        for(var i = 0; i < blockCount; i++){
+
+            progressBar.value += progressAddValue;
+            // naverProfile.setCenter(tempCoor);
+            // tile.getImage()
+        }
         
     }
 
