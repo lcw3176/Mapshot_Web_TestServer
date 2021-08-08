@@ -187,6 +187,8 @@ window.onload = function(){
 
                 if(i + 1 === blockCount && j === 0){
                     naverProfile.setHeight(1000 - logoRemover);
+                    startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
+                    startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
                 } else{
                     naverProfile.setHeight(1000);
                 }
@@ -202,7 +204,7 @@ window.onload = function(){
                     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
 
                     _image.onload = function(){
-                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        ctx.drawImage(_image, 0, 0, _image.width, _image.height - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
                         imageLoadCount++;
 
                         document.getElementById("captureStatus").innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
