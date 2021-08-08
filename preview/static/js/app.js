@@ -185,29 +185,26 @@ window.onload = function(){
 
                 naverProfile.setCenter(startCoor);
 
-                (function(_order, _naverProfile){
-                    var obj = tile.getImage(_naverProfile);
+                var image = new Image();
+                image.src = naverProfile.getUrl();
+                image.crossOrigin = "*";
+
+                (function(_order, _image){
                     var xPos = (_order % blockCount) * canvasBlockSize;
                     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
 
-                    if(obj.status == 200 || obj.status == 201){
-                        var image = new Image();
-                        image.src = obj.reponse;
-                        image.crossOrigin = "*";
-
-                        image.onload = function(){
-                            ctx.drawImage(image, 0, 0, image.width, image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
-
-                            document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
-                            progressBar.value += progressAddValue;
-                
-                            if(_order + 1 == blockCount * blockCount){
-                                mergeImageBlock();
-                            }
-                        }
-                    }                    
+                    _image.onload = function(){
+                        ctx.drawImage(_image, 0, 0, _image.width, _image.height, xPos, yPos, canvasBlockSize, canvasBlockSize);
+        
+                        document.getElementById("captureStatus").innerText = _order + 1 + "/" + blockCount * blockCount  + " 수집 완료";
+                        progressBar.value += progressAddValue;
             
-                })(order, naverProfile)
+                        if(_order + 1 == blockCount * blockCount){
+                            mergeImageBlock();
+                        }
+                    }
+
+                })(order, image)
 
                 order++;
                 startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
