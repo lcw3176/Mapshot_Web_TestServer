@@ -200,10 +200,9 @@ window.onload = function(){
                 (function(_order, _image, _i, _j){
                     var xPos = (_order % blockCount) * canvasBlockSize;
                     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-                    var imageHeight = (_i + 1 === blockCount && _j == 0) ?  _image.height : _image.height - logoRemover;
 
                     _image.onload = function(){
-                        ctx.drawImage(_image, 0, 0, _image.width, imageHeight, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
                         imageLoadCount++;
 
                         document.getElementById("captureStatus").innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
