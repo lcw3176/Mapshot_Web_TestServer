@@ -189,9 +189,7 @@ window.onload = function(){
                     naverProfile.setHeight(1000 - logoRemover);
                     startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlock());
                     startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
-                } else{
-                    naverProfile.setHeight(1000);
-                }
+                } 
 
                 naverProfile.setCenter(startCoor);
 
@@ -219,6 +217,12 @@ window.onload = function(){
 
                 order++;
                 startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
+
+                if(i + 1 === blockCount && j === 0){
+                    naverProfile.setHeight(1000);
+                    startCoor.init(returnXValue, startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
+                    startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+                } 
             }
 
             startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
