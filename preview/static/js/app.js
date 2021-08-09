@@ -4,7 +4,7 @@ window.onload = function(){
     naverProfile.setKey("ny5d4sdo0e");
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
-
+    
     var coor = new mapshot.coors.LatLng();
     var nFix = new mapshot.coors.NFixLat();
     var tile = new mapshot.maps.Tile();
@@ -14,7 +14,8 @@ window.onload = function(){
 
     var blockCount = 0;
     var traceMode = false;
-    
+    var layerOnly = false;
+
     var url = null;
 
     // 카카오 지도 설정
@@ -98,6 +99,7 @@ window.onload = function(){
         vworldProfile.setLayers(option);
     }
 
+
     showLayerListModal = function(){
         document.getElementById("layer-list-modal").setAttribute("class", "modal is-active");
     }
@@ -109,6 +111,7 @@ window.onload = function(){
     showLayerExtensionModal = function(){
         if(document.getElementById("layerOnly").getAttribute("class") == "is-active"){
             document.getElementById("layerOnly").setAttribute("class", "");
+            layerOnly = false;
         } else {
             document.getElementById("layer-extension-modal").setAttribute("class", "modal is-active")
         }
@@ -119,6 +122,7 @@ window.onload = function(){
         if(extension != null){
             vworldProfile.setFormat(extension);
             document.getElementById("layerOnly").setAttribute("class", "is-active");
+            layerOnly = true;
         }
         document.getElementById("layer-extension-modal").setAttribute("class", "modal")
     }
@@ -133,20 +137,6 @@ window.onload = function(){
         if(coor.getX() == undefined || coor.getY() == undefined){
             alert("좌표 설정을 먼저 진행해 주세요.");
             return;
-        }
-
-        if(traceMode){
-            var traceRec = new kakao.maps.Rectangle({
-                bounds: rectangle.getBounds(),
-                strokeWeight: 4, 
-                strokeColor: '#000000',
-                strokeOpacity: 1, 
-                strokeStyle: 'shortdot', 
-                fillColor: '#ecf4f3', 
-                fillOpacity: 0.8 
-            });
-    
-            traceRec.setMap(map.getMap());
         }
 
         var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
@@ -171,6 +161,31 @@ window.onload = function(){
         var order = 0;
         var imageLoadCount = 0;
         var logoRemover = 26;
+
+        if(layerOnly){
+            if(vworldProfile.getLayers().length == 0){
+                alert("레이어를 먼저 선택해주세요");
+                return;
+            } else{
+                addLayers();
+                return;
+            }
+
+        }
+
+        if(traceMode){
+            var traceRec = new kakao.maps.Rectangle({
+                bounds: rectangle.getBounds(),
+                strokeWeight: 4, 
+                strokeColor: '#000000',
+                strokeOpacity: 1, 
+                strokeStyle: 'shortdot', 
+                fillColor: '#ecf4f3', 
+                fillOpacity: 0.8 
+            });
+    
+            traceRec.setMap(map.getMap());
+        }
 
 
         for(var i = 0; i < blockCount; i++){
@@ -200,7 +215,12 @@ window.onload = function(){
                         progressBar.value += progressAddValue;
             
                         if(imageLoadCount == blockCount * blockCount){
-                            mergeImageBlock();
+                            if(vworldProfile.getLayers().length == 0){
+                                mergeImageBlock();
+                            } else{
+                                addLayers();
+                            }
+                            
                         }
                     }
 
@@ -212,7 +232,12 @@ window.onload = function(){
                         progressBar.setAttribute("class", "progress is-danger");
 
                         if(imageLoadCount == blockCount * blockCount){
-                            mergeImageBlock();
+                            if(vworldProfile.getLayers().length == 0){
+                                mergeImageBlock();
+                            } else{
+                                addLayers();
+                            }
+                            
                         }
                     }
 
@@ -229,6 +254,77 @@ window.onload = function(){
             }
 
             startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+        }
+
+
+        addLayers = function(){
+            for(var i = 0; i < blockCount; i++){
+                for(var j = 0; j < blockCount; j++){
+
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000 - logoRemover);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
+                    } 
+
+                    naverProfile.setCenter(startCoor);
+
+                    var image = new Image();
+                    image.src = naverProfile.getUrl();
+                    image.crossOrigin = "*";
+
+                    (function(_order, _image){
+                        var xPos = (_order % blockCount) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
+
+                        _image.onload = function(){
+                            ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            imageLoadCount++;
+
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                
+                            if(imageLoadCount == blockCount * blockCount){
+                                if(vworldProfile.getLayers().length == 0){
+                                    mergeImageBlock();
+                                } else{
+                                    addLayers();
+                                }
+                                
+                            }
+                        }
+
+                        _image.onerror = function(){
+                            imageLoadCount++;
+
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                            progressBar.setAttribute("class", "progress is-danger");
+
+                            if(imageLoadCount == blockCount * blockCount){
+                                if(vworldProfile.getLayers().length == 0){
+                                    mergeImageBlock();
+                                } else{
+                                    addLayers();
+                                }
+                                
+                            }
+                        }
+
+                    })(order, image)
+
+                    order++;
+                    startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
+
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
+                    } 
+                }
+
+                startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+            }
         }
         
 
