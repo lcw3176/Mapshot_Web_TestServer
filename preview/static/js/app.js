@@ -4,7 +4,8 @@ window.onload = function(){
     naverProfile.setKey("ny5d4sdo0e");
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
-    
+
+
     var coor = new mapshot.coors.LatLng();
     var nFix = new mapshot.coors.NFixLat();
     var tile = new mapshot.maps.Tile();
@@ -139,6 +140,26 @@ window.onload = function(){
             return;
         }
 
+        if(layerOnly && vworldProfile.getLayers().length == 0){
+            alert("레이어를 먼저 선택해주세요");
+            return;
+        }
+
+        if(traceMode){
+            var traceRec = new kakao.maps.Rectangle({
+                bounds: rectangle.getBounds(),
+                strokeWeight: 4, 
+                strokeColor: '#000000',
+                strokeOpacity: 1, 
+                strokeStyle: 'shortdot', 
+                fillColor: '#ecf4f3', 
+                fillOpacity: 0.8 
+            });
+    
+            traceRec.setMap(map.getMap());
+        }
+
+
         var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
         var progressAddValue = 100 / (blockCount * blockCount);
         var progressBar = document.getElementById("progressBar");
@@ -163,102 +184,143 @@ window.onload = function(){
         var logoRemover = 26;
 
         if(layerOnly){
+            addLayers(mergeImageBlock);
+        } else{
             if(vworldProfile.getLayers().length == 0){
-                alert("레이어를 먼저 선택해주세요");
-                return;
+                addBaseMap(mergeImageBlock);
             } else{
-                addLayers();
-                return;
+                addBaseMap(addLayers(mergeImageBlock));
             }
-
+            
         }
+ 
 
-        if(traceMode){
-            var traceRec = new kakao.maps.Rectangle({
-                bounds: rectangle.getBounds(),
-                strokeWeight: 4, 
-                strokeColor: '#000000',
-                strokeOpacity: 1, 
-                strokeStyle: 'shortdot', 
-                fillColor: '#ecf4f3', 
-                fillOpacity: 0.8 
-            });
+        addBaseMap = function(callback){
+            for(var i = 0; i < blockCount; i++){
+                for(var j = 0; j < blockCount; j++){
     
-            traceRec.setMap(map.getMap());
-        }
-
-
-        for(var i = 0; i < blockCount; i++){
-            for(var j = 0; j < blockCount; j++){
-
-                if(i + 1 === blockCount && j === 0){
-                    naverProfile.setHeight(1000 - logoRemover);
-                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
-                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
-                } 
-
-                naverProfile.setCenter(startCoor);
-
-                var image = new Image();
-                image.src = naverProfile.getUrl();
-                image.crossOrigin = "*";
-
-                (function(_order, _image){
-                    var xPos = (_order % blockCount) * canvasBlockSize;
-                    var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-
-                    _image.onload = function(){
-                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                        imageLoadCount++;
-
-                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                        progressBar.value += progressAddValue;
-            
-                        if(imageLoadCount == blockCount * blockCount){
-                            if(vworldProfile.getLayers().length == 0){
-                                mergeImageBlock();
-                            } else{
-                                addLayers();
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000 - logoRemover);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
+                    } 
+    
+                    naverProfile.setCenter(startCoor);
+    
+                    var image = new Image();
+                    image.src = naverProfile.getUrl();
+                    image.crossOrigin = "*";
+    
+                    (function(_order, _image){
+                        var xPos = (_order % blockCount) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
+    
+                        _image.onload = function(){
+                            ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            imageLoadCount++;
+    
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                
+                            if(imageLoadCount == blockCount * blockCount){
+                                callback();
+                                
                             }
-                            
                         }
-                    }
-
-                    _image.onerror = function(){
-                        imageLoadCount++;
-
-                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                        progressBar.value += progressAddValue;
-                        progressBar.setAttribute("class", "progress is-danger");
-
-                        if(imageLoadCount == blockCount * blockCount){
-                            if(vworldProfile.getLayers().length == 0){
-                                mergeImageBlock();
-                            } else{
-                                addLayers();
+    
+                        _image.onerror = function(){
+                            imageLoadCount++;
+    
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                            progressBar.setAttribute("class", "progress is-danger");
+    
+                            if(imageLoadCount == blockCount * blockCount){
+                                callback();
                             }
-                            
                         }
-                    }
-
-                })(order, image)
-
-                order++;
-                startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
-
-                if(i + 1 === blockCount && j === 0){
-                    naverProfile.setHeight(1000);
-                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
-                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
-                } 
+    
+                    })(order, image)
+    
+                    order++;
+                    startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
+    
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
+                    } 
+                }
+    
+                startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
             }
-
-            startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
-        }
+        } 
 
 
-        addLayers = function(){
-            
+        addLayers = function(callback){
+            for(var i = 0; i < blockCount; i++){
+                for(var j = 0; j < blockCount; j++){
+
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000 - logoRemover);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
+                    } 
+
+                    naverProfile.setCenter(startCoor);
+
+                    var image = new Image();
+                    image.src = naverProfile.getUrl();
+                    image.crossOrigin = "*";
+
+                    (function(_order, _image){
+                        var xPos = (_order % blockCount) * canvasBlockSize;
+                        var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
+
+                        _image.onload = function(){
+                            ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                            imageLoadCount++;
+
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                
+                            if(imageLoadCount == blockCount * blockCount){
+                                if(vworldProfile.getLayers().length == 0){
+                                    callback();
+                                } 
+                                
+                            }
+                        }
+
+                        _image.onerror = function(){
+                            imageLoadCount++;
+
+                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                            progressBar.value += progressAddValue;
+                            progressBar.setAttribute("class", "progress is-danger");
+
+                            if(imageLoadCount == blockCount * blockCount){
+                                if(vworldProfile.getLayers().length == 0){
+                                    callback();
+                                } 
+                                
+                            }
+                        }
+
+                    })(order, image)
+
+                    order++;
+                    startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
+
+                    if(i + 1 === blockCount && j === 0){
+                        naverProfile.setHeight(1000);
+                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
+                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
+                    } 
+                }
+
+                startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+            }
         }
         
 
