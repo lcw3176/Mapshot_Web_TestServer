@@ -258,73 +258,7 @@ window.onload = function(){
 
 
         addLayers = function(){
-            for(var i = 0; i < blockCount; i++){
-                for(var j = 0; j < blockCount; j++){
-
-                    if(i + 1 === blockCount && j === 0){
-                        naverProfile.setHeight(1000 - logoRemover);
-                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
-                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
-                    } 
-
-                    naverProfile.setCenter(startCoor);
-
-                    var image = new Image();
-                    image.src = naverProfile.getUrl();
-                    image.crossOrigin = "*";
-
-                    (function(_order, _image){
-                        var xPos = (_order % blockCount) * canvasBlockSize;
-                        var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-
-                        _image.onload = function(){
-                            ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                            imageLoadCount++;
-
-                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                            progressBar.value += progressAddValue;
-                
-                            if(imageLoadCount == blockCount * blockCount){
-                                if(vworldProfile.getLayers().length == 0){
-                                    mergeImageBlock();
-                                } else{
-                                    addLayers();
-                                }
-                                
-                            }
-                        }
-
-                        _image.onerror = function(){
-                            imageLoadCount++;
-
-                            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                            progressBar.value += progressAddValue;
-                            progressBar.setAttribute("class", "progress is-danger");
-
-                            if(imageLoadCount == blockCount * blockCount){
-                                if(vworldProfile.getLayers().length == 0){
-                                    mergeImageBlock();
-                                } else{
-                                    addLayers();
-                                }
-                                
-                            }
-                        }
-
-                    })(order, image)
-
-                    order++;
-                    startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
-
-                    if(i + 1 === blockCount && j === 0){
-                        naverProfile.setHeight(1000);
-                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
-                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
-                    } 
-                }
-
-                startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
-            }
+            
         }
         
 
