@@ -5,7 +5,6 @@ window.onload = function(){
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
 
-    vworldProfile.setKey("BA51886D-3289-32E9-AC7C-1D7A36D3BB20");
     vworldProfile.setWidth(1000);
     vworldProfile.setHeight(940);
 
