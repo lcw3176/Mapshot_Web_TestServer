@@ -172,15 +172,6 @@ window.onload = function(){
         var imageLoadCount = 0;
         var logoRemover = 26;
 
-        var imageLoadEnded = function(){
-            imageLoadCount++;
-            captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-            progressBar.value += progressAddValue;
-
-            if(imageLoadCount == blockCount * blockCount){
-                mergeImageBlock();
-            }
-        }
 
         for(var i = 0; i < blockCount; i++){
             for(var j = 0; j < blockCount; j++){
@@ -201,11 +192,25 @@ window.onload = function(){
                     var yPos = parseInt(_order / blockCount) * canvasBlockSize; 
                      
                     ctx.drawImage(image, 0, 0, image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                    imageLoadEnded();
+                    
+                    imageLoadCount++;
+                    captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                    progressBar.value += progressAddValue;
+        
+                    if(imageLoadCount == blockCount * blockCount){
+                        mergeImageBlock();
+                    }
+
                 })(order)
 
                 image.onerror = function(){
-                    imageLoadEnded();
+                    imageLoadCount++;
+                    captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                    progressBar.value += progressAddValue;
+        
+                    if(imageLoadCount == blockCount * blockCount){
+                        mergeImageBlock();
+                    }
                 }
 
 
