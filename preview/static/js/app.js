@@ -61,17 +61,6 @@ window.onload = function(){
 
     // 지도 설정 끝
 
-
-    navbarBurgerClick = function(id){
-        if(id.getAttribute("class") === "navbar-burger"){
-            id.setAttribute("class", "navbar-burger is-active");
-            document.getElementById("navbar-menu").setAttribute("class", "navbar-menu is-active");
-        } else{
-            id.setAttribute("class", "navbar-burger");
-            document.getElementById("navbar-menu").setAttribute("class", "navbar-menu");
-        }
-    }
-
     setZoomLevel = function(sideBlockCount, level, id){
         var matches = document.getElementsByClassName("zoom");
         

@@ -12,12 +12,13 @@
     <script type="text/javascript" src="static/js/app.js"></script>
     <script type="text/javascript" src="static/js/map.js"></script>
     <script type="text/javascript" src="static/js/external/canvas-toBlob.js"></script>
+    <script type="text/javascript" src="static/js/navbar.js"></script>
     <link rel="stylesheet" href="static/css/map.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="static/css/style.css">
 
 </head>
 
@@ -38,7 +39,7 @@
     
             <div class="navbar-menu" id="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="manual/index.html">
+                    <a class="navbar-item" href="manual/1/index.html">
                         사용법
                     </a>
     
@@ -140,15 +141,15 @@
                 <div class="box">
                     <div class="menu">
                         <p class="title is-6" style="margin-bottom: 3%;">
-                            배율
+                            반경
                         </p>
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;">
                                 <p></p>
                             </li>
-                            <li><a class="zoom" onclick="setZoomLevel(3, 18, this)">1km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(11, 18, this)">1km</a></li>
                             <li><a class="zoom" onclick="setZoomLevel(17, 18, this)">2km</a></li>
-                            <li><a class="zoom" onclick="setZoomLevel(3, 16, this)">5km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(11, 16, this)">5km</a></li>
                             <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(21, 16, this)">10km</a></li>
                         </ul>
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">

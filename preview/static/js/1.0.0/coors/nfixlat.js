@@ -14,7 +14,8 @@ class NFixLat{
             case 16:
                 correctFix = 0.00011633;
                 this.width = 0.01072;
-                this.height = 0.0085;
+                this.height = 0.00829;
+                this.logoHeight = 0.00817;
                 break;
             
             case 18:
