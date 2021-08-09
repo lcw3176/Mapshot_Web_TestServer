@@ -171,8 +171,9 @@ window.onload = function(){
         var order = 0;
         var imageLoadCount = 0;
         var logoRemover = 26;
-        
+
         var imageLoadEnded = function(){
+            imageLoadCount++;
             captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
             progressBar.value += progressAddValue;
 
@@ -195,14 +196,15 @@ window.onload = function(){
                 var image = new Image();
                 image.src = naverProfile.getUrl();
                 image.crossOrigin = "*";
-                image.onload = function(){
-                    ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                    imageLoadCount++;
+                image.onload = (function(_order){
+                    var xPos = (_order % blockCount) * canvasBlockSize;
+                    var yPos = parseInt(_order / blockCount) * canvasBlockSize; 
+                     
+                    ctx.drawImage(image, 0, 0, image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
                     imageLoadEnded();
-                }
+                })(order)
 
                 image.onerror = function(){
-                    imageLoadCount++;
                     imageLoadEnded();
                 }
 
