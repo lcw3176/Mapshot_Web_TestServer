@@ -187,62 +187,36 @@ window.onload = function(){
                 var image = new Image();
                 image.src = naverProfile.getUrl();
                 image.crossOrigin = "*";
-                image.onload = (function(_order){
+
+                (function(_order, _image){
                     var xPos = (_order % blockCount) * canvasBlockSize;
-                    var yPos = parseInt(_order / blockCount) * canvasBlockSize; 
-                     
-                    ctx.drawImage(image, 0, 0, image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                    
-                    imageLoadCount++;
-                    captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                    progressBar.value += progressAddValue;
-        
-                    if(imageLoadCount == blockCount * blockCount){
-                        mergeImageBlock();
-                    }
+                    var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
 
-                })(order)
+                    _image.onload = function(){
+                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
+                        imageLoadCount++;
 
-                image.onerror = function(){
-                    imageLoadCount++;
-                    captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                    progressBar.value += progressAddValue;
-        
-                    if(imageLoadCount == blockCount * blockCount){
-                        mergeImageBlock();
-                    }
-                }
-
-
-                // (function(_order, _image){
-                //     var xPos = (_order % blockCount) * canvasBlockSize;
-                //     var yPos = parseInt(_order / blockCount) * canvasBlockSize;  
-
-                //     _image.onload = function(){
-                //         ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                //         imageLoadCount++;
-
-                //         captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                //         progressBar.value += progressAddValue;
+                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                        progressBar.value += progressAddValue;
             
-                //         if(imageLoadCount == blockCount * blockCount){
-                //             mergeImageBlock();
-                //         }
-                //     }
+                        if(imageLoadCount == blockCount * blockCount){
+                            mergeImageBlock();
+                        }
+                    }
 
-                //     _image.onerror = function(){
-                //         imageLoadCount++;
+                    _image.onerror = function(){
+                        imageLoadCount++;
 
-                //         captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
-                //         progressBar.value += progressAddValue;
-                //         progressBar.setAttribute("class", "progress is-danger");
+                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount  + " 수집 완료";
+                        progressBar.value += progressAddValue;
+                        progressBar.setAttribute("class", "progress is-danger");
 
-                //         if(imageLoadCount == blockCount * blockCount){
-                //             mergeImageBlock();
-                //         }
-                //     }
+                        if(imageLoadCount == blockCount * blockCount){
+                            mergeImageBlock();
+                        }
+                    }
 
-                // })(order, image)
+                })(order, image)
 
                 order++;
                 startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
