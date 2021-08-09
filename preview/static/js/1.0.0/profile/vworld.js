@@ -7,7 +7,7 @@ class Vworld{
         this.width;
         this.height;
         this.layers = [];
-        this.format = "image/png";
+        this.format = "png";
     }
 
     setFormat(param){
