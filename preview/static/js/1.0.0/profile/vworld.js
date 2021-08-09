@@ -3,11 +3,10 @@ class Vworld{
     constructor(){
         this.key;
         this.center;
-        this.level;
+        this.level = 18;
         this.width;
         this.height;
         this.layers = [];
-        this.mapType;
         this.format = "image/png";
     }
 
@@ -35,14 +34,6 @@ class Vworld{
         return this.layers;
     }
 
-    setMapType(param){
-        this.mapType = param;
-    }
-
-    getMapType(){
-        return this.mapType;
-    }
-    
     setCenter(param){
         this.center = param;
     }
@@ -84,15 +75,22 @@ class Vworld{
     }
 
     getUrl(){
-        return "https://api.vworld.kr/req/image?service=image&request=getmap"
-             + "&key=" + this.key
-             + "&center=" + this.center.getY() + "," +  this.center.getX()
-             + "&zoom=" + this.level
-             + "&size=" + this.width + "," + this.height
-             + "&layers=" + this.layers
-             + "&STYLES=" + this.layers
-             + "&basemap=" + this.mapType
-             + "&format=" + this.format;
+        var arr = [];
+        for(var i = 0; i < this.layers.length; i+= 4){
+            var temp = this.layers.slice(i, i + 4).join(",");
+            arr.push("https://api.vworld.kr/req/image?service=image&request=getmap"
+                    + "&key=" + this.key
+                    + "&center=" + this.center.getY() + "," +  this.center.getX()
+                    + "&zoom=" + this.level
+                    + "&size=" + this.width + "," + this.height
+                    + "&layers=" + temp
+                    + "&STYLES=" + temp
+                    + "&basemap=NONE"
+                    + "&format=" + this.format); 
+        }
+
+
+        return arr;
     }
     /* 
         "https://api.vworld.kr/req/image?service=image&request=getmap"

@@ -5,9 +5,14 @@ window.onload = function(){
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
 
+    vworldProfile.setKey("BA51886D-3289-32E9-AC7C-1D7A36D3BB20");
+    vworldProfile.setWidth(1000);
+    vworldProfile.setHeight(940);
+
 
     var coor = new mapshot.coors.LatLng();
     var nFix = new mapshot.coors.NFixLat();
+    var vFix = new mapshot.coors.VFixLat();
     var tile = new mapshot.maps.Tile();
     
     var map = new Map();
@@ -32,6 +37,7 @@ window.onload = function(){
         document.getElementById("lng").innerText = coor.getX();    
 
         nFix.generate(coor, naverProfile);
+        vFix.generate(coor);
 
         if(rectangle != null){
             rectangle.setMap(null);
@@ -180,7 +186,6 @@ window.onload = function(){
        
         var captureStatusTag = document.getElementById("captureStatus");
         var order = 0;
-        var imageLoadCount = 0;
         var logoRemover = 26;
 
         if(layerOnly){
@@ -196,6 +201,8 @@ window.onload = function(){
  
 
         function addBaseMap(callback){
+            var imageLoadCount = 0;
+
             for(var i = 0; i < blockCount; i++){
                 for(var j = 0; j < blockCount; j++){
     
@@ -258,19 +265,15 @@ window.onload = function(){
 
 
         function addLayers(callback){
+            var imageLoadCount = 0;
+
             for(var i = 0; i < blockCount; i++){
                 for(var j = 0; j < blockCount; j++){
 
-                    if(i + 1 === blockCount && j === 0){
-                        naverProfile.setHeight(1000 - logoRemover);
-                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
-                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
-                    } 
-
-                    naverProfile.setCenter(startCoor);
+                    vworldProfile.setCenter(startCoor);
 
                     var image = new Image();
-                    image.src = naverProfile.getUrl();
+                    image.src = vworldProfile.getUrl();
                     image.crossOrigin = "*";
 
                     (function(_order, _image){
@@ -285,10 +288,7 @@ window.onload = function(){
                             progressBar.value += progressAddValue;
                 
                             if(imageLoadCount == blockCount * blockCount){
-                                if(vworldProfile.getLayers().length == 0){
-                                    callback();
-                                } 
-                                
+                                callback();
                             }
                         }
 
@@ -310,16 +310,10 @@ window.onload = function(){
                     })(order, image)
 
                     order++;
-                    startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
-
-                    if(i + 1 === blockCount && j === 0){
-                        naverProfile.setHeight(1000);
-                        startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
-                        startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
-                    } 
+                    startCoor.init(startCoor.getX() + vFix.getWidthBetweenBlock(), startCoor.getY());
                 }
 
-                startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
+                startCoor.init(returnXValue, startCoor.getY() - vFix.getHeightBetweenBlock());
             }
         }
         
@@ -351,9 +345,6 @@ window.onload = function(){
     
         }
     }
-
-
-
     
     document.getElementById("default_click_level").click();
     document.getElementById("default_click_map").click();
