@@ -80,7 +80,7 @@ class Vworld{
             var temp = this.layers.slice(i, i + 4).join(",");
             arr.push("https://api.vworld.kr/req/image?service=image&request=getmap"
                     + "&key=" + this.key
-                    + "&center=" + this.center.getY() + "," +  this.center.getX()
+                    + "&center=" + this.center.getX() + "," +  this.center.getY()
                     + "&zoom=" + this.level
                     + "&size=" + this.width + "," + this.height
                     + "&layers=" + temp
