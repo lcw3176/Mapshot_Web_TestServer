@@ -195,7 +195,7 @@ window.onload = function(){
         }
  
 
-        addBaseMap = function(callback){
+        function addBaseMap(callback){
             for(var i = 0; i < blockCount; i++){
                 for(var j = 0; j < blockCount; j++){
     
@@ -257,7 +257,7 @@ window.onload = function(){
         } 
 
 
-        addLayers = function(callback){
+        function addLayers(callback){
             for(var i = 0; i < blockCount; i++){
                 for(var j = 0; j < blockCount; j++){
 
@@ -324,7 +324,7 @@ window.onload = function(){
         }
         
 
-        mergeImageBlock = function(){
+        function mergeImageBlock(){
             if(canvas.msToBlob){
                 canvas.toBlob(function(blob){
     
