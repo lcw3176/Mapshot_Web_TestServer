@@ -12,6 +12,7 @@ window.onload = function () {
     staticLogger.ne = [];
     staticLogger.address = [];
     staticLogger.zoomLevel = [];
+    staticLogger.rectangle = [];
 
     var staticZoomLevel;
 
@@ -143,7 +144,7 @@ window.onload = function () {
 
         // 이미지 지도를 표시할 div와 옵션으로 이미지 지도를 생성합니다
         var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-
+        staticLogger.rectangle[0].setMap(staticMap);
     }
 
     closeCornerCoorModal = function () {
@@ -174,7 +175,15 @@ window.onload = function () {
 
             traceRec.setMap(map.getMap());
         }
-
+        staticLogger.rectangle.push(new kakao.maps.Rectangle({
+            bounds: rectangle.getBounds(),
+            strokeWeight: 4,
+            strokeColor: '#000000',
+            strokeOpacity: 1,
+            strokeStyle: 'shortdot',
+            fillColor: '#ecf4f3',
+            fillOpacity: 0.8
+        }));
         staticLogger.center.push(coor);
         staticLogger.sw.push(tile.getSW(blockCount, nFix, coor));
         staticLogger.se.push(tile.getSE(blockCount, nFix, coor));
