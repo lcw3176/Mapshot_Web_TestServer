@@ -111,17 +111,25 @@ window.onload = function () {
         // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
         var markers = [
             {
-                position: new kakao.maps.LatLng(staticLogger.sw[0].getY(), staticLogger.sw[0].getX())
+                position: new kakao.maps.LatLng(staticLogger.sw[0].getY(), staticLogger.sw[0].getX()),
+                text:staticLogger.sw[0].getY() + "," + staticLogger.sw[0].getX()
             },
             {
-                position: new kakao.maps.LatLng(staticLogger.se[0].getY(), staticLogger.se[0].getX()),     
+                position: new kakao.maps.LatLng(staticLogger.se[0].getY(), staticLogger.se[0].getX()), 
+                text:staticLogger.se[0].getY() + "," + staticLogger.se[0].getX()   
             },
 
             {
-                position: new kakao.maps.LatLng(staticLogger.nw[0].getY(), staticLogger.nw[0].getX())
+                position: new kakao.maps.LatLng(staticLogger.nw[0].getY(), staticLogger.nw[0].getX()),
+                text:staticLogger.nw[0].getY() + "," + staticLogger.nw[0].getX()
             },
             {
-                position: new kakao.maps.LatLng(staticLogger.ne[0].getY(), staticLogger.ne[0].getX()),     
+                position: new kakao.maps.LatLng(staticLogger.ne[0].getY(), staticLogger.ne[0].getX()),   
+                text:staticLogger.ne[0].getY() + "," + staticLogger.ne[0].getX()  
+            },
+            {
+                position: new kakao.maps.LatLng(staticLogger.center[0].getY(), staticLogger.center[0].getX()),  
+                text:staticLogger.center[0].getY() + "," + staticLogger.center[0].getX()   
             }
         ];
 
