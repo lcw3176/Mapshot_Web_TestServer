@@ -1,8 +1,8 @@
 class NFixLat{
     constructor(){
         this.width;
-        this.height;
-        this.logoHeight;
+        this.height; // 로고 없을 때
+        this.logoHeight; // 로고 있을 때
     }
 
     generate(latlng, naverProfile){
@@ -21,8 +21,8 @@ class NFixLat{
             case 18:
                 correctFix = 0.00002833;
                 this.width = 0.00268;
-                this.height = 0.002070; // 로고 없앨 때
-                this.logoHeight = 0.00204; // 로고 있을 때                
+                this.height = 0.002070; 
+                this.logoHeight = 0.00204;             
                 break;
 
             default:

@@ -147,10 +147,10 @@
                             <li style="border-top: 2px solid black; margin-bottom: 3%;">
                                 <p></p>
                             </li>
-                            <li><a class="zoom" onclick="setZoomLevel(3, 18, this)">1km</a></li>
-                            <li><a class="zoom" onclick="setZoomLevel(17, 18, this)">2km</a></li>
-                            <li><a class="zoom" onclick="setZoomLevel(11, 16, this)">5km</a></li>
-                            <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(21, 16, this)">10km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(3, 18, 4, this)">1km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(17, 18, null, this)">2km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(11, 16, null, this)">5km</a></li>
+                            <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(21, 16, null, this)">10km</a></li>
                         </ul>
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             종류
@@ -168,8 +168,7 @@
     
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                            <li><a onclick="showLayerListModal()">레이어 추가</a></li>
-                            <li><a id="layerOnly" onclick="showLayerExtensionModal()">레이어만 출력하기</a></li>
+                            <li><a onclick="showCornerCoorModal()">로그 확인</a></li>
                             <li><a id="setTrace" onclick="setTraceMode(this)">흔적 남기기</a></li>
                         </ul>
     
@@ -190,101 +189,25 @@
     
         </div>
     </div>
-
-    <!-- 레이어리스트 모달창 -->
-    <div class="modal" id="layer-list-modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">레이어리스트</p>
-                <button class="delete" onclick="closeLayerListModal()"></button>
-            </header>
-            <section class="modal-card-body">
-                <h6><strong>도시계획</strong></h6>
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_upisuq151')">
-                    도로
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_lhblpn')">
-                    토지이용계획도
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_upisuq175')">
-                    토지거래계약에관한허가구역
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_upisuq161')">
-                    지구단위계획
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_upisuq174')">
-                    개발행위허가필지
-                </label>
-
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_upisuq171')">
-                    개발행위허가제한지역
-                </label>
-
-            </section>
-
-            <section class="modal-card-body">
-                <h6><strong>용도지역지구</strong></h6>
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_uq112')">
-                    관리지역
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_uq113')">
-                    농림지역
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_uq111')">
-                    도시지역
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_uq114')">
-                    자연환경보전지역
-                </label>
-            </section>
-
-
-            <section class="modal-card-body">
-                <h6><strong>토지</strong></h6>
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lt_c_lhzone')">
-                    사업지구경계도
-                </label>
-
-                <label class="checkbox mr-5">
-                    <input type="checkbox" onclick="setLayers('lp_pa_cbnd_bubun,lp_pa_cbnd_bonbun')">
-                    지적도
-                </label>
-            </section>
-        </div>
-    </div>
-    <!-- 모달창 끝 -->
+=
 
     <!-- 레이어 확장자 모달 -->
-    <div class="modal" id="layer-extension-modal">
+    <div class="modal is-active" id="corner-coor-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">확장자 선택</p>
-                <button class="delete" aria-label="close" onclick="closeLayerExtensionModal(null)"></button>
+                <p class="modal-card-title">캡쳐 로그</p>
+                <button class="delete" aria-label="close" onclick="closeCornerCoorModal()"></button>
             </header>
+            <section class="modal-card-body">
+                <div class="content">
+                    <h5>이 문서는 사이트를 닫는 순간 사라지며, 복구할 수 없습니다.</h5>
+                    <div id="staticMap" style="width:600px;height:350px;"></div>
+                </div>
+            </section>
             <footer class="modal-card-foot">
-                <button class="button is-info" onclick="closeLayerExtensionModal('png')">PNG</button>
-                <button class="button is-success" onclick="closeLayerExtensionModal('jpeg')">JPG</button>
+                <button class="button is-success" onclick="closeCornerCoorModal()">저장하기</button>
+                <button class="button is-outlined" onclick="closeCornerCoorModal()">닫기</button>
             </footer>
         </div>
     </div>
