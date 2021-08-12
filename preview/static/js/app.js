@@ -13,7 +13,9 @@ window.onload = function () {
 
     var blockCount = 0;
     var traceMode = false;
-
+    var resultType = null;
+    
+    var km;
     var url = null;
 
     // 카카오 지도 설정
@@ -60,7 +62,7 @@ window.onload = function () {
 
     // 지도 설정 끝
 
-    setZoomLevel = function (sideBlockCount, level, id) {
+    setZoomLevel = function (sideBlockCount, level, _km, id) {
         var matches = document.getElementsByClassName("zoom");
 
         for (var i = 0; i < matches.length; i++) {
@@ -69,6 +71,7 @@ window.onload = function () {
 
         blockCount = sideBlockCount;
         naverProfile.setLevel(level);
+        km = _km;
         id.setAttribute('class', 'zoom is-active');
     }
 
@@ -104,9 +107,11 @@ window.onload = function () {
             id.setAttribute("class", "company button is-warning");
         }
 
-        if(companyName === "naver"){
+        else if(companyName === "naver"){
             id.setAttribute("class", "company button is-success");
         }
+
+        resultType = companyName;
     }
 
 
@@ -117,6 +122,11 @@ window.onload = function () {
 
         if (coor.getX() == undefined || coor.getY() == undefined) {
             alert("좌표 설정을 먼저 진행해 주세요.");
+            return;
+        }
+
+        if(resultType == null){
+            alert("출력 타입을 지정해주세요");
             return;
         }
 
@@ -134,6 +144,63 @@ window.onload = function () {
             traceRec.setMap(map.getMap());
         }
 
+        if(resultType === "kakao"){
+            kakaoCapture();
+        }
+
+        else if(resultType === "naver"){
+            naverCapture();
+        }
+
+    }
+
+    kakaoCapture = function(){
+        var requestUrl = "https://mapshotproxyserver.herokuapp.com/main?";
+        var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km;
+        
+        requestUrl += queryString;
+        
+        var img = new Image();
+        img.src = requestUrl;
+        document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+        
+        img.onload = function(){
+
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+
+            ctx.drawImage(img, 0, 0);
+            
+            if (canvas.msToBlob) {
+                canvas.toBlob(function (blob) {
+
+                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                    var status = document.getElementById("captureStatus");
+                    status.innerText = "완료되었습니다.";
+
+                }, "image/jpeg");
+            } else {
+                canvas.toBlob(function (blob) {
+                    url = URL.createObjectURL(blob);
+
+                    var tag = document.getElementById("resultHref");
+                    tag.href = url;
+                    tag.download = "mapshot_result.jpg";
+
+                    var span = document.getElementById("resultSpan");
+                    span.innerHTML = "mapshot_result.jpg";
+
+                    document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
+
+                }, "image/jpeg");
+            }
+        }
+
+    }
+
+    naverCapture = function(){
         var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
         var progressAddValue = 100 / (blockCount * blockCount);
         var progressBar = document.getElementById("progressBar");
