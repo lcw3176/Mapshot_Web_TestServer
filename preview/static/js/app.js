@@ -155,13 +155,14 @@ window.onload = function () {
     }
 
     kakaoCapture = function(){
-        var requestUrl = "https://mapshotproxyserver.herokuapp.com/main?";
+        var requestUrl = "https://mapshotproxyserver.herokuapp.com/test?";
         var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km;
         
         requestUrl += queryString;
         
         var img = new Image();
         img.src = requestUrl;
+        img.crossOrigin = "*";
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
         img.onload = function(){
