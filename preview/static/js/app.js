@@ -4,8 +4,6 @@ window.onload = function () {
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
 
-    var staticZoomLevel;
-
     var coor = new mapshot.coors.LatLng();
     var nFix = new mapshot.coors.NFixLat();
     var tile = new mapshot.maps.Tile();
@@ -62,7 +60,7 @@ window.onload = function () {
 
     // 지도 설정 끝
 
-    setZoomLevel = function (sideBlockCount, level, staticLevel, id) {
+    setZoomLevel = function (sideBlockCount, level, id) {
         var matches = document.getElementsByClassName("zoom");
 
         for (var i = 0; i < matches.length; i++) {
@@ -71,7 +69,6 @@ window.onload = function () {
 
         blockCount = sideBlockCount;
         naverProfile.setLevel(level);
-        staticZoomLevel = staticLevel;
         id.setAttribute('class', 'zoom is-active');
     }
 
