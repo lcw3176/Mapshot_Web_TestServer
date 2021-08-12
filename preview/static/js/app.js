@@ -16,6 +16,7 @@ window.onload = function () {
     var resultType = null;
     
     var km;
+    var kakaoMapType;
     var url = null;
 
     // 카카오 지도 설정
@@ -83,6 +84,7 @@ window.onload = function () {
         }
 
         naverProfile.setMapType(mapType);
+        kakaoMapType = mapType;
         id.setAttribute('class', 'map is-active');
     }
 
@@ -156,7 +158,7 @@ window.onload = function () {
 
     kakaoCapture = function(){
         var requestUrl = "https://mapshotproxyserver.herokuapp.com/test?";
-        var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km;
+        var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km + "&type=" + kakaoMapType;
         
         requestUrl += queryString;
         var progressBar = document.getElementById("progressBar");
