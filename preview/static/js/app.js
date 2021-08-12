@@ -159,7 +159,9 @@ window.onload = function () {
         var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km;
         
         requestUrl += queryString;
-        
+        var progressBar = document.getElementById("progressBar");
+        progressBar.removeAttribute("value");
+
         var img = new Image();
         img.src = requestUrl;
         img.crossOrigin = "*";
@@ -197,6 +199,8 @@ window.onload = function () {
 
                 }, "image/jpeg");
             }
+
+            progressBar.setAttribute("value", 0);
         }
 
     }
