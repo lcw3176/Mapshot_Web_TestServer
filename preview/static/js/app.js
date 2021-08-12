@@ -4,16 +4,6 @@ window.onload = function () {
     naverProfile.setWidth(1000);
     naverProfile.setHeight(1000);
 
-    var staticLogger = new Object();
-    staticLogger.center = [];
-    staticLogger.sw = [];
-    staticLogger.se = [];
-    staticLogger.nw = [];
-    staticLogger.ne = [];
-    staticLogger.address = [];
-    staticLogger.zoomLevel = [];
-    staticLogger.rectangle = [];
-
     var staticZoomLevel;
 
     var coor = new mapshot.coors.LatLng();
@@ -106,49 +96,20 @@ window.onload = function () {
         }
     }
 
-    showCornerCoorModal = function () {
-        document.getElementById("corner-coor-modal").setAttribute("class", "modal is-active");
+    setCompany = function(companyName, id){
+        var matches = document.getElementsByClassName("company");
 
-        // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
-        var markers = [
-            {
-                position: new kakao.maps.LatLng(staticLogger.sw[0].getY(), staticLogger.sw[0].getX()),
-                text:staticLogger.sw[0].getY() + "," + staticLogger.sw[0].getX()
-            },
-            {
-                position: new kakao.maps.LatLng(staticLogger.se[0].getY(), staticLogger.se[0].getX()), 
-                text:staticLogger.se[0].getY() + "," + staticLogger.se[0].getX()   
-            },
+        for (var i = 0; i < matches.length; i++) {
+            matches[i].setAttribute('class', 'company');
+        }
 
-            {
-                position: new kakao.maps.LatLng(staticLogger.nw[0].getY(), staticLogger.nw[0].getX()),
-                text:staticLogger.nw[0].getY() + "," + staticLogger.nw[0].getX()
-            },
-            {
-                position: new kakao.maps.LatLng(staticLogger.ne[0].getY(), staticLogger.ne[0].getX()),   
-                text:staticLogger.ne[0].getY() + "," + staticLogger.ne[0].getX()  
-            },
-            {
-                position: new kakao.maps.LatLng(staticLogger.center[0].getY(), staticLogger.center[0].getX()),  
-                text:staticLogger.center[0].getY() + "," + staticLogger.center[0].getX()   
-            }
-        ];
+        if(companyName === "kakao"){
+            id.setAttribute("class", "company button is-warning");
+        }
 
-                
-        var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-        staticMapOption = { 
-            center: new kakao.maps.LatLng(staticLogger.center[0].getY(), staticLogger.center[0].getX()), // 이미지 지도의 중심좌표
-            level: staticLogger.zoomLevel[0], // 이미지 지도의 확대 레벨
-            marker: markers 
-        };
-
-        // 이미지 지도를 표시할 div와 옵션으로 이미지 지도를 생성합니다
-        var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-        staticLogger.rectangle[0].setMap(staticMap);
-    }
-
-    closeCornerCoorModal = function () {
-        document.getElementById("corner-coor-modal").setAttribute("class", "modal");
+        if(companyName === "naver"){
+            id.setAttribute("class", "company button is-success");
+        }
     }
 
 
@@ -175,23 +136,7 @@ window.onload = function () {
 
             traceRec.setMap(map.getMap());
         }
-        staticLogger.rectangle.push(new kakao.maps.Rectangle({
-            bounds: rectangle.getBounds(),
-            strokeWeight: 4,
-            strokeColor: '#000000',
-            strokeOpacity: 1,
-            strokeStyle: 'shortdot',
-            fillColor: '#ecf4f3',
-            fillOpacity: 0.8
-        }));
-        staticLogger.center.push(coor);
-        staticLogger.sw.push(tile.getSW(blockCount, nFix, coor));
-        staticLogger.se.push(tile.getSE(blockCount, nFix, coor));
-        staticLogger.nw.push(tile.getNW(blockCount, nFix, coor));
-        staticLogger.ne.push(tile.getNE(blockCount, nFix, coor));
-        staticLogger.address.push(document.getElementById("bunzi-address").innerText);
-        staticLogger.zoomLevel.push(staticZoomLevel);
-        
+
         var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
         var progressAddValue = 100 / (blockCount * blockCount);
         var progressBar = document.getElementById("progressBar");

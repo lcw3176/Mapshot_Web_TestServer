@@ -147,7 +147,7 @@
                             <li style="border-top: 2px solid black; margin-bottom: 3%;">
                                 <p></p>
                             </li>
-                            <li><a class="zoom" onclick="setZoomLevel(3, 18, 5, this)">1km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(11, 18, 5, this)">1km</a></li>
                             <li><a class="zoom" onclick="setZoomLevel(17, 18, null, this)">2km</a></li>
                             <li><a class="zoom" onclick="setZoomLevel(11, 16, null, this)">5km</a></li>
                             <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(21, 16, null, this)">10km</a></li>
@@ -161,6 +161,15 @@
                             <li><a class="map" id="default_click_map" onclick="setBaseMap('satellite_base', this)">위성</a></li>
                             <li><a class="map" onclick="setBaseMap('satellite', this)">하이브리드</a></li>
                         </ul>
+
+                        <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
+                            출력
+                        </p>
+                        <ul class="menu-list">
+                            <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
+                            <li><a class="company" onclick="setCompany('naver')">네이버</a></li>
+                            <li><a class="company" onclick="setCompany('kakao')">카카오</a></li>
+                        </ul>
     
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             옵션
@@ -168,7 +177,6 @@
     
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
-                            <li><a onclick="showCornerCoorModal()">로그 확인</a></li>
                             <li><a id="setTrace" onclick="setTraceMode(this)">흔적 남기기</a></li>
                         </ul>
     
@@ -189,29 +197,6 @@
     
         </div>
     </div>
-=
-
-    <!-- 레이어 확장자 모달 -->
-    <div class="modal" id="corner-coor-modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">캡쳐 로그</p>
-                <button class="delete" aria-label="close" onclick="closeCornerCoorModal()"></button>
-            </header>
-            <section class="modal-card-body">
-                <div class="content">
-                    <h5>이 문서는 사이트를 닫는 순간 사라지며, 복구할 수 없습니다.</h5>
-                    <div id="staticMap" style="width:600px;height:350px;"></div>
-                </div>
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success" onclick="closeCornerCoorModal()">저장하기</button>
-                <button class="button is-outlined" onclick="closeCornerCoorModal()">닫기</button>
-            </footer>
-        </div>
-    </div>
-    <!-- 모달 끝 -->
 
 </body>
 
