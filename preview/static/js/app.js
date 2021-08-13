@@ -165,8 +165,9 @@ window.onload = function () {
         progressBar.removeAttribute("value");
 
         var img = new Image();
-        img.src = requestUrl;
         img.crossOrigin = "*";
+        img.src = requestUrl;
+
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
         img.onload = function(){
@@ -248,8 +249,9 @@ window.onload = function () {
                 naverProfile.setCenter(startCoor);
 
                 var image = new Image();
-                image.src = naverProfile.getUrl();
                 image.crossOrigin = "*";
+                image.src = naverProfile.getUrl();
+
 
                 (function (_order, _image) {
                     var xPos = (_order % blockCount) * canvasBlockSize;
