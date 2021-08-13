@@ -36,13 +36,15 @@
                 emailjs.sendForm('mapshot_contact', 'template_2wpci79', this)
                         .then(function(response) {
                             alert("전송 완료 되었습니다.");
+                            document.getElementById("submitButton").setAttribute("class", "button is-link");
                             
                         }, function(error) {
                             alert("잠시 후 다시 전송해주세요");
+                            document.getElementById("submitButton").setAttribute("class", "button is-link");
                             
                         });
 
-                document.getElementById("submitButton").setAttribute("class", "button is-link");
+                
             });
         }
 
