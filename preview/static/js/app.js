@@ -179,12 +179,9 @@ window.onload = function () {
             ctx.drawImage(img, 0, 0);
             
             if (canvas.msToBlob) {
-                canvas.toBlob(function (blob) {
-
-                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                    document.getElementById("captureStatus").innerText =  "완료되었습니다.";
-
-                }, "image/jpeg");
+                var blob = canvas.msToBlob();
+                navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                document.getElementById("captureStatus").innerText =  "완료되었습니다.";
             } else {
                 canvas.toBlob(function (blob) {
                     url = URL.createObjectURL(blob);
