@@ -182,8 +182,7 @@ window.onload = function () {
                 canvas.toBlob(function (blob) {
 
                     navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                    var status = document.getElementById("captureStatus");
-                    status.innerText = "완료되었습니다.";
+                    document.getElementById("captureStatus").innerText =  "완료되었습니다.";
 
                 }, "image/jpeg");
             } else {
@@ -202,6 +201,12 @@ window.onload = function () {
                 }, "image/jpeg");
             }
 
+            progressBar.setAttribute("value", 100);
+        }
+
+        img.onerror = function(){
+
+            document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요.";
             progressBar.setAttribute("value", 0);
         }
 
