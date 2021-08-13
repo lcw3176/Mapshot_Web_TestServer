@@ -9,8 +9,8 @@
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
     <script type="text/javascript" src="static/js/mapshot.min.js"></script>
-    <script type="text/javascript" src="static/js/app.js"></script>
-    <script type="text/javascript" src="static/js/map.js"></script>
+    <!-- <script type="text/javascript" src="static/js/app.js"></script>
+    <script type="text/javascript" src="static/js/map.js"></script> -->
     <script type="text/javascript" src="static/js/external/canvas-toBlob.js"></script>
     <script type="text/javascript" src="static/js/navbar.js"></script>
     <link rel="stylesheet" href="static/css/map.css">
@@ -29,25 +29,25 @@
                 <a class="navbar-item" href="index.html">
                     <p class="title is-4">MAPSHOT</p>
                 </a>
-    
+
                 <a role="button" class="navbar-burger" onclick="navbarBurgerClick(this)">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-    
+
             <div class="navbar-menu" id="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" href="manual/1/index.html">
                         사용법
                     </a>
-    
+
                     <a class="navbar-item" href="log/index.html">
                         패치내역
                     </a>
                 </div>
-    
+
                 <div class="navbar-end">
                     <a class="navbar-item" href="opensource/index.html">
                         오픈소스
@@ -66,7 +66,7 @@
                         <!-- 지도 -->
                         <div class="map_wrap">
                             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    
+
                             <div id="menu_wrap" class="bg_white">
                                 <div class="option">
                                     <div>
@@ -83,8 +83,8 @@
                         </div>
                         <!-- 지도 끝 -->
                     </div>
-    
-                    
+
+
                     <div class="columns level">
                         <div class="column is-3 level-item has-text-centered">
                             <div>
@@ -115,10 +115,10 @@
                         </div>
                     </div>
 
-                </div>  
-    
+                </div>
+
                 <progress class="progress is-info" id="progressBar" value="0" max="100"></progress>
-                
+
 
                 <nav class="breadcrumb" aria-label="breadcrumbs">
                     <ul class="columns">
@@ -135,8 +135,8 @@
                 </nav>
 
             </div>
-    
-    
+
+
             <div class="column">
                 <div class="box">
                     <div class="menu">
@@ -150,7 +150,8 @@
                             <li><a class="zoom" onclick="setZoomLevel(11, 18, 1, this)">1km</a></li>
                             <li><a class="zoom" onclick="setZoomLevel(17, 18, 2, this)">2km</a></li>
                             <li><a class="zoom" onclick="setZoomLevel(11, 16, 5, this)">5km</a></li>
-                            <li><a class="zoom" id="default_click_level" onclick="setZoomLevel(21, 16, 10, this)">10km</a></li>
+                            <li><a class="zoom" id="default_click_level"
+                                    onclick="setZoomLevel(21, 16, 10, this)">10km</a></li>
                         </ul>
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             종류
@@ -158,7 +159,8 @@
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                             <li><a class="map" onclick="setBaseMap('basic', this)">일반</a></li>
-                            <li><a class="map" id="default_click_map" onclick="setBaseMap('satellite_base', this)">위성</a></li>
+                            <li><a class="map" id="default_click_map"
+                                    onclick="setBaseMap('satellite_base', this)">위성</a></li>
                             <li><a class="map" onclick="setBaseMap('satellite', this)">하이브리드</a></li>
                         </ul>
 
@@ -170,31 +172,31 @@
                             <li><a class="company" onclick="setCompany('naver', this)">네이버</a></li>
                             <li><a class="company" onclick="setCompany('kakao', this)">카카오</a></li>
                         </ul>
-    
+
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             옵션
                         </p>
-    
+
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                             <li><a id="setTrace" onclick="setTraceMode(this)">흔적 남기기</a></li>
                         </ul>
-    
-    
+
+
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             수집
                         </p>
-    
+
                         <ul class="menu-list">
                             <li style="border-top: 2px solid black; margin-bottom: 3%;"></li>
                             <button class="button is-outlined" onclick="startCapture()">작업 시작</button>
                         </ul>
                     </div>
                 </div>
-    
+
             </div>
-    
-    
+
+
         </div>
     </div>
 
