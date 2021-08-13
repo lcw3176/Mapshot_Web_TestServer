@@ -166,7 +166,7 @@ window.onload = function () {
 
         var img = new Image();
         img.src = requestUrl;
-        img.crossOrigin = "anonymous";
+        img.crossOrigin = "*";
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
         img.onload = function(){
@@ -179,9 +179,12 @@ window.onload = function () {
             ctx.drawImage(img, 0, 0);
             
             if (canvas.msToBlob) {
-                var blob = canvas.msToBlob();
-                navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                document.getElementById("captureStatus").innerText =  "완료되었습니다.";
+                canvas.toBlob(function (blob) {
+
+                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                    document.getElementById("captureStatus").innerText =  "완료되었습니다.";
+
+                }, "image/jpeg");
             } else {
                 canvas.toBlob(function (blob) {
                     url = URL.createObjectURL(blob);
