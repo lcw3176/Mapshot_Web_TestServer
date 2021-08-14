@@ -1,3 +1,6 @@
+
+
+
 window.onload = function () {
     var naverProfile = new mapshot.profile.Naver();
     naverProfile.setKey("ny5d4sdo0e");
@@ -18,6 +21,78 @@ window.onload = function () {
     var km;
     var kakaoMapType;
     var url = null;
+
+    
+    Image.prototype.load = function(imageUrl){
+        var img = this;
+        var xmlHTTP = new XMLHttpRequest();
+        xmlHTTP.open('GET', imageUrl, true);
+        xmlHTTP.responseType = 'arraybuffer';
+        xmlHTTP.onload = function(e) {
+            var blob = new Blob([this.response]);
+            // url = window.URL.createObjectURL(blob);
+    
+            // var canvas = document.createElement("canvas");
+            // canvas.width = img.width;
+            // canvas.height = img.height;
+            // var ctx = canvas.getContext("2d");
+    
+            // ctx.drawImage(img, 0, 0);
+            
+            // if (canvas.msToBlob) {
+            //     canvas.toBlob(function (blob) {
+    
+            //         navigator.msSaveBlob(blob, "mapshot_result.jpg");
+            //         document.getElementById("captureStatus").innerText =  "완료되었습니다.";
+    
+            //     }, "image/jpeg");
+            // } else {
+            //     canvas.toBlob(function (blob) {
+            //         url = URL.createObjectURL(blob);
+    
+            //         var tag = document.getElementById("resultHref");
+            //         tag.href = url;
+            //         tag.download = "mapshot_result.jpg";
+    
+            //         var span = document.getElementById("resultSpan");
+            //         span.innerHTML = "mapshot_result.jpg";
+    
+            //         document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
+    
+            //     }, "image/jpeg");
+            // }
+    
+            if(window.navigator && window.navigator.msSaveOrOpenBlob){
+                navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                document.getElementById("captureStatus").innerText = "완료되었습니다.";
+            } else{
+                url = URL.createObjectURL(blob);
+
+                var tag = document.getElementById("resultHref");
+                tag.href = url;
+                tag.download = "mapshot_result.jpg";
+
+                var span = document.getElementById("resultSpan");
+                span.innerHTML = "mapshot_result.jpg";
+
+                document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
+    
+            }
+    
+            document.getElementById("progressBar").setAttribute("value", 100);
+        };
+        xmlHTTP.onprogress = function(e) {
+            img.completedPercentage = parseInt((e.loaded / e.total) * 100);
+            document.getElementById("progressBar").setAttribute("value", img.completedPercentage);
+        };
+        xmlHTTP.onloadstart = function() {
+            img.completedPercentage = 0;
+            document.getElementById("captureStatus").innerText =  "이미지를 받아오는 중입니다.";
+        };
+        xmlHTTP.send();
+    };
+    
+    Image.prototype.completedPercentage = 0;
 
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
@@ -161,49 +236,13 @@ window.onload = function () {
         var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km + "&type=" + kakaoMapType;
         
         requestUrl += queryString;
-        var progressBar = document.getElementById("progressBar");
-        progressBar.removeAttribute("value");
+        document.getElementById("progressBar").removeAttribute("value");
 
         var img = new Image();
         img.crossOrigin = "*";
-        img.src = requestUrl;
-
+        img.load(requestUrl);
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
-        img.onload = function(){
-
-            var canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext("2d");
-
-            ctx.drawImage(img, 0, 0);
-            
-            if (canvas.msToBlob) {
-                canvas.toBlob(function (blob) {
-
-                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
-                    document.getElementById("captureStatus").innerText =  "완료되었습니다.";
-
-                }, "image/jpeg");
-            } else {
-                canvas.toBlob(function (blob) {
-                    url = URL.createObjectURL(blob);
-
-                    var tag = document.getElementById("resultHref");
-                    tag.href = url;
-                    tag.download = "mapshot_result.jpg";
-
-                    var span = document.getElementById("resultSpan");
-                    span.innerHTML = "mapshot_result.jpg";
-
-                    document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
-
-                }, "image/jpeg");
-            }
-
-            progressBar.setAttribute("value", 100);
-        }
 
         img.onerror = function(){
 
