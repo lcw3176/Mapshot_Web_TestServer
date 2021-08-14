@@ -83,11 +83,11 @@ window.onload = function () {
         };
         xmlHTTP.onprogress = function(e) {
             img.completedPercentage = parseInt((e.loaded / e.total) * 100);
+            document.getElementById("captureStatus").innerText =  img.completedPercentage + " / 100";
             document.getElementById("progressBar").setAttribute("value", img.completedPercentage);
         };
         xmlHTTP.onloadstart = function() {
             img.completedPercentage = 0;
-            document.getElementById("captureStatus").innerText =  "이미지를 받아오는 중입니다.";
         };
         xmlHTTP.send();
     };
