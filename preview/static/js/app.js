@@ -30,38 +30,7 @@ window.onload = function () {
         xmlHTTP.responseType = 'arraybuffer';
         xmlHTTP.onload = function(e) {
             var blob = new Blob([this.response]);
-            // url = window.URL.createObjectURL(blob);
-    
-            // var canvas = document.createElement("canvas");
-            // canvas.width = img.width;
-            // canvas.height = img.height;
-            // var ctx = canvas.getContext("2d");
-    
-            // ctx.drawImage(img, 0, 0);
             
-            // if (canvas.msToBlob) {
-            //     canvas.toBlob(function (blob) {
-    
-            //         navigator.msSaveBlob(blob, "mapshot_result.jpg");
-            //         document.getElementById("captureStatus").innerText =  "완료되었습니다.";
-    
-            //     }, "image/jpeg");
-            // } else {
-            //     canvas.toBlob(function (blob) {
-            //         url = URL.createObjectURL(blob);
-    
-            //         var tag = document.getElementById("resultHref");
-            //         tag.href = url;
-            //         tag.download = "mapshot_result.jpg";
-    
-            //         var span = document.getElementById("resultSpan");
-            //         span.innerHTML = "mapshot_result.jpg";
-    
-            //         document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
-    
-            //     }, "image/jpeg");
-            // }
-    
             if(window.navigator && window.navigator.msSaveOrOpenBlob){
                 navigator.msSaveBlob(blob, "mapshot_result.jpg");
                 document.getElementById("captureStatus").innerText = "완료되었습니다.";
