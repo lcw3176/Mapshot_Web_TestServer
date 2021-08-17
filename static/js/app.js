@@ -24,6 +24,7 @@ window.onload = function () {
 
     
     Image.prototype.load = function(imageUrl){
+        var fileName = document.getElementById("bunzi-address").innerText;
         var img = this;
         var xmlHTTP = new XMLHttpRequest();
         xmlHTTP.open('GET', imageUrl, true);
@@ -32,17 +33,17 @@ window.onload = function () {
             var blob = new Blob([this.response]);
             
             if(window.navigator && window.navigator.msSaveOrOpenBlob){
-                navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                navigator.msSaveBlob(blob, fileName + "-mapshot.jpg");
                 document.getElementById("captureStatus").innerText = "완료되었습니다.";
             } else{
                 url = URL.createObjectURL(blob);
 
                 var tag = document.getElementById("resultHref");
                 tag.href = url;
-                tag.download = "mapshot_result.jpg";
+                tag.download = fileName + "-mapshot.jpg";
 
                 var span = document.getElementById("resultSpan");
-                span.innerHTML = "mapshot_result.jpg";
+                span.innerHTML = fileName + "-mapshot.jpg";
 
                 document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
     
@@ -58,6 +59,14 @@ window.onload = function () {
         xmlHTTP.onloadstart = function() {
             img.completedPercentage = 0;
         };
+
+        xmlHTTP.onerror = function(){
+
+            document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요.";
+            progressBar.setAttribute("value", 0);
+        }
+
+
         xmlHTTP.send();
     };
     
@@ -212,13 +221,6 @@ window.onload = function () {
         img.load(requestUrl);
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
-
-        img.onerror = function(){
-
-            document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요.";
-            progressBar.setAttribute("value", 0);
-        }
-
     }
 
     naverCapture = function(){
@@ -244,6 +246,8 @@ window.onload = function () {
         var order = 0;
         var logoRemover = 26;
         var imageLoadCount = 0;
+
+        var fileName = document.getElementById("bunzi-address").innerText;
 
         for (var i = 0; i < blockCount; i++) {
             for (var j = 0; j < blockCount; j++) {
@@ -311,7 +315,7 @@ window.onload = function () {
             if (canvas.msToBlob) {
                 canvas.toBlob(function (blob) {
 
-                    navigator.msSaveBlob(blob, "mapshot_result.jpg");
+                    navigator.msSaveBlob(blob, fileName + "-mapshot.jpg");
                     var status = document.getElementById("captureStatus");
                     status.innerText = "완료되었습니다.";
 
@@ -322,10 +326,10 @@ window.onload = function () {
 
                     var tag = document.getElementById("resultHref");
                     tag.href = url;
-                    tag.download = "mapshot_result.jpg";
+                    tag.download = fileName + "-mapshot.jpg";
 
                     var span = document.getElementById("resultSpan");
-                    span.innerHTML = "mapshot_result.jpg";
+                    span.innerHTML = fileName + "-mapshot.jpg";
 
                     document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
 
