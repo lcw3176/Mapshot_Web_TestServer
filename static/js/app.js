@@ -1,6 +1,3 @@
-
-
-
 window.onload = function () {
     var naverProfile = new mapshot.profile.Naver();
     naverProfile.setKey("ny5d4sdo0e");
@@ -33,17 +30,17 @@ window.onload = function () {
             var blob = new Blob([this.response]);
             
             if(window.navigator && window.navigator.msSaveOrOpenBlob){
-                navigator.msSaveBlob(blob, fileName + "-mapshot.jpg");
+                navigator.msSaveBlob(blob, fileName + "_mapshot.jpg");
                 document.getElementById("captureStatus").innerText = "완료되었습니다.";
             } else{
                 url = URL.createObjectURL(blob);
 
                 var tag = document.getElementById("resultHref");
                 tag.href = url;
-                tag.download = fileName + "-mapshot.jpg";
+                tag.download = fileName + "_mapshot.jpg";
 
                 var span = document.getElementById("resultSpan");
-                span.innerHTML = fileName + "-mapshot.jpg";
+                span.innerHTML = fileName + "_mapshot.jpg";
 
                 document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
     
@@ -315,7 +312,7 @@ window.onload = function () {
             if (canvas.msToBlob) {
                 canvas.toBlob(function (blob) {
 
-                    navigator.msSaveBlob(blob, fileName + "-mapshot.jpg");
+                    navigator.msSaveBlob(blob, fileName + "_mapshot.jpg");
                     var status = document.getElementById("captureStatus");
                     status.innerText = "완료되었습니다.";
 
@@ -326,10 +323,10 @@ window.onload = function () {
 
                     var tag = document.getElementById("resultHref");
                     tag.href = url;
-                    tag.download = fileName + "-mapshot.jpg";
+                    tag.download = fileName + "_mapshot.jpg";
 
                     var span = document.getElementById("resultSpan");
-                    span.innerHTML = fileName + "-mapshot.jpg";
+                    span.innerHTML = fileName + "_mapshot.jpg";
 
                     document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
 
