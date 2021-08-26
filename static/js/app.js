@@ -1,25 +1,24 @@
 window.onload = function () {
     var naverProfile = new mapshot.profile.Naver();
     naverProfile.setKey("ny5d4sdo0e");
-    naverProfile.setWidth(1000);
-    naverProfile.setHeight(1000);
 
     var coor = new mapshot.coors.LatLng();
-    var nFix = new mapshot.coors.NFixLat();
     var tile = new mapshot.maps.Tile();
 
     var map = new Map();
     var rectangle = null;
 
-    var blockCount = 0;
+    var sideBlockCount = 0;
     var traceMode = false;
     var resultType = null;
-    
+    var qualityOfMap = null;
+
+    var url;
+
     var km;
     var kakaoMapType;
-    var url = null;
 
-    
+    // 이미지 프로토타입 정의
     Image.prototype.load = function(imageUrl){
         var fileName = document.getElementById("bunzi-address").innerText;
         var img = this;
@@ -30,22 +29,22 @@ window.onload = function () {
             var blob = new Blob([this.response]);
             
             if(window.navigator && window.navigator.msSaveOrOpenBlob){
-                navigator.msSaveBlob(blob, fileName + "_mapshot.jpg");
+                navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
                 document.getElementById("captureStatus").innerText = "완료되었습니다.";
             } else{
                 url = URL.createObjectURL(blob);
 
                 var tag = document.getElementById("resultHref");
                 tag.href = url;
-                tag.download = fileName + "_mapshot.jpg";
+                tag.download = "mapshot_" + fileName + ".jpg";
 
                 var span = document.getElementById("resultSpan");
-                span.innerHTML = fileName + "_mapshot.jpg";
+                span.innerHTML = "mapshot_" + fileName + ".jpg";
 
                 document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
-    
+
             }
-    
+
             document.getElementById("progressBar").setAttribute("value", 100);
         };
         xmlHTTP.onprogress = function(e) {
@@ -66,8 +65,10 @@ window.onload = function () {
 
         xmlHTTP.send();
     };
-    
+
     Image.prototype.completedPercentage = 0;
+    // 정의 끝
+
 
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
@@ -81,13 +82,14 @@ window.onload = function () {
         document.getElementById("lat").innerText = coor.getY();
         document.getElementById("lng").innerText = coor.getX();
 
-        nFix.generate(coor, naverProfile);
-
         if (rectangle != null) {
             rectangle.setMap(null);
         }
-        var sw = tile.getSW(blockCount, nFix, coor);
-        var ne = tile.getNE(blockCount, nFix, coor);
+        
+        tile.setQuality(qualityOfMap);
+
+        var sw = tile.getSW(sideBlockCount, coor);
+        var ne = tile.getNE(sideBlockCount, coor);
 
         rectangle = new kakao.maps.Rectangle({
             bounds: new kakao.maps.LatLngBounds(
@@ -110,18 +112,45 @@ window.onload = function () {
             rectangle.setMap(null);
         }
     }
+    // 카카오 지도 설정 끝
 
-    // 지도 설정 끝
 
-    setZoomLevel = function (sideBlockCount, level, _km, id) {
+    // 맵샷 네이버 이벤트 리스너 정의
+    document.body.addEventListener("tileImageLoadStart", function(e){
+        var progressBar = document.getElementById("progressBar");
+        progressBar.max = e.total;
+        progressBar.value = 0;
+    });
+
+    document.body.addEventListener("tileImageOnLoad", function(e){
+        var progressBar = document.getElementById("progressBar");
+        progressBar.value = e.complete;
+        document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
+    });
+
+    document.body.addEventListener("tileImageOnError", function(e){
+        var progressBar = document.getElementById("progressBar");
+        progressBar.value = e.complete;
+        progressBar.setAttribute("class", "progress is-danger");
+        document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
+    });
+    // 이벤트 리스너 정의 끝
+    
+
+    setZoomLevel = function (_sideBlockCount, quality, _km, id) {
         var matches = document.getElementsByClassName("zoom");
 
         for (var i = 0; i < matches.length; i++) {
             matches[i].setAttribute('class', 'zoom');
         }
 
-        blockCount = sideBlockCount;
-        naverProfile.setLevel(level);
+        sideBlockCount = _sideBlockCount;
+        if(quality == "H"){
+            qualityOfMap = mapshot.Quality.HIGH;
+        } else{
+            qualityOfMap = mapshot.Quality.NORMAL;
+        }
+
         km = _km;
         id.setAttribute('class', 'zoom is-active');
     }
@@ -219,102 +248,17 @@ window.onload = function () {
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
         
     }
-
+    
     naverCapture = function(){
-        var canvasBlockSize = (blockCount <= 11) ? 1000 : 500;
-        var progressAddValue = 100 / (blockCount * blockCount);
-        var progressBar = document.getElementById("progressBar");
-        progressBar.value = 0;
+        naverProfile.setQuality(qualityOfMap);
 
-        var temp = tile.getNW(blockCount, nFix, coor);
-        var startCoor = new mapshot.coors.LatLng(
-            temp.getX() + nFix.getWidthBetweenBlock() / 2,
-            temp.getY() - nFix.getHeightBetweenBlock() / 2
-        );
-
-        var returnXValue = startCoor.getX();
-
-        var canvas = document.createElement("canvas");
-        canvas.width = blockCount * canvasBlockSize;
-        canvas.height = blockCount * canvasBlockSize;
-        var ctx = canvas.getContext("2d");
-
-        var captureStatusTag = document.getElementById("captureStatus");
-        var order = 0;
-        var logoRemover = 26;
-        var imageLoadCount = 0;
-
-        var fileName = document.getElementById("bunzi-address").innerText;
-
-        for (var i = 0; i < blockCount; i++) {
-            for (var j = 0; j < blockCount; j++) {
-
-                if (i + 1 === blockCount && j === 0) {
-                    naverProfile.setHeight(1000 - logoRemover);
-                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlock());
-                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlockWithLogo());
-                }
-
-                naverProfile.setCenter(startCoor);
-
-                var image = new Image();
-                image.crossOrigin = "*";
-                image.src = naverProfile.getUrl();
-
-
-                (function (_order, _image) {
-                    var xPos = (_order % blockCount) * canvasBlockSize;
-                    var yPos = parseInt(_order / blockCount) * canvasBlockSize;
-
-                    _image.onload = function () {
-                        ctx.drawImage(_image, 0, 0, _image.width, 1000 - logoRemover, xPos, yPos, canvasBlockSize, canvasBlockSize);
-                        imageLoadCount++;
-
-                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount + " 수집 완료";
-                        progressBar.value += progressAddValue;
-
-                        if (imageLoadCount == blockCount * blockCount) {
-                            mergeImageBlock();
-
-                        }
-                    }
-
-                    _image.onerror = function () {
-                        imageLoadCount++;
-
-                        captureStatusTag.innerText = imageLoadCount + "/" + blockCount * blockCount + " 수집 완료";
-                        progressBar.value += progressAddValue;
-                        progressBar.setAttribute("class", "progress is-danger");
-
-                        if (imageLoadCount == blockCount * blockCount) {
-                            mergeImageBlock();
-                        }
-                    }
-
-                })(order, image)
-
-                order++;
-                startCoor.init(startCoor.getX() + nFix.getWidthBetweenBlock(), startCoor.getY());
-
-                if (i + 1 === blockCount && j === 0) {
-                    naverProfile.setHeight(1000);
-                    startCoor.init(startCoor.getX(), startCoor.getY() + nFix.getHeightBetweenBlockWithLogo());
-                    startCoor.init(startCoor.getX(), startCoor.getY() - nFix.getHeightBetweenBlock());
-                }
-            }
-
-            startCoor.init(returnXValue, startCoor.getY() - nFix.getHeightBetweenBlock());
-        }
-
-
-
-        function mergeImageBlock() {
+        tile.draw(coor, sideBlockCount, naverProfile, function(canvas){
+            var fileName = document.getElementById("bunzi-address").innerText;
+            
             if (canvas.msToBlob) {
                 canvas.toBlob(function (blob) {
-
-                    navigator.msSaveBlob(blob, fileName + "_mapshot.jpg");
-                    var status = document.getElementById("captureStatus");
-                    status.innerText = "완료되었습니다.";
+                    navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
+                    document.getElementById("captureStatus").innerText = "완료되었습니다.";
 
                 }, "image/jpeg");
             } else {
@@ -323,17 +267,14 @@ window.onload = function () {
 
                     var tag = document.getElementById("resultHref");
                     tag.href = url;
-                    tag.download = fileName + "_mapshot.jpg";
+                    tag.download = "mapshot_" + fileName + ".jpg";
 
-                    var span = document.getElementById("resultSpan");
-                    span.innerHTML = fileName + "_mapshot.jpg";
-
+                    document.getElementById("resultSpan").innerHTML = "mapshot_" + fileName + ".jpg";
                     document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
 
                 }, "image/jpeg");
             }
-
-        }
+        });
     }
 
     document.getElementById("default_click_level").click();
