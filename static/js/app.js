@@ -137,14 +137,14 @@ window.onload = function () {
     // 이벤트 리스너 정의 끝
     
 
-    setZoomLevel = function (km, id) {
+    setZoomLevel = function (_km, id) {
         var matches = document.getElementsByClassName("zoom");
 
         for (var i = 0; i < matches.length; i++) {
             matches[i].setAttribute('class', 'zoom');
         }
 
-        switch(km){
+        switch(_km){
             case 1:
                 mapRadius = mapshot.radius.One;
                 break;
@@ -160,6 +160,7 @@ window.onload = function () {
             default:
                 break;
         }
+        km = _km;
         id.setAttribute('class', 'zoom is-active');
     }
 
