@@ -8,10 +8,10 @@ window.onload = function () {
     var map = new Map();
     var rectangle = null;
 
-    var sideBlockCount = 0;
     var traceMode = false;
     var resultType = null;
-    var qualityOfMap = null;
+
+    var mapRadius = null;
 
     var url;
 
@@ -86,10 +86,10 @@ window.onload = function () {
             rectangle.setMap(null);
         }
         
-        tile.setQuality(qualityOfMap);
+        tile.setLevel(mapRadius);
 
-        var sw = tile.getSW(sideBlockCount, coor);
-        var ne = tile.getNE(sideBlockCount, coor);
+        var sw = tile.getSW(mapRadius, coor);
+        var ne = tile.getNE(mapRadius, coor);
 
         rectangle = new kakao.maps.Rectangle({
             bounds: new kakao.maps.LatLngBounds(
@@ -137,21 +137,29 @@ window.onload = function () {
     // 이벤트 리스너 정의 끝
     
 
-    setZoomLevel = function (_sideBlockCount, quality, _km, id) {
+    setZoomLevel = function (km, id) {
         var matches = document.getElementsByClassName("zoom");
 
         for (var i = 0; i < matches.length; i++) {
             matches[i].setAttribute('class', 'zoom');
         }
 
-        sideBlockCount = _sideBlockCount;
-        if(quality == "H"){
-            qualityOfMap = mapshot.Quality.HIGH;
-        } else{
-            qualityOfMap = mapshot.Quality.NORMAL;
+        switch(km){
+            case 1:
+                mapRadius = mapshot.radius.One;
+                break;
+            case 2:
+                mapRadius = mapshot.radius.Two;
+                break;
+            case 5:
+                mapRadius = mapshot.radius.Five;
+                break;
+            case 10:
+                mapRadius = mapshot.radius.Ten;
+                break;
+            default:
+                break;
         }
-
-        km = _km;
         id.setAttribute('class', 'zoom is-active');
     }
 
@@ -246,13 +254,12 @@ window.onload = function () {
         img.crossOrigin = "*";
         img.load(requestUrl);
         document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
-        
     }
     
     naverCapture = function(){
-        naverProfile.setQuality(qualityOfMap);
+        naverProfile.setLevel(mapRadius);
 
-        tile.draw(coor, sideBlockCount, naverProfile, function(canvas){
+        tile.draw(coor, 1, naverProfile, function(canvas){
             var fileName = document.getElementById("bunzi-address").innerText;
             
             if (canvas.msToBlob) {
