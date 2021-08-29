@@ -259,7 +259,7 @@ window.onload = function () {
     naverCapture = function(){
         naverProfile.setLevel(mapRadius);
 
-        tile.draw(coor, 1, naverProfile, function(canvas){
+        tile.draw(coor, mapRadius, naverProfile, function(canvas){
             var fileName = document.getElementById("bunzi-address").innerText;
             
             if (canvas.msToBlob) {
