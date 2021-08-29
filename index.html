@@ -8,10 +8,10 @@
 
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf6334d96f548310595c5643cb199334&libraries=services"></script>
-    <script type="text/javascript" src="static/js/mapshot.min.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
     <script type="text/javascript" src="static/js/map.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/eligrey/canvas-toBlob.js@master/canvas-toBlob.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/lcw3176/mapshot-lib@master/1.1.0/mapshot.min.js"></script>
     <script type="text/javascript" src="static/js/navbar.js"></script>
     <link rel="stylesheet" href="static/css/map.css">
 
@@ -151,11 +151,11 @@
                             <li style="border-top: 2px solid black; margin-bottom: 3%;">
                                 <p></p>
                             </li>
-                            <li><a class="zoom" onclick="setZoomLevel(11, 'H', 1, this)">1km</a></li>
-                            <li><a class="zoom" onclick="setZoomLevel(17, 'H', 2, this)">2km</a></li>
-                            <li><a class="zoom" onclick="setZoomLevel(11, 'N', 5, this)">5km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(1, this)">1km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(2, this)">2km</a></li>
+                            <li><a class="zoom" onclick="setZoomLevel(5, this)">5km</a></li>
                             <li><a class="zoom" id="default_click_level"
-                                    onclick="setZoomLevel(21, 'N', 10, this)">10km</a></li>
+                                    onclick="setZoomLevel(10, this)">10km</a></li>
                         </ul>
                         <p class="title is-6" style="margin-top: 5%; margin-bottom: 3%;">
                             종류
