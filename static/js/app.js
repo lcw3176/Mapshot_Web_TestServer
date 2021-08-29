@@ -118,19 +118,19 @@ window.onload = function () {
     // 맵샷 네이버 이벤트 리스너 정의
     document.body.addEventListener("tileImageLoadStart", function(e){
         var progressBar = document.getElementById("progressBar");
-        progressBar.max = e.total;
+        progressBar.max = e.detail.total;
         progressBar.value = 0;
     });
 
     document.body.addEventListener("tileImageOnLoad", function(e){
         var progressBar = document.getElementById("progressBar");
-        progressBar.value = e.complete;
+        progressBar.value = e.detail.complete;
         document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
     });
 
     document.body.addEventListener("tileImageOnError", function(e){
         var progressBar = document.getElementById("progressBar");
-        progressBar.value = e.complete;
+        progressBar.value = e.detail.complete;
         progressBar.setAttribute("class", "progress is-danger");
         document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
     });
