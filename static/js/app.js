@@ -124,13 +124,13 @@ window.onload = function () {
 
     document.body.addEventListener("tileImageOnLoad", function(e){
         var progressBar = document.getElementById("progressBar");
-        progressBar.value = e.detail.complete;
+        progressBar.value += 1;
         document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
     });
 
     document.body.addEventListener("tileImageOnError", function(e){
         var progressBar = document.getElementById("progressBar");
-        progressBar.value = e.detail.complete;
+        progressBar.value += 1;
         progressBar.setAttribute("class", "progress is-danger");
         document.getElementById("captureStatus").innerText = e.complete + "/" + progressBar.max + " 수집 완료";
     });
