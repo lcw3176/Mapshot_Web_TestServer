@@ -2,8 +2,6 @@ window.onload = function () {
     var naverProfile = new mapshot.profile.Naver();
     naverProfile.setKey("ny5d4sdo0e");
 
-    var vworldProfile = new mapshot.profile.Vworld();
-
     var coor = new mapshot.coors.LatLng();
     var tile = new mapshot.maps.Tile();
 
@@ -262,7 +260,7 @@ window.onload = function () {
     naverCapture = function(){
         naverProfile.setLevel(mapRadius);
 
-        tile.drawVworld(coor, mapRadius, vworldProfile, function(canvas){
+        tile.draw(coor, mapRadius, naverProfile, function(canvas){
             var fileName = document.getElementById("bunzi-address").innerText;
             
             if (canvas.msToBlob) {
