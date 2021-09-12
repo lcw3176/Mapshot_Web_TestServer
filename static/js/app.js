@@ -255,7 +255,7 @@ window.onload = function () {
                     
                     requestUrl += queryString;
                     document.getElementById("progressBar").removeAttribute("value");
-            
+                    document.getElementById("progressBar").setAttribute("max", 100);
                     var img = new Image();
                     img.crossOrigin = "*";
                     img.load(requestUrl);
