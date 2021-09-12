@@ -254,7 +254,8 @@ window.onload = function () {
                     var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km + "&type=" + kakaoMapType;
                     
                     requestUrl += queryString;
-                    document.getElementById("progressBar").removeAttribute("value");
+                    
+                    document.getElementById("progressBar").setAttribute("class", "progress is-info");
                     document.getElementById("progressBar").setAttribute("max", 100);
                     var img = new Image();
                     img.crossOrigin = "*";
@@ -268,6 +269,8 @@ window.onload = function () {
 
         xhr.open('GET', wakeUpUrl);
         xhr.send();
+        document.getElementById("progressBar").removeAttribute("value");
+        document.getElementById("progressBar").setAttribute("class", "progress is-warning");
         document.getElementById("captureStatus").innerText = "서버를 깨우는 중입니다. 곧 완료됩니다.";        
     }
     
