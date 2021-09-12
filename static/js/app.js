@@ -245,16 +245,30 @@ window.onload = function () {
     }
 
     kakaoCapture = function(){
-        var requestUrl = "https://mapshotproxyserver.herokuapp.com/test?";
-        var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km + "&type=" + kakaoMapType;
-        
-        requestUrl += queryString;
-        document.getElementById("progressBar").removeAttribute("value");
+        var wakeUpUrl = "https://mapshotproxyserver.herokuapp.com";
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var requestUrl = "https://mapshotproxyserver.herokuapp.com/test?";
+                    var queryString = "lat=" + coor.getY() + "&lng=" + coor.getX() + "&level=" + km + "&type=" + kakaoMapType;
+                    
+                    requestUrl += queryString;
+                    document.getElementById("progressBar").removeAttribute("value");
+            
+                    var img = new Image();
+                    img.crossOrigin = "*";
+                    img.load(requestUrl);
+                    document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+                } else {
+                    document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요";    
+                }
+            }
+        };
 
-        var img = new Image();
-        img.crossOrigin = "*";
-        img.load(requestUrl);
-        document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+        xhr.open('GET', wakeUpUrl);
+        xhr.send();
+        document.getElementById("captureStatus").innerText = "서버를 깨우는 중입니다. 곧 완료됩니다.";        
     }
     
     naverCapture = function(){
