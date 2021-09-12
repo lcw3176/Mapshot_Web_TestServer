@@ -245,7 +245,7 @@ window.onload = function () {
     }
 
     kakaoCapture = function(){
-        var wakeUpUrl = "https://mapshotproxyserver.herokuapp.com";
+        var wakeUpUrl = "https://mapshotproxyserver.herokuapp.com/wakeup";
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
