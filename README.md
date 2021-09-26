@@ -4,4 +4,7 @@
     - 작동이 불안정할 수 있습니다.
     - 본 서버에 적용되기전 미리 적용되는 프리뷰 서버입니다.
     - 테스트서버에서 문의 기능은 작동하지 않습니다.
- - https://testservermapshot.netlify.app
+- https://testservermapshot.netlify.app
+- 테스트 목록 
+    - 구글 지도 (되도록 10월 내로)
+    - 구역 분할 캡쳐 (가능한 구글 지도 패치랑 같이)
