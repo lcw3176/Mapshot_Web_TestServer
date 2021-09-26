@@ -9,7 +9,25 @@
     - 구글 지도 (되도록 10월 내로)
     - 구역 분할 캡쳐 (가능한 구글 지도 패치랑 같이)
 - 기록사항
+    - 격자 버그
+        ```css
+        .gm-style div {
+                -webkit-transform: scale(1.002);
+        }
+        ```
+    - 1km
+        - zoom:
+        - width:
+        - height:
     - 2km
         - zoom: 17
         - width: 4500px
         - height: 4500px
+    - 5km
+        - zoom: 
+        - width:
+        - height:
+    - 10km
+        - zoom: 
+        - width: 
+        - height: 
