@@ -16,9 +16,9 @@
         }
         ```
     - 1km
-        - zoom:
-        - width:
-        - height:
+        - zoom: 18
+        - width: 5500px
+        - height: 5500px
     - 2km
         - zoom: 17
         - width: 4500px
