@@ -19,7 +19,6 @@ window.onload = function () {
     var mapRadius = null;
 
     var url;
-    var kakaoMapType;
     var progressBar = document.getElementById("progressBar");
 
 
