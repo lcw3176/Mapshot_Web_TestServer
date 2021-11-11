@@ -89,6 +89,7 @@ window.onload = function () {
     
     // 맵샷 카카오 이벤트 리스너 정의
     document.body.addEventListener("kakaoTileOnProgress", function(e){
+        progressBar.max = 100;
         document.getElementById("captureStatus").innerText =  e.detail.percentage + " / 100";
         progressBar.setAttribute("value", e.detail.percentage);
     });
@@ -218,8 +219,6 @@ window.onload = function () {
 
         kakaoTile.wakeUp(wakeUpUrl, function(){
             progressBar.setAttribute("class", "progress is-info");
-            progressBar.max = 100;
-            progressBar.value = 0;
             document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
 
             kakaoTile.draw(kakaoProfile.getUrl(), function(blob){
