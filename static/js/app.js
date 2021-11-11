@@ -222,7 +222,7 @@ window.onload = function () {
             progressBar.value = 0;
             document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
 
-            kakaoTile.draw(kakaoProfile.getUrl(), function(){
+            kakaoTile.draw(kakaoProfile.getUrl(), function(blob){
             
                 if(window.navigator && window.navigator.msSaveOrOpenBlob){
                     navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
