@@ -135,7 +135,7 @@ window.onload = function () {
         }
 
         naverProfile.setMapType(mapType);
-        kakaoProfile.setMapType(kakaoMapType);
+        kakaoProfile.setMapType(mapType);
 
         id.setAttribute('class', 'map is-active');
     }
