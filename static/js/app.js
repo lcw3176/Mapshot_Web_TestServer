@@ -4,7 +4,7 @@ window.onload = function () {
 
     var proxyUrl = "https://mapshotproxyserver.herokuapp.com/test";
     var kakaoProfile = new mapshot.profile.Kakao();
-    kakaoMapType.setProxyUrl(proxyUrl)
+    kakaoProfile.setProxyUrl(proxyUrl)
 
     var coor = new mapshot.coors.LatLng();
     var naverTile = new mapshot.maps.NaverTile();
