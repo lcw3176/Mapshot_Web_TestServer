@@ -21,6 +21,12 @@ window.onload = function () {
     var url;
     var progressBar = document.getElementById("progressBar");
 
+    var logData = {
+        usingCount: 0,
+        usedFunc: "",
+        title: "",
+        message: "",
+    };
 
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
@@ -166,6 +172,7 @@ window.onload = function () {
         }
 
         resultType = companyName;
+        logData.usedFunc = companyName;
     }
 
 
@@ -206,6 +213,8 @@ window.onload = function () {
             naverCapture();
         }
 
+        
+
     }
 
     kakaoCapture = function(){
@@ -239,6 +248,7 @@ window.onload = function () {
                 }
       
                 progressBar.setAttribute("value", 100);
+                sendSuccessLog();
             });
         });
 
@@ -271,7 +281,20 @@ window.onload = function () {
 
                 }, "image/jpeg");
             }
+
+            sendSuccessLog();
         });
+    }
+
+    sendSuccessLog = function(){
+        logData.usingCount++;
+
+        var logUrl = "https://mapshot-proxy.herokuapp.com/log/success"
+        var logRequest = new XMLHttpRequest();
+        logRequest.open("POST", logUrl, true);
+
+        logRequest.setRequestHeader("Content-Type", "application/json");
+        logRequest.send(logData);
     }
 
     document.getElementById("default_click_level").click();
