@@ -295,7 +295,7 @@ window.onload = function () {
 
         logRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
         logRequest.setRequestHeader("Content-Type", "application/json");
-        logRequest.send(logData);
+        logRequest.send(JSON.stringify(logData));
     }
 
     document.getElementById("default_click_level").click();
