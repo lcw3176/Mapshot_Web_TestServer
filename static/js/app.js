@@ -293,6 +293,7 @@ window.onload = function () {
         var logRequest = new XMLHttpRequest();
         logRequest.open("POST", logUrl, true);
 
+        logRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
         logRequest.setRequestHeader("Content-Type", "application/json");
         logRequest.send(logData);
     }
