@@ -28,6 +28,8 @@ window.onload = function () {
         message: "",
     };
 
+    var isFailed = false;
+
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
         map.searchPlaces();
@@ -89,6 +91,8 @@ window.onload = function () {
         progressBar.value += 1;
         progressBar.setAttribute("class", "progress is-danger");
         document.getElementById("captureStatus").innerText = progressBar.value + "/" + progressBar.max + " 수집 완료";
+        sendErrorLog("naver", "imageLoadError: " + progressBar.value);
+        isFailed = true;
     });
     // 네이버 이벤트 리스너 정의 끝
     
@@ -102,6 +106,7 @@ window.onload = function () {
     document.body.addEventListener("kakaoTileOnError", function(e){
         document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요.";
         progressBar.setAttribute("value", 0);
+        sendErrorLog("kakao", "imageLoadError");
     });
     // 맵샷 카카오 이벤트 리스너 정의 끝
 
@@ -218,42 +223,46 @@ window.onload = function () {
     }
 
     kakaoCapture = function(){
-        var wakeUpUrl = "https://mapshotproxyserver.herokuapp.com/wakeup";
-        var fileName = document.getElementById("bunzi-address").innerText;
+        // document.body.dispatchEvent(kakaoTileOnErrorEvent);
+        // var wakeUpUrl = "https://mapshotproxyserver.herokuapp.com/wakeup";
+        // var fileName = document.getElementById("bunzi-address").innerText;
 
-        progressBar.removeAttribute("value");
-        progressBar.setAttribute("class", "progress is-warning");
-        document.getElementById("captureStatus").innerText = "서버를 깨우는 중입니다. 곧 완료됩니다.";  
+        // progressBar.removeAttribute("value");
+        // progressBar.setAttribute("class", "progress is-warning");
+        // document.getElementById("captureStatus").innerText = "서버를 깨우는 중입니다. 곧 완료됩니다.";  
 
-        kakaoTile.wakeUp(wakeUpUrl, function(){
-            progressBar.setAttribute("class", "progress is-info");
-            document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+        // kakaoTile.wakeUp(wakeUpUrl, function(){
+        //     progressBar.setAttribute("class", "progress is-info");
+        //     document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
 
-            kakaoTile.draw(kakaoProfile.getUrl(), function(blob){
+        //     kakaoTile.draw(kakaoProfile.getUrl(), function(blob){
             
-                if(window.navigator && window.navigator.msSaveOrOpenBlob){
-                    navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
-                    document.getElementById("captureStatus").innerText = "완료되었습니다.";
-                } else{
-                    url = URL.createObjectURL(blob);
+        //         if(window.navigator && window.navigator.msSaveOrOpenBlob){
+        //             navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
+        //             document.getElementById("captureStatus").innerText = "완료되었습니다.";
+        //         } else{
+        //             url = URL.createObjectURL(blob);
         
-                    var tag = document.getElementById("resultHref");
-                    tag.href = url;
-                    tag.download = "mapshot_" + fileName + ".jpg";
+        //             var tag = document.getElementById("resultHref");
+        //             tag.href = url;
+        //             tag.download = "mapshot_" + fileName + ".jpg";
         
-                    var span = document.getElementById("resultSpan");
-                    span.innerHTML = "mapshot_" + fileName + ".jpg";
+        //             var span = document.getElementById("resultSpan");
+        //             span.innerHTML = "mapshot_" + fileName + ".jpg";
         
-                    document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
-                }
+        //             document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
+        //         }
       
-                progressBar.setAttribute("value", 100);
-                sendSuccessLog();
-            });
-        });
+        //         progressBar.setAttribute("value", 100);
 
-       
-              
+        //         if(!isFailed){
+        //             sendSuccessLog();
+        //         } else {
+        //             isFailed = false;
+        //         }
+                
+        //     });
+        // });
     }
     
     naverCapture = function(){
@@ -290,6 +299,20 @@ window.onload = function () {
         logData.usingCount++;
 
         var logUrl = "https://mapshot-proxy.herokuapp.com/log/success"
+        var logRequest = new XMLHttpRequest();
+        logRequest.open("POST", logUrl, true);
+
+        logRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+        logRequest.setRequestHeader("Content-Type", "application/json");
+        logRequest.send(JSON.stringify(logData));
+    }
+
+    sendErrorLog = function(title, message){
+        logData.usingCount++;
+        logData.title = title;
+        logData.message = message;
+
+        var logUrl = "https://mapshot-proxy.herokuapp.com/log/failed"
         var logRequest = new XMLHttpRequest();
         logRequest.open("POST", logUrl, true);
 
