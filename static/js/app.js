@@ -91,7 +91,7 @@ window.onload = function () {
         progressBar.value += 1;
         progressBar.setAttribute("class", "progress is-danger");
         document.getElementById("captureStatus").innerText = progressBar.value + "/" + progressBar.max + " 수집 완료";
-        sendErrorLog("naver", "imageLoadError: " + progressBar.value);
+        sendErrorLog("naver", "imageLoadError on " + progressBar.value + " blocks");
         isFailed = true;
     });
     // 네이버 이벤트 리스너 정의 끝
