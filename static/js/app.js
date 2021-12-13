@@ -298,7 +298,7 @@ window.onload = function () {
     sendSuccessLog = function(){
         logData.usingCount++;
 
-        var logUrl = "https://mapshot-proxy.herokuapp.com/log/success"
+        var logUrl = "https://mapshot.herokuapp.com/log/success"
         var logRequest = new XMLHttpRequest();
         logRequest.open("POST", logUrl, true);
 
@@ -312,7 +312,7 @@ window.onload = function () {
         logData.title = title;
         logData.message = message;
 
-        var logUrl = "https://mapshot-proxy.herokuapp.com/log/failed"
+        var logUrl = "https://mapshot.herokuapp.com/log/failed"
         var logRequest = new XMLHttpRequest();
         logRequest.open("POST", logUrl, true);
 
