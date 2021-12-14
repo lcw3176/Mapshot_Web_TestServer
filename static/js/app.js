@@ -223,7 +223,6 @@ window.onload = function () {
     }
 
     kakaoCapture = function(){
-        document.body.dispatchEvent(kakaoTileOnErrorEvent);
         var wakeUpUrl = "https://mapshot.herokuapp.com/";
         var fileName = document.getElementById("bunzi-address").innerText;
 
