@@ -233,6 +233,9 @@ window.onload = function () {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 if(xhr.responseText == "true"){
+                    progressBar.setAttribute("class", "progress is-info");
+                    document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+
                     kakaoTile.drawPost(proxyUrl, kakaoProfile.getDataToJson(), function(blob){
             
                         if(window.navigator && window.navigator.msSaveOrOpenBlob){
@@ -260,7 +263,11 @@ window.onload = function () {
                         }
                         
                     });
-                } 
+                } else {
+                    setTimeout(function(){
+                        xhr.send(null)
+                    }, 2000);
+                }
             }
         }
 
