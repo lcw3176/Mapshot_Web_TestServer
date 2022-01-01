@@ -265,6 +265,7 @@ window.onload = function () {
                     });
                 } else {
                     setTimeout(function(){
+                        xhr.open('GET', proxyUrl, true);
                         xhr.send(null)
                     }, 2000);
                 }
