@@ -14,6 +14,8 @@ window.onload = function () {
     var rectangle = null;
 
     var traceMode = false;
+    var layerMode = false;
+
     var resultType = null;
 
     var mapRadius = null;
@@ -151,6 +153,26 @@ window.onload = function () {
         id.setAttribute('class', 'map is-active');
     }
 
+
+    setCompany = function(companyName){
+        var matches = document.getElementsByClassName("company");
+
+        for (var i = 0; i < matches.length; i++) {
+            matches[i].setAttribute('class', 'company');
+        }
+
+        if(companyName === "kakao"){
+            document.getElementById("kakao").setAttribute("class", "company button is-warning");
+        }
+
+        else if(companyName === "naver"){
+            document.getElementById("naver").setAttribute("class", "company button is-success");
+        }
+
+        resultType = companyName;
+        logData.usedFunc = companyName;
+    }
+
     setTraceMode = function (id) {
         if (id.getAttribute("class") != "is-active") {
             id.setAttribute("class", "is-active")
@@ -161,23 +183,16 @@ window.onload = function () {
         }
     }
 
-    setCompany = function(companyName, id){
-        var matches = document.getElementsByClassName("company");
-
-        for (var i = 0; i < matches.length; i++) {
-            matches[i].setAttribute('class', 'company');
+    setLayerMode = function(id){
+        if (id.getAttribute("class") != "is-active") {
+            id.setAttribute("class", "is-active")
+            layerMode = true;
+            setCompany("kakao");
+            
+        } else {
+            id.setAttribute("class", "")
+            layerMode = false;
         }
-
-        if(companyName === "kakao"){
-            id.setAttribute("class", "company button is-warning");
-        }
-
-        else if(companyName === "naver"){
-            id.setAttribute("class", "company button is-success");
-        }
-
-        resultType = companyName;
-        logData.usedFunc = companyName;
     }
 
 
