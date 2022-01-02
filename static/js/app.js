@@ -234,7 +234,7 @@ window.onload = function () {
             progressBar.setAttribute("class", "progress is-info");
             document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
     
-            kakaoTile.drawPost(proxyUrl, kakaoProfile.getParamsToJson(), function(blob){
+            kakaoTile.drawPost(kakaoProfile, function(blob){
     
                 if(window.navigator && window.navigator.msSaveOrOpenBlob){
                     navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
