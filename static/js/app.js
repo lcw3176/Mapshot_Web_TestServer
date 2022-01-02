@@ -227,53 +227,41 @@ window.onload = function () {
 
         progressBar.removeAttribute("value");
         progressBar.setAttribute("class", "progress is-warning");
-        document.getElementById("captureStatus").innerText = "서버를 깨우는 중입니다. 곧 완료됩니다.";  
+        document.getElementById("captureStatus").innerText = "서버 요청 대기중입니다. 곧 완료됩니다.";  
+        
+        kakaoTile.wait(proxyUrl, "true", 2000, function(){
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                if(xhr.responseText == "true"){
-                    progressBar.setAttribute("class", "progress is-info");
-                    document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
-
-                    kakaoTile.drawPost(proxyUrl, kakaoProfile.getDataToJson(), function(blob){
-            
-                        if(window.navigator && window.navigator.msSaveOrOpenBlob){
-                            navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
-                            document.getElementById("captureStatus").innerText = "완료되었습니다.";
-                        } else{
-                            url = URL.createObjectURL(blob);
-                
-                            var tag = document.getElementById("resultHref");
-                            tag.href = url;
-                            tag.download = "mapshot_" + fileName + ".jpg";
-                
-                            var span = document.getElementById("resultSpan");
-                            span.innerHTML = "mapshot_" + fileName + ".jpg";
-                
-                            document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
-                        }
-              
-                        progressBar.setAttribute("value", 100);
-            
-                        if(!isFailed){
-                            sendSuccessLog();
-                        } else {
-                            isFailed = false;
-                        }
-                        
-                    });
-                } else {
-                    setTimeout(function(){
-                        xhr.open('GET', proxyUrl, true);
-                        xhr.send(null)
-                    }, 2000);
+            progressBar.setAttribute("class", "progress is-info");
+            document.getElementById("captureStatus").innerText = "서버에 요청중입니다. 잠시 기다려주세요";
+    
+            kakaoTile.drawPost(proxyUrl, kakaoProfile.getParamsToJson(), function(blob){
+    
+                if(window.navigator && window.navigator.msSaveOrOpenBlob){
+                    navigator.msSaveBlob(blob, "mapshot_" + fileName + ".jpg");
+                    document.getElementById("captureStatus").innerText = "완료되었습니다.";
+                } else{
+                    url = URL.createObjectURL(blob);
+        
+                    var tag = document.getElementById("resultHref");
+                    tag.href = url;
+                    tag.download = "mapshot_" + fileName + ".jpg";
+        
+                    var span = document.getElementById("resultSpan");
+                    span.innerHTML = "mapshot_" + fileName + ".jpg";
+        
+                    document.getElementById("captureStatus").innerText = "완료되었습니다. 생성된 링크를 확인하세요";
                 }
-            }
-        }
-
-        xhr.open('GET', proxyUrl, true);
-        xhr.send(null);
+      
+                progressBar.setAttribute("value", 100);
+    
+                if(!isFailed){
+                    sendSuccessLog();
+                } else {
+                    isFailed = false;
+                }
+                
+            });
+        });
 
     }
     
