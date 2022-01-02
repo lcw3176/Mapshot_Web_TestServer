@@ -155,7 +155,7 @@ window.onload = function () {
 
 
     setCompany = function(companyName){
-        if(layerMode && companyName === "naver"){
+        if(kakaoProfile.isLayerMode() && companyName === "naver"){
             alert("지적 편집도는 카카오 지도만 사용 가능합니다");
             return;
         }
@@ -192,12 +192,12 @@ window.onload = function () {
     setLayerMode = function(id){
         if (id.getAttribute("class") != "is-active") {
             id.setAttribute("class", "is-active")
-            layerMode = true;
+            kakaoProfile.setLayerMode(true);
             setCompany("kakao");
 
         } else {
             id.setAttribute("class", "")
-            layerMode = false;
+            kakaoProfile.setLayerMode(false);
         }
     }
 
