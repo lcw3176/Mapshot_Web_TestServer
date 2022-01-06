@@ -1,4 +1,5 @@
 window.addEventListener("load", function(){
+    
     var xml = new XMLHttpRequest();
     xml.onreadystatechange = function(){
 
@@ -11,5 +12,15 @@ window.addEventListener("load", function(){
     xml.setRequestHeader("Access-Control-Allow-Origin", "*");
     xml.send();
 
+    navbarBurgerClick = function(id){
+        if(id.getAttribute("class") === "navbar-burger"){
+            id.setAttribute("class", "navbar-burger is-active");
+            document.getElementById("navbar-menu").setAttribute("class", "navbar-menu is-active");
+        } else{
+            id.setAttribute("class", "navbar-burger");
+            document.getElementById("navbar-menu").setAttribute("class", "navbar-menu");
+        }
+    }
+    
 })
 
