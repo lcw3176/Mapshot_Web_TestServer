@@ -3,6 +3,12 @@
     margin-bottom: 3%;
 }
 
+.patch-seperator{
+    border-top: 2px solid rgb(189, 185, 185);
+    height: 0px;
+    padding: 0px;
+}
+
 @media screen and (max-width: 770px){
     #menu_wrap{
         height: 20%;
