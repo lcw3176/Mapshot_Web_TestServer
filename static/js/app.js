@@ -2,7 +2,7 @@ window.onload = function () {
     var naverProfile = new mapshot.profile.Naver();
     naverProfile.setKey("ny5d4sdo0e");
 
-    var proxyUrl = "https://mapshot.herokuapp.com/proxy/kakao";
+    var proxyUrl = "https://mapshot.herokuapp.com/map/kakao";
     var kakaoProfile = new mapshot.profile.Kakao();
     kakaoProfile.setProxyUrl(proxyUrl)
 
