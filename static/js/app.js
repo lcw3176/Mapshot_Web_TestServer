@@ -247,13 +247,19 @@ window.onload = function () {
 
     kakaoCapture = function(){
         var fileName = document.getElementById("bunzi-address").innerText;
+        var waitCount = 0;
 
         progressBar.removeAttribute("value");
         progressBar.setAttribute("class", "progress is-warning");
         document.getElementById("captureStatus").innerText = "서버 요청 대기중입니다. 곧 완료됩니다.";  
         
         function onWaitFunc(responseText){
-            document.getElementById("captureStatus").innerHTML = responseText + " 명이 대기중입니다. 잠시만 기다려주세요";
+            waitCount++;
+
+            if(waitCount >= 10){
+                document.getElementById("captureStatus").innerHTML = "사용자가 많아 대기중입니다. 조금만 더 기다려주세요";
+            }
+            
         }
 
         kakaoTile.wait(proxyUrl, "true", 2000, onWaitFunc, function(){
