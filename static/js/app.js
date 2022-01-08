@@ -22,14 +22,6 @@ window.onload = function () {
     var url;
     var progressBar = document.getElementById("progressBar");
 
-    var logData = {
-        usingCount: 0,
-        usedFunc: "",
-        title: "",
-        message: "",
-    };
-
-
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
         map.searchPlaces();
@@ -171,7 +163,6 @@ window.onload = function () {
         }
 
         resultType = companyName;
-        logData.usedFunc = companyName;
     }
 
     setTraceMode = function (id) {
