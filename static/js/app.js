@@ -14,7 +14,6 @@ window.onload = function () {
     var rectangle = null;
 
     var traceMode = false;
-    var layerMode = false;
 
     var resultType = null;
 
