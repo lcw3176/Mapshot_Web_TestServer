@@ -30,7 +30,6 @@ window.onload = function () {
         message: "",
     };
 
-    var isFailed = false;
 
     // 카카오 지도 설정
     document.getElementById("searchPlaces").onsubmit = function () {
@@ -93,8 +92,6 @@ window.onload = function () {
         progressBar.value += 1;
         progressBar.setAttribute("class", "progress is-danger");
         document.getElementById("captureStatus").innerText = progressBar.value + "/" + progressBar.max + " 수집 완료";
-        sendErrorLog("naver", "imageLoadError on " + progressBar.value + " blocks");
-        isFailed = true;
     });
     // 네이버 이벤트 리스너 정의 끝
     
@@ -108,7 +105,6 @@ window.onload = function () {
     document.body.addEventListener("kakaoTileOnError", function(e){
         document.getElementById("captureStatus").innerText = "서버 에러입니다. 잠시 후 다시 시도해주세요.";
         progressBar.setAttribute("value", 0);
-        sendErrorLog("kakao", "imageLoadError");
     });
     // 맵샷 카카오 이벤트 리스너 정의 끝
 
@@ -239,8 +235,6 @@ window.onload = function () {
             naverCapture();
         }
 
-        
-
     }
 
 
@@ -287,12 +281,6 @@ window.onload = function () {
       
                 progressBar.setAttribute("value", 100);
     
-                if(!isFailed){
-                    sendSuccessLog();
-                } else {
-                    isFailed = false;
-                }
-                
             });
         });
 
@@ -324,34 +312,7 @@ window.onload = function () {
                 }, "image/jpeg");
             }
 
-            sendSuccessLog();
         });
-    }
-
-    sendSuccessLog = function(){
-        logData.usingCount++;
-
-        var logUrl = "https://mapshot.herokuapp.com/log/success"
-        var logRequest = new XMLHttpRequest();
-        logRequest.open("POST", logUrl, true);
-
-        logRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
-        logRequest.setRequestHeader("Content-Type", "application/json");
-        logRequest.send(JSON.stringify(logData));
-    }
-
-    sendErrorLog = function(title, message){
-        logData.usingCount++;
-        logData.title = title;
-        logData.message = message;
-
-        var logUrl = "https://mapshot.herokuapp.com/log/failed"
-        var logRequest = new XMLHttpRequest();
-        logRequest.open("POST", logUrl, true);
-
-        logRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
-        logRequest.setRequestHeader("Content-Type", "application/json");
-        logRequest.send(JSON.stringify(logData));
     }
 
     document.getElementById("default_click_level").click();
